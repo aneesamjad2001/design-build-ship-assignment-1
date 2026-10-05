@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v01 · Project-first editorial</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --paper: #f5f1e8;
+      --ink: #1c1a16;
+      --muted: #5c564b;
+      --rule: #cfc6b4;
+      --accent: #a8361d;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --measure: 34rem;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+    a:hover { color: var(--accent); }
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.5rem 0.75rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+    }
+    .skip:focus { top: 1rem; }
+
+    .page {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+    }
+
+    /* Shared 12-column grid; sections place content off-centre on purpose. */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(1rem, 2.5vw, 2rem);
+    }
+
+    .label {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--sans);
+      font-size: 0.85rem;
+    }
+    .topbar a { font-weight: 600; text-decoration: none; }
+    .topbar a:hover { text-decoration: underline; }
+    .topbar span { color: var(--muted); }
+
+    /* Masthead: headline pushed right, kicker hangs in the left margin */
+    .masthead { padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem); }
+    .masthead .label { grid-column: 1 / span 3; padding-top: 0.9rem; }
+    .masthead h1 {
+      grid-column: 4 / span 9;
+      margin: 0;
+      font-weight: 400;
+      font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+    .masthead .intro {
+      grid-column: 4 / span 6;
+      margin: 1.75rem 0 0;
+      max-width: var(--measure);
+      color: var(--muted);
+    }
+
+    /* Lead project */
+    .lead {
+      border-top: 2px solid var(--ink);
+      padding: 2rem 0 clamp(3rem, 7vw, 5rem);
+      row-gap: 1.5rem;
+    }
+    .lead-rail { grid-column: 1 / span 3; }
+    .num {
+      display: block;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      line-height: 1;
+      color: var(--accent);
+    }
+    .lead-rail .label { margin-top: 0.75rem; }
+
+    .lead-body { grid-column: 4 / span 5; }
+    .lead-body h2 {
+      margin: 0;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .role {
+      margin: 0.75rem 0 1.5rem;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .dek {
+      margin: 0;
+      max-width: var(--measure);
+      font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+      line-height: 1.4;
+    }
+
+    /* Contribution box drops below the headline line for asymmetry */
+    .contribution {
+      grid-column: 9 / span 4;
+      align-self: start;
+      margin-top: clamp(0rem, 5vw, 4.5rem);
+      padding: 1.25rem 1.25rem 1.5rem;
+      background: #fffdf8;
+      border-left: 4px solid var(--accent);
+    }
+    .contribution h3 { margin: 0 0 1rem; }
+    .contribution dl { margin: 0; font-family: var(--sans); font-size: 0.95rem; line-height: 1.5; }
+    .contribution dt {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .contribution dd { margin: 0.2rem 0 1rem; }
+    .contribution dd:last-child { margin-bottom: 0; }
+    .contribution ul { margin: 0; padding-left: 1.1rem; }
+
+    /* Secondary projects: staggered index */
+    .more { padding-bottom: clamp(3rem, 7vw, 5rem); }
+    .more-head { grid-column: 1 / span 3; }
+    .more-head h2 {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .more ol {
+      grid-column: 4 / span 9;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .project {
+      display: grid;
+      grid-template-columns: 3.5rem minmax(0, 1fr);
+      gap: 0 1rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--rule);
+    }
+    .project:nth-child(2) { margin-left: clamp(0rem, 6vw, 5rem); }
+    .project:nth-child(3) { margin-left: clamp(0rem, 12vw, 10rem); }
+    .project .n { color: var(--accent); font-size: 1.25rem; line-height: 1.3; }
+    .project h3 {
+      margin: 0 0 0.35rem;
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .project p { margin: 0; max-width: var(--measure); color: var(--muted); }
+
+    /* Contact */
+    .contact {
+      border-top: 2px solid var(--ink);
+      padding: 2rem 0 4rem;
+    }
+    .contact .label { grid-column: 1 / span 3; padding-top: 0.6rem; }
+    .contact ul {
+      grid-column: 4 / span 9;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 2.5rem;
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+    }
+
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: minmax(0, 1fr); }
+      .grid > * { grid-column: 1 / -1 !important; }
+      .masthead .label { padding-top: 0; margin-bottom: 1rem; }
+      .contribution { margin-top: 0.5rem; }
+      .project:nth-child(n) { margin-left: 0; }
+      .more-head { margin-bottom: 0.5rem; }
+      .contact .label { padding-top: 0; margin-bottom: 0.75rem; }
+      .contact ul { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="page">
+    <nav class="topbar" aria-label="Prototype navigation">
+      <a href="../index.html">← Gallery</a>
+      <span>v01 · Project-first editorial</span>
+    </nav>
+
+    <header class="masthead grid">
+      <p class="label">Anees Amjad</p>
+      <h1>I build AI tools and data products for real-world decisions.</h1>
+      <p class="intro">I’m Anees Amjad, a graduate student in Computational Analysis and Public Policy at the University of Chicago. My work spans AI workflows, public-sector software, and applied machine learning.</p>
+    </header>
+
+    <main id="main">
+      <article class="lead grid" aria-labelledby="publicpath">
+        <div class="lead-rail">
+          <span class="num" aria-hidden="true">01</span>
+          <p class="label">Lead project</p>
+        </div>
+
+        <div class="lead-body">
+          <h2 id="publicpath">PublicPath</h2>
+          <p class="role">Co-founder, Engineering and Data</p>
+          <p class="dek">I built the platform as one of two engineers, working on API ingestion and data-quality workflows.</p>
+        </div>
+
+        <aside class="contribution" aria-labelledby="pp-contribution">
+          <h3 id="pp-contribution" class="label">My contribution</h3>
+          <dl>
+            <dt>Role</dt>
+            <dd>One of two engineers who built the platform</dd>
+            <dt>Owned</dt>
+            <dd>
+              <ul>
+                <li>API ingestion</li>
+                <li>Data-quality workflows</li>
+              </ul>
+            </dd>
+            <dt>Stack</dt>
+            <dd>Python · GitHub Actions · Supabase · Postgres</dd>
+          </dl>
+        </aside>
+      </article>
+
+      <section class="more grid" aria-labelledby="more-title">
+        <div class="more-head">
+          <h2 id="more-title">Also built</h2>
+        </div>
+        <ol>
+          <li class="project">
+            <span class="n" aria-hidden="true">02</span>
+            <div>
+              <h3>Ourea Brain</h3>
+              <p>Designed an internal AI knowledge system connecting company information across communication and document sources.</p>
+            </div>
+          </li>
+          <li class="project">
+            <span class="n" aria-hidden="true">03</span>
+            <div>
+              <h3>Energy Market Intelligence</h3>
+              <p>Built a weekly AI-assisted workflow filtering energy-storage and related market signals into leadership updates.</p>
+            </div>
+          </li>
+          <li class="project">
+            <span class="n" aria-hidden="true">04</span>
+            <div>
+              <h3>Chicago Eviction Risk</h3>
+              <p>Built an interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="contact grid" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="label">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+        <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+</html>
