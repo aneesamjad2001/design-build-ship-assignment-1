@@ -15,7 +15,12 @@ story of the process. The idea: Anees Amjad's professional portfolio.
   software, and applied machine learning."
 - PublicPath: Co-founder, Engineering and Data. Built the platform as one of two
   engineers, working on API ingestion and data-quality workflows using Python,
-  GitHub Actions, Supabase, and Postgres.
+  GitHub Actions, Supabase, and Postgres. What it is (from its site,
+  https://tahvia127.github.io/PublicPath/): "a nonprofit platform" that "helps
+  students and early-career candidates discover, navigate, and land roles in
+  government, from city hall to Capitol Hill." Features: Discover, Navigate,
+  Match, Get Hired; weekly digest of 5–10 hand-picked roles. Five-person team.
+  (Site lists Anees as "Tech Co-lead"; use Anees's own title above unless told.)
 - Ourea Brain: Designed an internal AI knowledge system connecting company
   information across communication and document sources.
 - Energy Market Intelligence: Built a weekly AI-assisted workflow filtering
