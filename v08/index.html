@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v08 · Recruiter scorecard</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --bg: #eef1f5;
+      --card: #ffffff;
+      --ink: #111827;
+      --muted: #5b6474;
+      --line: #dfe3ea;
+      --zebra: #f8f9fb;
+      --blue: #2456d6;
+      --blue-bg: #e8eefc;
+      --green: #12715b;
+      --green-bg: #e3f4ee;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    a { color: var(--blue); text-underline-offset: 0.2em; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
+
+    .skip { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: #fff; padding: 0.4rem 0.7rem; }
+    .skip:focus { top: 1rem; }
+
+    .appbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.65rem clamp(1rem, 3vw, 2rem);
+      background: var(--ink);
+      color: #e5e7eb;
+      font-size: 0.85rem;
+    }
+    .appbar a { color: #fff; font-weight: 600; text-decoration: none; }
+    .appbar a:hover { text-decoration: underline; }
+    .appbar a:focus-visible { outline-color: #93b4ff; }
+
+    .wrap { max-width: 72rem; margin: 0 auto; padding: clamp(1rem, 3vw, 2rem); }
+
+    /* Snapshot card */
+    .snapshot {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .eyebrow { margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    h1 { margin: 0.35rem 0 0; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.15; }
+    .pos { margin: 0.4rem 0 0; font-size: 1.1rem; }
+    .snapshot .intro { margin: 0.75rem 0 0; color: var(--muted); }
+
+    .facts { margin: 0; display: grid; gap: 0.65rem; align-content: start; }
+    .facts div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.75rem; padding-bottom: 0.65rem; border-bottom: 1px solid var(--line); }
+    .facts div:last-child { border-bottom: 0; padding-bottom: 0; }
+    .facts dt { color: var(--muted); font-size: 0.85rem; }
+    .facts dd { margin: 0; font-weight: 500; }
+
+    .chip {
+      display: inline-block;
+      padding: 0.1rem 0.55rem;
+      border-radius: 999px;
+      background: var(--blue-bg);
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
+      margin: 0 0.25rem 0.25rem 0;
+    }
+    .chip.mine { background: var(--green-bg); color: var(--green); }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1.5rem 0 0.75rem;
+    }
+    .toolbar h2 { margin: 0 auto 0 0; font-size: 1.05rem; }
+    .toolbar .lbl { font-size: 0.8rem; color: var(--muted); }
+    .filter {
+      font: inherit;
+      font-size: 0.82rem;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .filter[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .filters { display: none; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+    .js .filters { display: flex; }
+
+    /* Table */
+    .table-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; }
+    caption { text-align: left; padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--muted); border-bottom: 1px solid var(--line); caption-side: bottom; border-top: 1px solid var(--line); border-bottom: 0; }
+    th, td { text-align: left; vertical-align: top; padding: 0.85rem 1rem; border-bottom: 1px solid var(--line); }
+    thead th { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); background: var(--zebra); }
+    tbody tr:nth-child(even) { background: var(--zebra); }
+    tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+    tbody th { font-weight: 600; min-width: 10rem; }
+    tbody th small { display: block; font-weight: 400; color: var(--muted); }
+    .num { font-family: var(--mono); color: var(--muted); width: 3rem; }
+    .stack { font-family: var(--mono); font-size: 0.82rem; }
+    .na { color: var(--muted); font-style: italic; font-family: var(--sans); }
+    tr.lead { background: #fffbea !important; box-shadow: inset 4px 0 0 #e8b400; }
+    tr[hidden] { display: none; }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .btn:hover { border-color: var(--ink); }
+
+    @media (max-width: 760px) {
+      .snapshot { grid-template-columns: 1fr; }
+      .facts div { grid-template-columns: 6.5rem 1fr; }
+      thead { position: absolute; left: -9999px; }
+      table, tbody, tr, th, td { display: block; width: 100%; }
+      tr { border-bottom: 1px solid var(--line); padding: 0.5rem 0; }
+      tbody tr:last-child { border-bottom: 0; }
+      tbody th, td { border-bottom: 0; padding: 0.3rem 1rem; }
+      td::before { content: attr(data-label); display: block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+      .num { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="appbar" aria-label="Prototype navigation">
+    <a href="../index.html">← Gallery</a>
+    <span>v08 · Recruiter scorecard</span>
+  </nav>
+
+  <div class="wrap">
+    <header class="snapshot">
+      <div>
+        <p class="eyebrow">Candidate snapshot</p>
+        <h1>Anees Amjad</h1>
+        <p class="pos">I build AI tools and data products for real-world decisions.</p>
+        <p class="intro">I’m a graduate student in Computational Analysis and Public Policy at the University of Chicago. My work spans AI workflows, public-sector software, and applied machine learning.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Program</dt><dd>MS, Computational Analysis and Public Policy (MSCAPP), UChicago</dd></div>
+        <div><dt>Focus areas</dt><dd><span class="chip">AI workflows</span><span class="chip">Public-sector software</span><span class="chip">Applied ML</span></dd></div>
+        <div><dt>Lead project</dt><dd>PublicPath, Co-founder, Engineering and Data</dd></div>
+        <div><dt>Tools named</dt><dd class="stack">Python · GitHub Actions · Supabase · Postgres</dd></div>
+      </dl>
+    </header>
+
+    <main id="main">
+      <div class="toolbar">
+        <h2 id="projects-h">Projects</h2>
+        <div class="filters" role="group" aria-label="Filter projects by area">
+          <span class="lbl">Filter:</span>
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="ai" aria-pressed="false">AI workflows</button>
+          <button class="filter" type="button" data-filter="public" aria-pressed="false">Public sector</button>
+          <button class="filter" type="button" data-filter="ml" aria-pressed="false">Applied ML</button>
+          <button class="filter" type="button" data-filter="data" aria-pressed="false">Data engineering</button>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <table aria-labelledby="projects-h">
+          <thead>
+            <tr>
+              <th scope="col" class="num">#</th>
+              <th scope="col">Project</th>
+              <th scope="col">My contribution</th>
+              <th scope="col">Stack</th>
+              <th scope="col">Area</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="lead" data-tags="public data">
+              <td class="num">01</td>
+              <th scope="row">PublicPath<small>Co-founder, Engineering and Data · <a href="https://tahvia127.github.io/PublicPath/">site</a></small></th>
+              <td data-label="My contribution">Built the platform as one of two engineers: <strong>API ingestion</strong> and <strong>data-quality workflows</strong>. PublicPath is a nonprofit platform that helps students and early-career candidates land roles in government.</td>
+              <td data-label="Stack" class="stack">Python<br>GitHub Actions<br>Supabase<br>Postgres</td>
+              <td data-label="Area"><span class="chip">Public sector</span><span class="chip">Data engineering</span></td>
+            </tr>
+            <tr data-tags="ai">
+              <td class="num">02</td>
+              <th scope="row">Ourea Brain</th>
+              <td data-label="My contribution">Designed an internal AI knowledge system connecting company information across communication and document sources.</td>
+              <td data-label="Stack" class="stack"><span class="na">Not listed</span></td>
+              <td data-label="Area"><span class="chip">AI workflows</span></td>
+            </tr>
+            <tr data-tags="ai">
+              <td class="num">03</td>
+              <th scope="row">Energy Market Intelligence</th>
+              <td data-label="My contribution">Built a weekly AI-assisted workflow filtering energy-storage and related market signals into leadership updates.</td>
+              <td data-label="Stack" class="stack"><span class="na">Not listed</span></td>
+              <td data-label="Area"><span class="chip">AI workflows</span></td>
+            </tr>
+            <tr data-tags="ml public">
+              <td class="num">04</td>
+              <th scope="row">Chicago Eviction Risk</th>
+              <td data-label="My contribution">Built an interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</td>
+              <td data-label="Stack" class="stack"><span class="na">Not listed</span></td>
+              <td data-label="Area"><span class="chip">Applied ML</span><span class="chip">Public sector</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p id="filter-status" class="lbl" role="status" aria-live="polite"></p>
+    </main>
+
+    <footer class="contact" aria-label="Contact">
+      <a class="btn primary" href="mailto:aneesamjad@uchicago.edu">Email aneesamjad@uchicago.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a>
+      <a class="btn" href="https://github.com/aneesamjad2001">GitHub</a>
+    </footer>
+  </div>
+
+  <script>
+    // Progressive enhancement: without JS every row is visible and the filter buttons stay hidden.
+    document.documentElement.classList.add('js');
+    const buttons = document.querySelectorAll('.filter');
+    const rows = document.querySelectorAll('tbody tr');
+    const status = document.getElementById('filter-status');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      let shown = 0;
+      rows.forEach(r => {
+        const match = f === 'all' || r.dataset.tags.split(' ').includes(f);
+        r.hidden = !match;
+        if (match) shown++;
+      });
+      status.textContent = f === 'all' ? '' : `Showing ${shown} of ${rows.length} projects.`;
+    }));
+  </script>
+</body>
+</html>
