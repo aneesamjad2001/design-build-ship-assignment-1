@@ -97,6 +97,7 @@
       caption { display: block; width: 100%; border-top: 0; border-bottom: 1px solid var(--line); }
       td.yes::before { content: attr(data-project); display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
     }
+    .pp-avail { display: block; margin-top: 0.25rem; font-size: 0.8rem; font-weight: 400; opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -128,7 +129,7 @@
             <tr>
               <th scope="col">Capability</th>
               <th scope="col"><a href="#publicpath">PublicPath</a><small>Co-founder, engineering</small></th>
-              <th scope="col"><a href="#ourea-brain">Ourea Brain</a><small>System design</small></th>
+              <th scope="col"><a href="#ourea-brain">Ourea Brain</a><small>Built, internal</small></th>
               <th scope="col"><a href="#clarity">CLARITY</a><small>Research pipeline</small></th>
               <th scope="col"><a href="#energy">Energy Market Intelligence</a><small>Weekly workflow</small></th>
               <th scope="col"><a href="#eviction">Chicago Eviction Risk</a><small>Applied ML</small></th>
@@ -153,7 +154,7 @@
             <tr>
               <th scope="row">AI-assisted workflows</th>
               <td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="Ourea Brain">Designed an internal AI knowledge system</td>
+              <td class="yes" data-project="Ourea Brain">Internal AI assistant in Slack using the Claude API</td>
               <td class="no"><span class="sr">No</span></td>
               <td class="yes" data-project="Energy Market Intelligence">AI-assisted filtering of 50+ recurring signals into leadership updates</td>
               <td class="no"><span class="sr">No</span></td>
@@ -162,7 +163,7 @@
             <tr>
               <th scope="row">System design across tools</th>
               <td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="Ourea Brain">Design connecting Slack, Gmail, Google Docs, and meeting notes</td>
+              <td class="yes" data-project="Ourea Brain">Connects Slack, Gmail, Google Docs, and meeting notes; runs on Google Cloud Run</td>
               <td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td>
             </tr>
             <tr>
@@ -199,14 +200,14 @@
             <p class="sub">Making public-sector opportunities easier to find.</p>
             <p>I co-built PublicPath, a platform helping students and early-career candidates explore government careers. My work focused on API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</p>
             <p class="meta">Co-founder, Engineering and Data; one of two engineers · Python, GitHub Actions, Supabase, Postgres</p>
-            <a href="https://www.joinpublicpath.com">Visit PublicPath at joinpublicpath.com ↗</a>
-            <figure style="margin:0"><img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy"><figcaption>Live homepage, captured 6 October 2026.</figcaption></figure>
+            <a href="https://www.joinpublicpath.com">Project website (joinpublicpath.com) ↗</a> <span class="pp-avail">Job search was not loading when checked on 6 Oct 2026.</span>
+            <figure style="margin:0"><img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy"><figcaption>Project homepage (team product), captured 6 October 2026.</figcaption></figure>
           </li>
           <li class="featured" id="ourea-brain">
             <h3>Ourea Brain</h3>
-            <p class="sub">Connecting company knowledge across tools.</p>
-            <p>At Ourea Energy, I designed an internal AI knowledge system connecting Slack, Gmail, Google Docs, and meeting notes. The system was designed to help teams retrieve company context, clarify ownership and follow-ups, and identify information gaps.</p>
-            <p class="meta">Ourea Energy, Agentic AI Intern · system design; internal, so nothing is shown</p>
+            <p class="sub">Company knowledge, accessible through Slack.</p>
+            <p>I built and deployed Ourea Brain, an internal AI assistant that brings company context into Slack. It connects information across Slack, Gmail, Google Docs, and meeting notes to help colleagues retrieve project context, identify owners, and follow up on decisions. The application runs on Google Cloud Run and uses Anthropic’s Claude API; an early live deployment answered a Slack question using meeting-note context.</p>
+            <p class="meta">Builder · Agentic AI Intern, Ourea Energy · built and deployed internally</p>
           </li>
           <li class="featured" id="clarity">
             <h3>CLARITY</h3>
@@ -239,7 +240,7 @@
           <li>Ourea Energy — Agentic AI Intern <span>2026–</span></li>
           <li>Financial Health Network — Research Intern <span>2026–</span></li>
           <li>HOPE Lab, UChicago Booth — Research Assistant <span>2026–</span></li>
-          <li>PublicPath — Co-Founder <span>2026–</span></li>
+          <li>PublicPath — Co-founder <span>2026–</span></li>
           <li>PAMS — Research Associate, ML <span>2025</span></li>
           <li>CERP — Analyst <span>2024–25</span></li>
           <li>UChicago — MS, Computational Analysis and Public Policy <span>2027 exp.</span></li>

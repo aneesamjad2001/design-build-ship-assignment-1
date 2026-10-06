@@ -114,6 +114,7 @@
       .support ul { grid-template-columns: 1fr; }
       .cv li { grid-template-columns: 1fr; }
     }
+    .pp-avail { display: block; margin-top: 0.25rem; font-size: 0.8rem; font-weight: 400; opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -158,7 +159,7 @@
           <h2 id="pp-h">PublicPath</h2>
           <p class="sub">Making public-sector opportunities easier to find.</p>
           <p class="body">I co-built PublicPath, a platform helping students and early-career candidates explore government careers. My work focused on API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</p>
-          <a class="link" href="https://www.joinpublicpath.com">Visit PublicPath at joinpublicpath.com ↗</a>
+          <a class="link" href="https://www.joinpublicpath.com">Project website (joinpublicpath.com) ↗</a> <span class="pp-avail">Job search was not loading when checked on 6 Oct 2026.</span>
 
           <figure class="system">
             <ol class="stages" aria-label="How PublicPath listings flow">
@@ -172,7 +173,7 @@
 
           <figure class="evidence">
             <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage: headline ‘Your path into public service starts here’ with buttons to browse open roles and get the weekly digest." loading="lazy">
-            <figcaption>The live PublicPath homepage, captured 6 October 2026.</figcaption>
+            <figcaption>PublicPath homepage (team product), captured 6 October 2026. It shows the product; my contribution is the ingestion and data-quality work above.</figcaption>
           </figure>
         </div>
       </article>
@@ -181,21 +182,22 @@
         <div class="rail">
           <span class="num" aria-hidden="true">02</span>
           <dl class="facts">
-            <dt>Context</dt><dd>Ourea Energy, Agentic AI Intern</dd>
-            <dt>Status</dt><dd>System design; internal</dd>
+            <dt>Role</dt><dd>Builder · Agentic AI Intern, Ourea Energy</dd>
+            <dt>Status</dt><dd>Built and deployed internally</dd>
           </dl>
         </div>
         <div class="story">
           <h2 id="ob-h">Ourea Brain</h2>
-          <p class="sub">Connecting company knowledge across tools.</p>
-          <p class="body">At Ourea Energy, I designed an internal AI knowledge system connecting Slack, Gmail, Google Docs, and meeting notes. The system was designed to help teams retrieve company context, clarify ownership and follow-ups, and identify information gaps.</p>
+          <p class="sub">Company knowledge, accessible through Slack.</p>
+          <p class="body">I built and deployed Ourea Brain, an internal AI assistant that brings company context into Slack. It connects information across Slack, Gmail, Google Docs, and meeting notes to help colleagues retrieve project context, identify owners, and follow up on decisions. The application runs on Google Cloud Run and uses Anthropic’s Claude API; an early live deployment answered a Slack question using meeting-note context.</p>
           <figure class="system">
-            <ol class="stages" aria-label="Ourea Brain design">
-              <li><b>Sources</b>Slack, Gmail, Google Docs, meeting notes</li>
-              <li class="mine"><b>My work · Design</b>One internal AI knowledge system</li>
-              <li><b>Intended use</b>Retrieve context; clarify owners and follow-ups; find gaps</li>
+            <ol class="stages" aria-label="Ourea Brain simplified architecture">
+              <li><b>Ask</b>Question in Slack</li>
+              <li class="mine"><b>My work · Build</b>App on Google Cloud Run</li>
+              <li class="mine"><b>Context + model</b>Company context and the Claude API</li>
+              <li><b>Answer</b>Response in Slack</li>
             </ol>
-            <figcaption>Conceptual diagram of the design. The work is internal, so no screenshots are shown.</figcaption>
+            <figcaption>Simplified architecture.</figcaption>
           </figure>
         </div>
       </article>
@@ -255,7 +257,7 @@
             <li>Ourea Energy — Agentic AI Intern <span>2026–</span></li>
             <li>Financial Health Network — Research Intern, Data Analytics <span>2026–</span></li>
             <li>HOPE Lab, UChicago Booth — Research Assistant <span>2026–</span></li>
-            <li>PublicPath — Co-Founder, Engineering and Data <span>2026–</span></li>
+            <li>PublicPath — Co-founder, Engineering and Data <span>2026–</span></li>
             <li>PAMS — Research Associate, Machine Learning <span>2025</span></li>
             <li>CERP — Analyst <span>2024–2025</span></li>
           </ul>

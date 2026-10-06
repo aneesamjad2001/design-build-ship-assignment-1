@@ -118,6 +118,7 @@
       .builds, .also { grid-template-columns: 1fr; }
       .bg ul { columns: 1; }
     }
+    .pp-avail { display: block; margin-top: 0.25rem; font-size: 0.8rem; font-weight: 400; opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -157,11 +158,11 @@
           <dl>
             <dt>Role</dt><dd>Co-founder, Engineering and Data; one of two engineers</dd>
             <dt>Tools</dt><dd>Python, GitHub Actions, Supabase, Postgres</dd>
-            <dt>Live</dt><dd><a href="https://www.joinpublicpath.com">Visit PublicPath at joinpublicpath.com ↗</a></dd>
+            <dt>Live</dt><dd><a href="https://www.joinpublicpath.com">Project website (joinpublicpath.com) ↗</a> <span class="pp-avail">Job search was not loading when checked on 6 Oct 2026.</span></dd>
           </dl>
           <figure>
             <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy">
-            <figcaption>Live homepage, captured 6 October 2026.</figcaption>
+            <figcaption>Project homepage (team product), captured 6 October 2026.</figcaption>
           </figure>
         </div>
 
@@ -171,7 +172,7 @@
             <li class="step mine">
               <span class="node" aria-hidden="true">1</span>
               <div><h3>Schedule <span class="who">my work</span></h3><p>A GitHub Actions workflow starts ingestion on a daily schedule.</p></div>
-              <p class="out"><b>Result</b>A fresh run every day, without anyone pressing a button</p>
+              <p class="out"><b>Purpose</b>A scheduled daily run, rather than manual pulls</p>
             </li>
             <li class="step mine">
               <span class="node" aria-hidden="true">2</span>
@@ -185,13 +186,13 @@
             </li>
             <li class="step mine">
               <span class="node" aria-hidden="true">4</span>
-              <div><h3>Clean and deduplicate <span class="who">my work</span></h3><p>Listings are cleaned, and the same listing arriving more than once is collapsed.</p></div>
-              <p class="out"><b>Result</b>One record per listing</p>
+              <div><h3>Clean and deduplicate <span class="who">my work</span></h3><p>Listings are cleaned, and duplicates of the same listing are collapsed where they are detected.</p></div>
+              <p class="out"><b>Purpose</b>Fewer duplicate listings</p>
             </li>
             <li class="step mine">
               <span class="node" aria-hidden="true">5</span>
               <div><h3>Validate <span class="who">my work</span></h3><p>Listings are checked before they are used for search and filtering.</p></div>
-              <p class="out"><b>Result</b>Records the site can rely on</p>
+              <p class="out"><b>Purpose</b>Catch malformed records before use</p>
             </li>
             <li class="step">
               <span class="node" aria-hidden="true">6</span>
@@ -201,7 +202,7 @@
             <li class="step">
               <span class="node" aria-hidden="true">7</span>
               <div><h3>Search and filter <span class="who">platform</span></h3><p>The site lets visitors search and filter the stored listings.</p></div>
-              <p class="out"><b>Result</b>What a student actually browses</p>
+              <p class="out"><b>Purpose</b>Listings visitors can search and filter</p>
             </li>
           </ol>
         </div>
@@ -226,15 +227,15 @@
           </li>
           <li>
             <h3>Ourea Brain</h3>
-            <p class="sub">Connecting company knowledge across tools.</p>
-            <p>At Ourea Energy, I designed an internal AI knowledge system connecting Slack, Gmail, Google Docs, and meeting notes. The system was designed to help teams retrieve company context, clarify ownership and follow-ups, and identify information gaps.</p>
-            <ol class="mini" aria-label="Ourea Brain design">
-              <li>Slack, Gmail, Google Docs, meeting notes</li>
-              <li class="mine">AI knowledge system (designed)</li>
-              <li>Context, owners and follow-ups, gaps (intended)</li>
+            <p class="sub">Company knowledge, accessible through Slack.</p>
+            <p>I built and deployed Ourea Brain, an internal AI assistant that brings company context into Slack. It connects information across Slack, Gmail, Google Docs, and meeting notes to help colleagues retrieve project context, identify owners, and follow up on decisions. The application runs on Google Cloud Run and uses Anthropic’s Claude API; an early live deployment answered a Slack question using meeting-note context.</p>
+            <ol class="mini" aria-label="Ourea Brain simplified architecture">
+              <li>Question in Slack</li>
+              <li class="mine">App on Google Cloud Run + Claude API</li>
+              <li>Response in Slack</li>
             </ol>
-            <p class="vs"><b>Contrast</b><br>A design rather than a build log: connecting internal tools instead of public APIs.</p>
-            <p class="meta">Ourea Energy, Agentic AI Intern. Internal; intended capabilities, not measured results.</p>
+            <p class="vs"><b>Contrast</b><br>Answers questions in Slack from internal company context, rather than publishing public listings.</p>
+            <p class="meta">Builder · Agentic AI Intern, Ourea Energy. Built and deployed internally.</p>
           </li>
           <li>
             <h3>Energy Market Intelligence</h3>
@@ -262,7 +263,7 @@
           <li>Ourea Energy — Agentic AI Intern <span>2026–</span></li>
           <li>Financial Health Network — Research Intern <span>2026–</span></li>
           <li>HOPE Lab, UChicago Booth — Research Assistant <span>2026–</span></li>
-          <li>PublicPath — Co-Founder <span>2026–</span></li>
+          <li>PublicPath — Co-founder <span>2026–</span></li>
           <li>PAMS — Research Associate, ML <span>2025</span></li>
           <li>CERP — Analyst <span>2024–25</span></li>
           <li>UChicago — MS, Computational Analysis and Public Policy <span>exp. 2027</span></li>

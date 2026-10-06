@@ -104,6 +104,7 @@
       .index a small { display: none; }
       .about-grid { grid-template-columns: minmax(0, 1fr); }
     }
+    .pp-avail { display: block; margin-top: 0.25rem; font-size: 0.8rem; font-weight: 400; opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -133,7 +134,7 @@
         <h2>Featured</h2>
         <ul>
           <li><a href="#publicpath" data-pane="publicpath"><strong>PublicPath</strong><small>Public-sector job data platform</small></a></li>
-          <li><a href="#ourea-brain" data-pane="ourea-brain"><strong>Ourea Brain</strong><small>Company knowledge system design</small></a></li>
+          <li><a href="#ourea-brain" data-pane="ourea-brain"><strong>Ourea Brain</strong><small>Internal AI assistant in Slack</small></a></li>
           <li><a href="#clarity" data-pane="clarity"><strong>CLARITY</strong><small>Clinical note to explanatory video</small></a></li>
         </ul>
         <h2>Supporting</h2>
@@ -171,7 +172,7 @@
           </div>
           <figure class="shot">
             <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy">
-            <figcaption>Live homepage, captured 6 October 2026. <a href="https://www.joinpublicpath.com">Visit joinpublicpath.com ↗</a></figcaption>
+            <figcaption>Project homepage (team product), captured 6 October 2026. <a href="https://www.joinpublicpath.com">Project website ↗</a> <span class="pp-avail">Job search was not loading when checked on 6 Oct 2026.</span></figcaption>
           </figure>
           <details>
             <summary>Technical notes</summary>
@@ -186,20 +187,21 @@
         <article class="pane" id="ourea-brain" aria-labelledby="ob-h">
           <p class="pane-kicker">Featured · 02</p>
           <h2 id="ob-h" tabindex="-1">Ourea Brain</h2>
-          <p class="sub">Connecting company knowledge across tools.</p>
+          <p class="sub">Company knowledge, accessible through Slack.</p>
           <dl class="meta">
-            <div><dt>Context</dt><dd>Ourea Energy, Agentic AI Intern</dd></div>
-            <div><dt>Status</dt><dd>System design; internal</dd></div>
+            <div><dt>Role</dt><dd>Builder · Agentic AI Intern, Ourea Energy</dd></div>
+            <div><dt>Status</dt><dd>Built and deployed internally</dd></div>
           </dl>
-          <p class="copy">At Ourea Energy, I designed an internal AI knowledge system connecting Slack, Gmail, Google Docs, and meeting notes. The system was designed to help teams retrieve company context, clarify ownership and follow-ups, and identify information gaps.</p>
+          <p class="copy">I built and deployed Ourea Brain, an internal AI assistant that brings company context into Slack. It connects information across Slack, Gmail, Google Docs, and meeting notes to help colleagues retrieve project context, identify owners, and follow up on decisions. The application runs on Google Cloud Run and uses Anthropic’s Claude API; an early live deployment answered a Slack question using meeting-note context.</p>
           <div class="flow">
-            <h3>Design, conceptually</h3>
-            <ol aria-label="Ourea Brain design">
-              <li>Slack</li><li>Gmail</li><li>Google Docs</li><li>Meeting notes</li><li class="arrow" aria-hidden="true">→</li>
-              <li class="mine">AI knowledge system (my design)</li><li class="arrow" aria-hidden="true">→</li>
-              <li>Context · owners and follow-ups · gaps</li>
+            <h3>Simplified architecture</h3>
+            <ol aria-label="Ourea Brain simplified architecture">
+              <li>Question in Slack</li><li class="arrow" aria-hidden="true">→</li>
+              <li class="mine">App on Google Cloud Run (built by me)</li><li class="arrow" aria-hidden="true">→</li>
+              <li class="mine">Company context + Claude API</li><li class="arrow" aria-hidden="true">→</li>
+              <li>Response in Slack</li>
             </ol>
-            <p>Intended capabilities, not measured results. Internal work; no screenshots.</p>
+            <p>Context comes from Slack, Gmail, Google Docs, and meeting notes.</p>
           </div>
         </article>
 
@@ -260,7 +262,7 @@
                 <li>Ourea Energy — Agentic AI Intern<span>June 2026 – present</span></li>
                 <li>Financial Health Network — Research Intern, Data Analytics<span>June 2026 – present</span></li>
                 <li>HOPE Lab, UChicago Booth — Research Assistant<span>March 2026 – present</span></li>
-                <li>PublicPath — Co-Founder, Engineering and Data<span>March 2026 – present</span></li>
+                <li>PublicPath — Co-founder, Engineering and Data<span>March 2026 – present</span></li>
                 <li>PAMS — Research Associate, Machine Learning<span>March – September 2025</span></li>
                 <li>CERP — Analyst<span>May 2024 – September 2025</span></li>
               </ul>

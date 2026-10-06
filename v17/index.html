@@ -97,6 +97,7 @@
       .hero, .answer, .bg { grid-template-columns: minmax(0, 1fr); }
       .short ul { grid-template-columns: 1fr; }
     }
+    .pp-avail { display: block; margin-top: 0.25rem; font-size: 0.8rem; font-weight: 400; opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -139,7 +140,7 @@
             <dl class="facts">
               <dt>Role</dt><dd>Co-founder, Engineering and Data; one of two engineers</dd>
               <dt>Tools</dt><dd>Python, GitHub Actions, Supabase, Postgres</dd>
-              <dt>Live</dt><dd><a href="https://www.joinpublicpath.com">Visit PublicPath at joinpublicpath.com ↗</a></dd>
+              <dt>Live</dt><dd><a href="https://www.joinpublicpath.com">Project website (joinpublicpath.com) ↗</a> <span class="pp-avail">Job search was not loading when checked on 6 Oct 2026.</span></dd>
             </dl>
           </div>
           <div>
@@ -153,7 +154,7 @@
             <p class="note">Simplified sequence.</p>
             <figure class="shot">
               <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy">
-              <figcaption>Live homepage, captured 6 October 2026.</figcaption>
+              <figcaption>Project homepage (team product), captured 6 October 2026.</figcaption>
             </figure>
           </div>
         </div>
@@ -166,22 +167,23 @@
         <h2 id="q2-h">How can a team find what the company already knows?</h2>
         <div class="answer">
           <div>
-            <h3>What I designed</h3>
-            <p class="project"><strong>Ourea Brain</strong> — connecting company knowledge across tools.</p>
-            <p>At Ourea Energy, I designed an internal AI knowledge system connecting Slack, Gmail, Google Docs, and meeting notes. The system was designed to help teams retrieve company context, clarify ownership and follow-ups, and identify information gaps.</p>
+            <h3>What I built</h3>
+            <p class="project"><strong>Ourea Brain</strong> — company knowledge, accessible through Slack.</p>
+            <p>I built and deployed Ourea Brain, an internal AI assistant that brings company context into Slack. It connects information across Slack, Gmail, Google Docs, and meeting notes to help colleagues retrieve project context, identify owners, and follow up on decisions. The application runs on Google Cloud Run and uses Anthropic’s Claude API; an early live deployment answered a Slack question using meeting-note context.</p>
             <dl class="facts">
-              <dt>Context</dt><dd>Ourea Energy, Agentic AI Intern</dd>
-              <dt>Status</dt><dd>System design; internal</dd>
+              <dt>Role</dt><dd>Builder · Agentic AI Intern, Ourea Energy</dd>
+              <dt>Status</dt><dd>Built and deployed internally</dd>
             </dl>
           </div>
           <div>
-            <h3>How it is meant to work</h3>
+            <h3>How it works</h3>
             <ol class="steps">
-              <li>Sources: Slack, Gmail, Google Docs, meeting notes</li>
-              <li class="mine">Connected in one internal AI knowledge system</li>
-              <li>Intended use: retrieve context, clarify owners and follow-ups, surface gaps</li>
+              <li>A colleague asks a question in Slack</li>
+              <li class="mine">The app on Google Cloud Run gathers relevant company context</li>
+              <li class="mine">The Claude API drafts an answer from that context</li>
+              <li>The response comes back in Slack</li>
             </ol>
-            <p class="note">Conceptual. Intended capabilities, not measured results; internal work, so nothing is shown.</p>
+            <p class="note">Simplified architecture.</p>
           </div>
         </div>
       </div>

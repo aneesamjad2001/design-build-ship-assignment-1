@@ -17,31 +17,47 @@ accuracy, time savings, testimonials, screenshots, deployment status, or
 employment details. No phone number on the site. Never use gendered pronouns
 for Anees; write in first person.
 
-- **Intro:** "I'm a master's student in Computational Analysis and Public Policy
-  at the University of Chicago. I build AI workflows, data pipelines, and
-  software across energy, public service, and research."
+- **Intro (v21+):** "I'm Anees Amjad, a master's student in Computational
+  Analysis and Public Policy at the University of Chicago. My work includes an
+  internal AI assistant at Ourea Energy, a public-sector careers platform I
+  co-founded, and research tools that turn complex data into usable outputs."
+  (v13–v20 used the earlier intro.) Describe mechanisms, not perfect outcomes:
+  scheduled ≠ always succeeded, dedup ≠ perfect uniqueness, validated ≠ reliable.
   Supporting line: "Open to AI engineering roles, startup opportunities, and
   collaboration." Links: "Explore selected work", "Get in touch".
-- **PublicPath** — Co-founder, Engineering and Data; one of two engineers.
+- **PublicPath** — "Co-founder, Engineering and Data" (use consistently); one of two engineers.
   "I co-built PublicPath, a platform helping students and early-career
   candidates explore government careers. My work focused on API ingestion and
   data quality: cleaning, deduplicating, normalizing, and validating listings
   for search and filtering." Stack: Python, GitHub Actions, Supabase, Postgres.
-  - Link: https://www.joinpublicpath.com (custom domain served from Anees's fork
-    of Tahvia127/PublicPath; same homepage as tahvia127.github.io/PublicPath).
+  - Link: https://www.joinpublicpath.com, labelled "Project website" (confirmed
+    by Anees). Never "try the app". While job search fails, add one short note:
+    "Job search was not loading when checked on 6 Oct 2026." Do not repair it.
   - Do NOT feature "50+ APIs" or "50,000+ listings": the public code shows a
     handful of job-API sources and the Supabase backend currently does not
     resolve (checked 6 Oct 2026), so the jobs page fails to load. Daily
     scheduled ingestion via GitHub Actions is supported by the repo workflows.
-  - Do not link the repo as evidence of individual work (public commit history
-    does not show the ingestion work under Anees's account) until Anees decides.
-  - Evidence asset: `assets/publicpath-home.jpg` (live homepage, captured
-    6 Oct 2026; front-end design is not claimed as Anees's work).
-- **Ourea Brain** — "At Ourea Energy, I designed an internal AI knowledge system
-  connecting Slack, Gmail, Google Docs, and meeting notes. The system was
-  designed to help teams retrieve company context, clarify ownership and
-  follow-ups, and identify information gaps." Designed, not claimed deployed.
-  Private; conceptual diagrams only.
+  - Public commit attribution is incomplete evidence; keep the stated role and
+    do not claim the repo proves authorship of every component. No repo link.
+  - `assets/publicpath-home.jpg` illustrates the team's product (captured
+    6 Oct 2026); it does not prove Anees's interface or backend work. Pair it
+    with the ingestion/data-quality diagram and role text.
+- **Ourea Brain** — BUILT and deployed internally (confirmed by Anees, 6 Oct 2026).
+  Title "Ourea Brain"; subtitle "Company knowledge, accessible through Slack.";
+  role "Builder · Agentic AI Intern, Ourea Energy"; status "Built and deployed
+  internally". Core copy: "I built and deployed Ourea Brain, an internal AI
+  assistant that brings company context into Slack. It connects information
+  across Slack, Gmail, Google Docs, and meeting notes to help colleagues retrieve
+  project context, identify owners, and follow up on decisions. The application
+  runs on Google Cloud Run and uses Anthropic's Claude API; an early live
+  deployment answered a Slack question using meeting-note context."
+  Supported tech: Slack integration, Anthropic Claude API, Google Cloud Run,
+  Google Workspace sources, meeting-note integration, Secret Manager credentials.
+  Diagram (label "Simplified architecture"): Slack question → app on Cloud Run →
+  company context + Claude API → response in Slack. Never invent vector DBs,
+  embeddings, frameworks, accuracy, users, or time savings; never fake a Slack
+  screenshot. Don't present digests, Granola→Asana, scheduling, or GravityBank
+  as core Brain features. Keep Energy Market Intelligence separate.
 - **CLARITY** (HOPE Lab, UChicago Booth; Research Assistant) — "I built a Python
   pipeline for the CLARITY healthcare-AI project that converts de-identified
   clinical-note JSON into patient-friendly explanatory videos. The workflow
@@ -53,8 +69,8 @@ for Anees; write in first person.
   storage, utilities, and data centers into leadership updates on competitors,
   investments, and partnerships." Signals ≠ sources/articles/companies. Private.
 - **Chicago Eviction Risk** — "Built an interpretable machine-learning and
-  geospatial workflow to explore eviction-risk patterns in Chicago." No verified
-  public repo found yet: no link. No metrics; not a deployed system.
+  geospatial workflow to explore eviction-risk patterns in Chicago." Private
+  repository: no link, never imply public code. No metrics; not deployed.
 - **Political Narrative Navigator** (team project, UChicago) — "Analyzed 2,000+
   presidential campaign speeches alongside YouGov data using AI-assisted text
   workflows." Repo: https://github.com/uchicago-2026-capp30122/political-narrative-navigator

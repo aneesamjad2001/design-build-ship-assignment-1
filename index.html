@@ -196,6 +196,16 @@
         </ol>
       </section>
 
+      <section aria-labelledby="corrections-title">
+        <h2 id="corrections-title">Factual corrections log</h2>
+        <p class="lede" style="margin-top:0">Content fixes, kept separate from design decisions. Layouts were not changed.</p>
+        <ul class="process">
+          <li><h3>6 Oct · Ourea Brain status</h3><p>Earlier versions described Ourea Brain as designed only. Anees confirmed it was built and deployed internally (Google Cloud Run, Claude API, answering in Slack). v01–v19 were updated in place; design-only labels and “intended” diagrams were replaced with a simplified architecture.</p></li>
+          <li><h3>6 Oct · PublicPath link and claims</h3><p>All versions now link the project website, joinpublicpath.com. v13+ label it “Project website” with a short note that job search was not loading when checked. The CV’s 50+ API and 50,000+ listing figures are not used because they could not be verified.</p></li>
+          <li><h3>6 Oct · Wording audits</h3><p>v19’s step results were rewritten as purposes (a schedule does not prove every run succeeded; deduplication and validation are mechanisms, not guarantees). Screenshot captions now say the homepage shows the team’s product.</p></li>
+        </ul>
+      </section>
+
       <section aria-labelledby="versions-title">
         <h2 id="versions-title">Versions</h2>
         <ol class="versions">
@@ -365,6 +375,7 @@
                 <h3><a href="v13/index.html"><span class="tag">v13</span>Editorial casebook</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Each project as a short case study: problem, my contribution, a compact system figure with my stages highlighted, then evidence. A compact hero plus a contents list keeps PublicPath on the first screen at laptop size.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v01’s serif type, asymmetric rail and project-first order; v04’s highlighted ‘my work’ stages, now small and only where they add information; v12’s concise labels (Role, Context, Stack). Rejects v05’s oversized slogan and v12’s abstract art; uses a real PublicPath screenshot instead.</p>
+                <p class="note review"><strong>External review input</strong>Best overall reading structure; retain case-study rhythm and role clarity, but shorten the opening and bring evidence higher.</p>
                 <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
@@ -378,6 +389,7 @@
                 <h3><a href="v14/index.html"><span class="tag">v14</span>System atlas</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Let diagrams carry the structure: each project is a numbered ‘plate’, and the prose becomes annotations keyed to the diagram, so text and figure don’t repeat each other. A legend separates what I built, what I designed, and the surrounding system.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Builds on v04’s ownership highlighting but answers the review note about diagrams that merely repeat prose: here the diagram is primary and the notes explain each step once. Keeps v01’s compact, project-first opening. Rejects v04’s decorative grid paper and engineering title block.</p>
+                <p class="note review"><strong>External review input</strong>Strongest system explanations; retain accurate diagrams and numbered annotations, but simplify the visual scaffolding and mobile layout.</p>
                 <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
@@ -391,6 +403,7 @@
                 <h3><a href="v15/index.html"><span class="tag">v15</span>Evidence exhibition</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Lead with real artifacts, not descriptions: the live PublicPath homepage sits beside the intro on the first screen, and the team dashboard anchors the supporting work. Private work gets plain ‘design sheet’ and ‘pipeline sheet’ cards that say what can’t be shown and why.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Inherits v12’s deliberate spacing and short labels (Artifact, Role, I built, Tools) but replaces its abstract artwork and artist framing with actual screenshots and honest spec sheets. Rejects decorative stand-ins for evidence.</p>
+                <p class="note review"><strong>External review input</strong>Strong artifact presentation; retain real evidence, but prevent a large product-marketing screenshot from overshadowing my contribution.</p>
                 <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
@@ -404,6 +417,7 @@
                 <h3><a href="v16/index.html"><span class="tag">v16</span>Index and reading pane</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Treat the portfolio like a reading app: a persistent project index beside a substantial reading pane, with PublicPath open by default so real work is visible immediately. Optional technical detail sits in a native details element. On narrow screens (or without JavaScript) the index becomes jump links and every pane stacks.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v11’s idea of letting the visitor steer, but drops its mandatory choice: the work is already showing. Keeps v13’s per-project structure (role, tools, copy, flow, evidence) inside each pane. Rejects v10’s fragmented tiles; each project stays one continuous story.</p>
+                <p class="note review"><strong>External review input</strong>Useful browsing pattern, but hidden panels reduce immediate exposure to the full portfolio.</p>
                 <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
@@ -417,6 +431,7 @@
                 <h3><a href="v17/index.html"><span class="tag">v17</span>Problem-led narrative</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Organize the page around the questions the work addresses, not project names, so a collaborator sees the problem before the tool. Each question gets a colour band with ‘What I built’ beside ‘How it works’, and my steps are marked inline. The questions come from the project descriptions and READMEs.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Inherits v09’s strong lead-story hierarchy without its third-person voice or repetition; keeps v04’s explicit ‘my work’ marking as small inline tags. Rejects v11’s audience selector: the framing serves every visitor without a click.</p>
+                <p class="note review"><strong>External review input</strong>Useful problem framing, but long questions repeat content and delay project names.</p>
                 <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
@@ -430,6 +445,7 @@
                 <h3><a href="v18/index.html"><span class="tag">v18</span>Capability matrix</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Answer a recruiter’s real question, ‘can this person do X?’, directly: engineering capabilities as rows, projects as columns, and every filled cell names its evidence. Full project notes sit under the matrix. On phones each capability becomes a card that lists only its evidence, with no blank cells.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v08’s comparison structure but drops what the review flagged: no ‘Not listed’ fields, and warm editorial type instead of database styling. Keeps v13’s featured-project copy and the real PublicPath screenshot below the matrix.</p>
+                <p class="note review"><strong>External review input</strong>Useful content audit, but sparse cells and decoding effort weaken the homepage.</p>
                 <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
@@ -443,6 +459,7 @@
                 <h3><a href="v19/index.html"><span class="tag">v19</span>Annotated build sequence</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Go deep on one build instead of wide on many: PublicPath’s pipeline as a vertical, step-by-step sequence, with what each step produces and whether it was my work or the platform’s. The other projects follow as contrasting builds seen through the same lens.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Takes v04’s ‘stage I built’ idea to its most explicit form, step by step. Keeps v13’s sticky role/tools summary and real screenshot beside the steps. Rejects v02’s simulated terminal: shows the engineering sequence plainly instead of dressing it as commands.</p>
+                <p class="note review"><strong>External review input</strong>Strong technical-detail material, but too much emphasis on one project and overly absolute output claims.</p>
                 <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>

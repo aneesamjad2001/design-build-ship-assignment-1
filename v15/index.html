@@ -98,6 +98,7 @@
       .sheet dd { margin-bottom: 0.5rem; }
       .bg li { flex-direction: column; gap: 0; }
     }
+    .pp-avail { display: block; margin-top: 0.25rem; font-size: 0.8rem; font-weight: 400; opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -129,7 +130,7 @@
             <p>Making public-sector opportunities easier to find.</p>
           </div>
           <dl class="label">
-            <dt>Artifact</dt><dd>Live homepage, captured 6 October 2026 · <a href="https://www.joinpublicpath.com">Visit joinpublicpath.com ↗</a></dd>
+            <dt>Artifact</dt><dd>Project homepage (team product), captured 6 October 2026 · <a href="https://www.joinpublicpath.com">Project website ↗</a> <span class="pp-avail">Job search was not loading when checked on 6 Oct 2026.</span></dd>
             <dt>Role</dt><dd>Co-founder, Engineering and Data; one of two engineers</dd>
             <dt>I built</dt><dd>API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering</dd>
             <dt>Tools</dt><dd>Python, GitHub Actions, Supabase, Postgres</dd>
@@ -140,22 +141,22 @@
 
     <main>
       <section class="row" aria-labelledby="private-h">
-        <h2 id="private-h">Private work · described, not shown</h2>
+        <h2 id="private-h">Internal and research work</h2>
         <div class="pair">
           <article aria-labelledby="ob-h">
-            <div class="sheet" role="group" aria-label="Ourea Brain design sheet">
-              <div class="sheet-h"><span>OUREA BRAIN</span><span>design sheet</span></div>
+            <div class="sheet" role="group" aria-label="Ourea Brain architecture sheet">
+              <div class="sheet-h"><span>OUREA BRAIN</span><span>architecture sheet</span></div>
               <dl>
                 <dt>sources</dt><dd>Slack · Gmail · Google Docs · meeting notes</dd>
-                <dt>system</dt><dd>one internal AI knowledge system</dd>
-                <dt>intended to</dt><dd>retrieve company context; clarify ownership and follow-ups; identify information gaps</dd>
-                <dt>my part</dt><dd>designed the system</dd>
+                <dt>runs on</dt><dd>Google Cloud Run · Anthropic Claude API · answers in Slack</dd>
+                <dt>purpose</dt><dd>retrieve project context; identify owners; follow up on decisions</dd>
+                <dt>my part</dt><dd>built and deployed it</dd>
               </dl>
-              <p class="note">Internal to Ourea Energy. Intended capabilities, not measured results.</p>
+              <p class="note">Internal to Ourea Energy. An early live deployment answered a Slack question using meeting-note context.</p>
             </div>
             <h3 class="card-title" id="ob-h">Ourea Brain</h3>
-            <p class="card-sub">Connecting company knowledge across tools.</p>
-            <p class="card-body">At Ourea Energy, I designed an internal AI knowledge system connecting Slack, Gmail, Google Docs, and meeting notes, to help teams retrieve company context, clarify ownership and follow-ups, and identify information gaps.</p>
+            <p class="card-sub">Company knowledge, accessible through Slack.</p>
+            <p class="card-body">I built and deployed Ourea Brain, an internal AI assistant that brings company context into Slack. It connects information across Slack, Gmail, Google Docs, and meeting notes to help colleagues retrieve project context, identify owners, and follow up on decisions. The application runs on Google Cloud Run and uses Anthropic’s Claude API; an early live deployment answered a Slack question using meeting-note context.</p>
           </article>
 
           <article aria-labelledby="cl-h">
@@ -206,7 +207,7 @@
             <li>Ourea Energy — Agentic AI Intern <span>2026–</span></li>
             <li>Financial Health Network — Research Intern <span>2026–</span></li>
             <li>HOPE Lab, UChicago Booth — Research Assistant <span>2026–</span></li>
-            <li>PublicPath — Co-Founder <span>2026–</span></li>
+            <li>PublicPath — Co-founder <span>2026–</span></li>
             <li>PAMS — Research Associate, ML <span>2025</span></li>
             <li>CERP — Analyst <span>2024–25</span></li>
             <li>UChicago — MS, Computational Analysis and Public Policy <span>2027 (exp.)</span></li>
