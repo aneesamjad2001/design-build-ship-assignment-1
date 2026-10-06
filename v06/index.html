@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v06 · Chicago work map</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --land: #ece6d8;
+      --street: #d8cfbb;
+      --arterial: #c7b99c;
+      --lake: #8fb8cf;
+      --lake-deep: #6f9fbb;
+      --ink: #1f2a2e;
+      --muted: #56625f;
+      --pin: #d1342f;
+      --pin-2: #1f2a2e;
+      --panel: #fbf9f4;
+      --sans: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+      --cond: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--panel);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.5;
+    }
+
+    a { color: var(--ink); text-underline-offset: 0.2em; }
+    a:hover { color: var(--pin); }
+    a:focus-visible { outline: 3px solid var(--pin); outline-offset: 3px; border-radius: 3px; }
+
+    .skip { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: #fff; padding: 0.4rem 0.7rem; }
+    .skip:focus { top: 1rem; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(20rem, 1fr);
+      min-height: 100vh;
+    }
+
+    /* ---------- Map ---------- */
+    .map-wrap {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 1rem;
+      background: var(--land);
+      border-right: 1px solid var(--arterial);
+    }
+    .map {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      background-color: var(--land);
+      /* Chicago's street grid: minor streets every 18px, arterials every 144px */
+      background-image:
+        linear-gradient(90deg, var(--arterial) 3px, transparent 3px),
+        linear-gradient(var(--arterial) 3px, transparent 3px),
+        linear-gradient(90deg, var(--street) 1px, transparent 1px),
+        linear-gradient(var(--street) 1px, transparent 1px);
+      background-size: 144px 144px, 144px 144px, 18px 18px, 18px 18px;
+    }
+    .lake {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 22%;
+      background: linear-gradient(90deg, var(--lake) 0%, var(--lake-deep) 100%);
+      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%, 8% 70%, 18% 45%, 22% 20%);
+    }
+    .lake span {
+      position: absolute;
+      top: 50%;
+      right: 18%;
+      writing-mode: vertical-rl;
+      font-family: var(--cond);
+      font-size: 0.8rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+    .river { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .diag {
+      position: absolute;
+      height: 4px;
+      background: var(--arterial);
+      transform-origin: 0 50%;
+    }
+
+    .map-title {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--panel);
+      border: 2px solid var(--ink);
+      padding: 0.6rem 0.8rem;
+      max-width: 15rem;
+    }
+    .map-title p { margin: 0; font-family: var(--cond); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+    .map-title strong { display: block; font-size: 1.05rem; line-height: 1.25; }
+
+    .scale {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: var(--panel);
+      border: 1px solid var(--ink);
+      padding: 0.35rem 0.6rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* Pins */
+    .pins { list-style: none; margin: 0; padding: 0; }
+    .pin {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transform: translate(-50%, -100%);
+    }
+    .pin .dot {
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      background: var(--pin-2);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    }
+    .pin .dot b { transform: rotate(45deg); }
+    .pin .tag {
+      background: var(--panel);
+      border: 1px solid var(--ink);
+      padding: 0.15rem 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .pin.lead .dot { width: 3rem; height: 3rem; background: var(--pin); font-size: 1.05rem; }
+    .pin.lead .tag { font-size: 1rem; border-width: 2px; }
+    .pin:hover .tag, .pin:focus-visible .tag { background: var(--ink); color: #fff; }
+    .pin:focus-visible { outline-offset: 6px; }
+
+    /* ---------- Side panel ---------- */
+    .panel { padding: 1.25rem clamp(1rem, 3vw, 2rem) 3rem; }
+    .topbar { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.85rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--arterial); }
+    .topbar a { font-weight: 700; text-decoration: none; }
+    .topbar span { color: var(--muted); }
+
+    h1 { margin: 1.75rem 0 0; font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.15; }
+    .intro { margin: 0.75rem 0 0; color: var(--muted); }
+
+    .legend-title {
+      margin: 2rem 0 0.75rem;
+      font-family: var(--cond);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .stop {
+      display: grid;
+      grid-template-columns: 2.2rem 1fr;
+      gap: 0 0.85rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--arterial);
+      scroll-margin-top: 1rem;
+    }
+    .stop .n {
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      background: var(--pin-2);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .stop h3 { margin: 0.2rem 0 0.25rem; font-size: 1.1rem; }
+    .stop p { margin: 0; }
+    .stop:target { background: #fff3d6; }
+
+    .stop.lead { border-top: 2px solid var(--ink); }
+    .stop.lead .n { background: var(--pin); }
+    .stop.lead h2 { margin: 0.1rem 0 0; font-size: 1.6rem; line-height: 1.1; }
+    .stop.lead .role { font-weight: 600; margin: 0.25rem 0 0.6rem; }
+    .facts { margin: 0.75rem 0 0; padding: 0.75rem; background: #fff; border: 1px solid var(--arterial); font-size: 0.92rem; }
+    .facts div { display: grid; grid-template-columns: 6rem 1fr; gap: 0.5rem; padding: 0.2rem 0; }
+    .facts dt { color: var(--muted); }
+    .facts dd { margin: 0; overflow-wrap: anywhere; }
+
+    .contact { margin-top: 2rem; padding-top: 1rem; border-top: 2px solid var(--ink); }
+    .contact ul { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-weight: 600; }
+
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .map-wrap { position: relative; height: 70vh; min-height: 26rem; border-right: 0; border-bottom: 1px solid var(--arterial); padding: 0.5rem; }
+      .pin .tag { display: none; }
+      .pin.lead .tag { display: inline-block; }
+      .map-title { max-width: 11rem; }
+      .map-title strong { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="layout">
+    <div class="map-wrap">
+      <nav class="map" aria-label="Map of projects">
+        <div class="lake" aria-hidden="true"><span>Lake Michigan</span></div>
+        <svg class="river" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M78 40 L60 40 L52 40 L48 44 L48 70 L40 80 L30 100 M48 44 L44 30 L40 0" fill="none" stroke="#8fb8cf" stroke-width="1.2" vector-effect="non-scaling-stroke" style="stroke-width:6px"/>
+        </svg>
+        <div class="diag" aria-hidden="true" style="left:18%;top:8%;width:60%;transform:rotate(33deg)"></div>
+        <div class="diag" aria-hidden="true" style="left:10%;top:88%;width:45%;transform:rotate(-24deg)"></div>
+
+        <div class="map-title">
+          <p>Field map</p>
+          <strong>A map of my work, from Chicago</strong>
+        </div>
+
+        <ul class="pins">
+          <li><a class="pin lead" href="#publicpath" style="left:36%;top:46%"><span class="dot"><b>01</b></span><span class="tag">PublicPath</span></a></li>
+          <li><a class="pin" href="#ourea-brain" style="left:24%;top:24%"><span class="dot"><b>02</b></span><span class="tag">Ourea Brain</span></a></li>
+          <li><a class="pin" href="#energy" style="left:58%;top:68%"><span class="dot"><b>03</b></span><span class="tag">Energy Market Intelligence</span></a></li>
+          <li><a class="pin" href="#eviction" style="left:22%;top:82%"><span class="dot"><b>04</b></span><span class="tag">Chicago Eviction Risk</span></a></li>
+        </ul>
+
+        <p class="scale">Not to scale. Pins are projects, not addresses.</p>
+      </nav>
+    </div>
+
+    <div class="panel">
+      <nav class="topbar" aria-label="Prototype navigation">
+        <a href="../index.html">← Gallery</a>
+        <span>v06 · Chicago work map</span>
+      </nav>
+
+      <header>
+        <h1>I build AI tools and data products for real-world decisions.</h1>
+        <p class="intro">I’m Anees Amjad, a graduate student in Computational Analysis and Public Policy at the University of Chicago. My work spans AI workflows, public-sector software, and applied machine learning.</p>
+      </header>
+
+      <main id="main">
+        <p class="legend-title">Legend</p>
+
+        <article class="stop lead" id="publicpath" aria-labelledby="pp-h">
+          <span class="n" aria-hidden="true">01</span>
+          <div>
+            <h2 id="pp-h">PublicPath</h2>
+            <p class="role">Co-founder, Engineering and Data</p>
+            <p>A nonprofit platform that helps students and early-career candidates discover, navigate, and land roles in government, from city hall to Capitol Hill.</p>
+            <dl class="facts">
+              <div><dt>My part</dt><dd>Built the platform as one of two engineers: API ingestion and data-quality workflows</dd></div>
+              <div><dt>Stack</dt><dd>Python, GitHub Actions, Supabase, Postgres</dd></div>
+              <div><dt>Site</dt><dd><a href="https://tahvia127.github.io/PublicPath/">tahvia127.github.io/PublicPath</a></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="stop" id="ourea-brain" aria-labelledby="ob-h">
+          <span class="n" aria-hidden="true">02</span>
+          <div>
+            <h3 id="ob-h">Ourea Brain</h3>
+            <p>Designed an internal AI knowledge system connecting company information across communication and document sources.</p>
+          </div>
+        </article>
+
+        <article class="stop" id="energy" aria-labelledby="em-h">
+          <span class="n" aria-hidden="true">03</span>
+          <div>
+            <h3 id="em-h">Energy Market Intelligence</h3>
+            <p>Built a weekly AI-assisted workflow filtering energy-storage and related market signals into leadership updates.</p>
+          </div>
+        </article>
+
+        <article class="stop" id="eviction" aria-labelledby="ev-h">
+          <span class="n" aria-hidden="true">04</span>
+          <div>
+            <h3 id="ev-h">Chicago Eviction Risk</h3>
+            <p>Built an interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</p>
+          </div>
+        </article>
+
+        <footer class="contact" aria-label="Contact">
+          <p class="legend-title" style="margin:0">Find me</p>
+          <ul>
+            <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+            <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
+          </ul>
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
