@@ -69,6 +69,8 @@
     section { padding: 2.5rem 0; }
     h2 { margin: 0 0 1.25rem; font-size: 1.25rem; }
 
+    .jump { margin: 1rem 0 0; font-size: 0.9rem; }
+    .record-title { margin: 3rem 0 0.5rem; padding-top: 1.5rem; border-top: 2px solid var(--ink); font-size: 1.4rem; }
     .final-tag { margin: 0 0 0.5rem !important; font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #8a3a12; }
     .final p { margin: 0 0 0.6rem; color: var(--ink); }
     .final {
@@ -184,56 +186,21 @@
 
     <main>
       <section aria-labelledby="final-title">
-        <h2 id="final-title">Final choice</h2>
+        <h2 id="final-title">Final selection — Anees Amjad</h2>
         <div class="final">
-          <p class="final-tag">Recommended final — awaiting Anees’s review</p>
-          <p><strong><a href="v25/index.html">v25 · Recommended synthesis</a></strong>. Written by Claude as a draft for Anees to accept, edit or replace.</p>
-          <p>The page is for AI engineering recruiters, startup teams and potential collaborators, so it has to show quickly what Anees built, separate that from the surrounding system and team, and make contact easy. v25 keeps what survived 24 earlier versions: v01’s editorial typography and project-first order; v04/v14’s diagrams that mark “my work” against the rest of each system; v15’s rule that every artifact is captioned for what it actually is; the AI-first order Anees chose in v21 (Ourea Brain → PublicPath → CLARITY); v23’s ability to see all three projects at once; and v24’s diagram-before-prose cases. Dropped along the way: simulated terminals, decorative maps, museum framing, abstract art, a mandatory audience selector, oversized slogans, hidden panels, empty fields and unverifiable metrics.</p>
-          <p><strong>Trade-off.</strong> v25’s persistent sidebar keeps name, all three projects and contact visible and puts a real case on the first screen. The cost is a narrower reading column on laptops and a quieter artifact presentation than v24. On phones the sidebar becomes a header, so the first case starts after the project index. v23 is the alternative if speed of scanning matters more than seeing the contribution diagrams; v24 if the visuals should carry the page.</p>
+          <p><strong><a href="v25/index.html">v25 · Final portfolio →</a></strong></p>
+          <p>“I chose v25 because it puts a complete engineering case on the first screen while keeping my name, project index, and contact available. Ourea Brain leads because AI engineering is a central audience; PublicPath and CLARITY show the breadth of my product and research work. The final design combines editorial typography, diagrams that identify my contribution, and accurately labelled artifacts. I preferred its continuous reading experience to hidden project panels and its compact diagrams to v24’s larger visual spreads. The trade-off is a narrower desktop reading area and a mobile header that needs careful compression.”</p>
         </div>
       </section>
 
-      <section aria-labelledby="owner-title">
-        <h2 id="owner-title">Anees’s goals and choices</h2>
-        <ul class="process">
-          <li><h3>Goal and audience</h3><p>A portfolio for AI engineering recruiters, startup teams and potential collaborators, positioned as “I build AI tools and data products for real-world decisions.”</p></li>
-          <li><h3>Content decisions</h3><p>Use only facts from the CV, project materials or Anees’s own statements. Ourea Brain was built and deployed; PublicPath title is “Co-founder, Engineering and Data”; link joinpublicpath.com as “Project website”; Chicago Eviction Risk’s repository stays private; the team dashboard may be reused with credit.</p></li>
-          <li><h3>Chosen direction (after v22)</h3><p>In Anees’s words: “Leading with Ourea Brain introduces my deployed AI work first. PublicPath should follow to demonstrate co-founder experience and data engineering, with CLARITY third to demonstrate another application of my engineering skills.”</p></li>
-          <li><h3>Final choice</h3><p>Pending. The recommendation above is a draft, not Anees’s decision.</p></li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="checks-title">
-        <h2 id="checks-title">Checks actually performed</h2>
-        <ul class="process">
-          <li><h3>Rendering</h3><p>Headless Chrome screenshots at 1280×800 and 390px wide for every version as it was built; final candidates (v21–v25) inspected section by section at both widths.</p></li>
-          <li><h3>Keyboard</h3><p>Real Tab and Enter key events sent through Chrome’s DevTools protocol on v13, v14 and v20–v25: every focused element showed a visible focus style, and Enter on the main “work” link moved to it.</p></li>
-          <li><h3>Structure and contrast</h3><p>Automated checks for one h1, heading order, image alt text, page-level horizontal overflow (none), broken local links and anchors (none), and WCAG contrast ratios of the key colour pairs (all ≥ 4.5:1 after fixes).</p></li>
-          <li><h3>Not performed</h3><p>No user testing, no screen-reader testing, no real phones or Safari/Firefox. LinkedIn blocks automated requests, so that link is unverified. joinpublicpath.com loads, but its job search was failing when checked.</p></li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="process-title">
-        <h2 id="process-title">Process so far</h2>
+      <section aria-labelledby="story-title">
+        <h2 id="story-title">How the design evolved</h2>
         <ol class="process">
-          <li><h3>v01–v12 · Go wide</h3><p>Twelve deliberately different directions: editorial, terminal, policy memo, pipeline schematic, brutalist, map, single column, scorecard, newspaper, bento, audience selector, exhibition.</p></li>
-          <li><h3>Review input</h3><p>An external AI-assisted design review (not user testing) evaluated v01–v12 and recommended combining v01’s editorial type and project-first order, v04’s explicit contribution and system diagrams, and v12’s spacing and concise labels. Its notes are shown on each card, attributed, until Anees records an evaluation.</p></li>
-          <li><h3>Content upgrade</h3><p>From v13, content comes from Anees’s CV and checked project evidence: real links, a live PublicPath screenshot, a team dashboard image, and diagrams labelled conceptual where the work is private.</p></li>
-          <li><h3>v13–v19 · Recombine</h3><p>Seven structurally different compositions built on the same principles, so the choice is between real alternatives, not variations of one template. v20–v25 come after Anees reviews these.</p></li>
-          <li><h3>Distinctness audit (v01–v25)</h3><p>Conservative count: 20 distinct designs. Grouped as one design each: v01/v13/v21/v22 (same rail-and-case skeleton; v21–v22 differ only in order), v12/v15 (framed artifact plus label, top to bottom), v20/v23 (overview cards, then detail). v14 was restructured into a swimlane atlas so that it no longer duplicates v04. Uncertain pairs counted as distinct: v08/v18 (both tables, but rows are projects vs. capabilities), v10/v20 (both grids, but fragmented tiles vs. one frame per project), v16/v25 (both left columns, but pane switching vs. a persistent profile with all content visible). A stricter reading could merge those three pairs, giving 17. This audit covers only this gallery, not classmates’ work.</p></li>
-          <li><h3>v20–v22 · Converge</h3><p>v20 closes the broad exploration. v21 (Ourea Brain first) and v22 (PublicPath first) share one visual system so the only variable is which project introduces the portfolio. Anees has not yet chosen between them.</p></li>
-          <li><h3>v23–v25 · Final convergence</h3><p>From Anees’s chosen v21: v23 tests a fast overview, v24 an artifact-led casebook, and v25 combines the strongest parts of both. External review notes on v13–v19 came from an AI-assisted critique; the build decisions and wording are Claude’s, recorded on each card under “Builds on / rejects”.</p></li>
+          <li><h3>1 · Explore (v01–v12)</h3><p>Twelve deliberately different directions for the same portfolio: editorial, terminal, policy memo, pipeline schematic, brutalist, map, single column, scorecard, newspaper, bento, audience selector, exhibition.</p></li>
+          <li><h3>2 · Converge (v13–v24)</h3><p>An AI-assisted design review pointed toward v01’s typography, v04’s contribution diagrams and v12’s labels. Content moved to verified CV facts. v13–v20 recombined those ideas in new structures; Anees chose v21’s AI-first order over v22’s product-first order; v23 and v24 tested fast overview against artifact-led cases.</p></li>
+          <li><h3>3 · Decide (v25)</h3><p>v25 combines v23’s quick project choice with v24’s visible diagrams in a persistent sidebar layout. Trade-off: a narrower reading column on desktop and a compressed mobile header.</p></li>
         </ol>
-      </section>
-
-      <section aria-labelledby="corrections-title">
-        <h2 id="corrections-title">Factual corrections log</h2>
-        <p class="lede" style="margin-top:0">Content fixes, kept separate from design decisions. Layouts were not changed.</p>
-        <ul class="process">
-          <li><h3>6 Oct · Ourea Brain status</h3><p>Earlier versions described Ourea Brain as designed only. Anees confirmed it was built and deployed internally (Google Cloud Run, Claude API, answering in Slack). v01–v19 were updated in place; design-only labels and “intended” diagrams were replaced with a simplified architecture.</p></li>
-          <li><h3>6 Oct · PublicPath link and claims</h3><p>All versions now link the project website, joinpublicpath.com. v13+ label it “Project website” with a short note that job search was not loading when checked. The CV’s 50+ API and 50,000+ listing figures are not used because they could not be verified.</p></li>
-          <li><h3>6 Oct · Wording audits</h3><p>v19’s step results were rewritten as purposes (a schedule does not prove every run succeeded; deduplication and validation are mechanisms, not guarantees). Screenshot captions now say the homepage shows the team’s product.</p></li>
-        </ul>
+        <p class="jump"><a href="#versions-title">All 25 versions ↓</a> · <a href="#record-title">Decisions, corrections and checks ↓</a></p>
       </section>
 
       <section aria-labelledby="versions-title">
@@ -249,7 +216,6 @@
                 <p class="note"><strong>Hypothesis</strong>Recruiters skim for evidence of real work, so leading with one project (PublicPath) and spelling out my exact contribution in a separate box will communicate more than a list of skills. An asymmetric, magazine-style layout should make that lead project feel deliberate rather than templated.</p>
                 <p class="note"><strong>Revision 1</strong>First screenshots showed the headline filling the whole first screen, so the "project-first" page didn't actually show the project there. Shrank the hero, removed a paragraph that repeated the contribution box, and dropped the staggered indents in the secondary list (they read as misalignment).</p>
                 <p class="note review"><strong>External review input</strong>Strong professional foundation; retain typography and ownership clarity, but deepen secondary-project evidence.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -262,7 +228,6 @@
                 <h3><a href="v02/index.html"><span class="tag">v02</span>Terminal session</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Engineers and technical recruiters read a command line as home turf. Framing the portfolio as a terminal session (<code>whoami</code>, <code>ls projects/</code>, <code>cat README.md</code>) should signal engineering fluency before a word is read, and the README gives PublicPath a natural lead slot. Risk: may read as a gimmick to non-technical visitors.</p>
                 <p class="note review"><strong>External review input</strong>Coherent terminal theme, but simulated commands add overhead without proving engineering ability.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -275,7 +240,6 @@
                 <h3><a href="v03/index.html"><span class="tag">v03</span>Policy memo</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Shift tone toward the public-sector half of my work. A government memorandum (TO/FROM/RE, bottom line up front, numbered record of work) matches how policy teams read, and makes the MSCAPP identity visible. Risk: may feel dry or formal to startup readers.</p>
                 <p class="note review"><strong>External review input</strong>Useful structure and policy connection, but the memorandum identity overshadows the person and feels overly formal.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -288,7 +252,6 @@
                 <h3><a href="v04/index.html"><span class="tag">v04</span>Pipeline schematic</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Show my contribution instead of describing it. Each project is drawn as a pipeline on engineering grid paper, and the stages I built are highlighted in orange, so a recruiter sees my exact part of each system at a glance. Risk: the pipeline metaphor fits PublicPath well but is a stretch for projects without clear stages.</p>
                 <p class="note review"><strong>External review input</strong>Best ownership explanation; retain highlighted stages, but remove diagrams that merely repeat prose.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -301,7 +264,6 @@
                 <h3><a href="v05/index.html"><span class="tag">v05</span>Brutalist manifesto</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Test loudness as a strategy: enormous stacked type, hard black borders, one signal colour. Does an opinionated, poster-like page make me memorable among many portfolios, or does it overwhelm the content? The headline restates the positioning line as a manifesto.</p>
                 <p class="note review"><strong>External review input</strong>Memorable scale, but the slogan overwhelms the evidence.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -314,7 +276,6 @@
                 <h3><a href="v06/index.html"><span class="tag">v06</span>Chicago work map</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Use place as the organizing idea. A stylised Chicago street grid with Lake Michigan, where each project is a pin and PublicPath is the big red one; a legend panel carries the detail. Ties the page to Chicago and to the geospatial side of my work. Risk: the metaphor is decorative, since pins are projects, not addresses (the page says so).</p>
                 <p class="note review"><strong>External review input</strong>Personal Chicago reference, but non-geographic pins make the map mostly decorative.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -327,7 +288,6 @@
                 <h3><a href="v07/index.html"><span class="tag">v07</span>One calm column</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Strip everything back: one narrow column of plain sentences, no cards, no colour blocks, no visual tricks. Tests whether clear writing alone is enough for a recruiter, and whether quietness reads as confidence or as too little effort.</p>
                 <p class="note review"><strong>External review input</strong>Readable and direct, but too little hierarchy for substantial work.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -340,7 +300,6 @@
                 <h3><a href="v08/index.html"><span class="tag">v08</span>Recruiter scorecard</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Design for the skim. A candidate-snapshot card and a project table (contribution, stack, area) with working filter buttons in plain JavaScript. Where my brief has no stack for a project, the table says “Not listed” rather than guessing, which also exposes the content gap. Risk: feels like a database, not a person.</p>
                 <p class="note review"><strong>External review input</strong>Useful comparison structure, but empty fields and database styling feel unfinished and impersonal.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -353,7 +312,6 @@
                 <h3><a href="v09/index.html"><span class="tag">v09</span>Newspaper front page</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Treat PublicPath as front-page news: masthead, headline, deck, drop cap, an “At a glance” box, and the other projects as briefs in a side rail. Tests whether a story framing makes the lead project feel more significant than a list item does.</p>
                 <p class="note review"><strong>External review input</strong>Strong lead-story hierarchy, but repetition and third-person voice weaken the personal introduction.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -366,7 +324,6 @@
                 <h3><a href="v10/index.html"><span class="tag">v10</span>Bento grid</a></h3>
                 <p class="note"><strong>Hypothesis</strong>A modern product-page grid: tiles of different sizes and soft colours, with PublicPath, my part, the stack, and contact each getting their own tile. Tests whether chunking the content lets a visitor take in everything at a glance, versus feeling generic and template-like.</p>
                 <p class="note review"><strong>External review input</strong>Efficient scanning, but separate tiles fragment each project’s story.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -379,7 +336,6 @@
                 <h3><a href="v11/index.html"><span class="tag">v11</span>Choose your path</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Let the visitor say who they are (hiring, building a startup, collaborating) and reshape the page: same facts, different order, framing, and call to action, plus an accent colour per path. Vanilla JS; without JS all three views show in sequence. Risk: an extra click before any content.</p>
                 <p class="note review"><strong>External review input</strong>Functional audience adaptation, but the selector delays evidence and duplicates similar information.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -392,7 +348,6 @@
                 <h3><a href="v12/index.html"><span class="tag">v12</span>Museum exhibition</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Wildcard: present the work as an exhibition, with entrance wall text, framed abstract illustrations, and museum labels (title, medium = stack, role). Tests whether an unexpected, crafted framing makes the portfolio memorable without hiding the facts. Illustrations are labelled as not screenshots.</p>
                 <p class="note review"><strong>External review input</strong>Thoughtful presentation, but abstract artwork and artist framing distract from engineering evidence.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -406,7 +361,6 @@
                 <p class="note"><strong>Hypothesis</strong>Each project as a short case study: problem, my contribution, a compact system figure with my stages highlighted, then evidence. A compact hero plus a contents list keeps PublicPath on the first screen at laptop size.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v01’s serif type, asymmetric rail and project-first order; v04’s highlighted ‘my work’ stages, now small and only where they add information; v12’s concise labels (Role, Context, Stack). Rejects v05’s oversized slogan and v12’s abstract art; uses a real PublicPath screenshot instead.</p>
                 <p class="note review"><strong>External review input</strong>Best overall reading structure; retain case-study rhythm and role clarity, but shorten the opening and bring evidence higher.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -421,7 +375,6 @@
                 <p class="note"><strong>Builds on / rejects</strong>Builds on v04’s ownership highlighting but answers the review note about diagrams that merely repeat prose: here the diagram is primary and the notes explain each step once. Keeps v01’s compact, project-first opening. Rejects v04’s decorative grid paper and engineering title block.</p>
                 <p class="note review"><strong>External review input</strong>Strongest system explanations; retain accurate diagrams and numbered annotations, but simplify the visual scaffolding and mobile layout.</p>
                 <p class="note"><strong>Structural revision (6 Oct, for distinctness)</strong>The original v14 used per-project diagram plates with side notes, too close to v04’s per-project pipeline rows. It was rebuilt as one combined swimlane atlas (one lane per system; rows: comes in → I built → then → comes out), with notes underneath. The original remains in Git history (commit bd66f29).</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -435,7 +388,6 @@
                 <p class="note"><strong>Hypothesis</strong>Lead with real artifacts, not descriptions: the live PublicPath homepage sits beside the intro on the first screen, and the team dashboard anchors the supporting work. Private work gets plain ‘design sheet’ and ‘pipeline sheet’ cards that say what can’t be shown and why.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Inherits v12’s deliberate spacing and short labels (Artifact, Role, I built, Tools) but replaces its abstract artwork and artist framing with actual screenshots and honest spec sheets. Rejects decorative stand-ins for evidence.</p>
                 <p class="note review"><strong>External review input</strong>Strong artifact presentation; retain real evidence, but prevent a large product-marketing screenshot from overshadowing my contribution.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -449,7 +401,6 @@
                 <p class="note"><strong>Hypothesis</strong>Treat the portfolio like a reading app: a persistent project index beside a substantial reading pane, with PublicPath open by default so real work is visible immediately. Optional technical detail sits in a native details element. On narrow screens (or without JavaScript) the index becomes jump links and every pane stacks.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v11’s idea of letting the visitor steer, but drops its mandatory choice: the work is already showing. Keeps v13’s per-project structure (role, tools, copy, flow, evidence) inside each pane. Rejects v10’s fragmented tiles; each project stays one continuous story.</p>
                 <p class="note review"><strong>External review input</strong>Useful browsing pattern, but hidden panels reduce immediate exposure to the full portfolio.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -463,7 +414,6 @@
                 <p class="note"><strong>Hypothesis</strong>Organize the page around the questions the work addresses, not project names, so a collaborator sees the problem before the tool. Each question gets a colour band with ‘What I built’ beside ‘How it works’, and my steps are marked inline. The questions come from the project descriptions and READMEs.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Inherits v09’s strong lead-story hierarchy without its third-person voice or repetition; keeps v04’s explicit ‘my work’ marking as small inline tags. Rejects v11’s audience selector: the framing serves every visitor without a click.</p>
                 <p class="note review"><strong>External review input</strong>Useful problem framing, but long questions repeat content and delay project names.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -477,7 +427,6 @@
                 <p class="note"><strong>Hypothesis</strong>Answer a recruiter’s real question, ‘can this person do X?’, directly: engineering capabilities as rows, projects as columns, and every filled cell names its evidence. Full project notes sit under the matrix. On phones each capability becomes a card that lists only its evidence, with no blank cells.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v08’s comparison structure but drops what the review flagged: no ‘Not listed’ fields, and warm editorial type instead of database styling. Keeps v13’s featured-project copy and the real PublicPath screenshot below the matrix.</p>
                 <p class="note review"><strong>External review input</strong>Useful content audit, but sparse cells and decoding effort weaken the homepage.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -491,7 +440,6 @@
                 <p class="note"><strong>Hypothesis</strong>Go deep on one build instead of wide on many: PublicPath’s pipeline as a vertical, step-by-step sequence, with what each step produces and whether it was my work or the platform’s. The other projects follow as contrasting builds seen through the same lens.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Takes v04’s ‘stage I built’ idea to its most explicit form, step by step. Keeps v13’s sticky role/tools summary and real screenshot beside the steps. Rejects v02’s simulated terminal: shows the engineering sequence plainly instead of dressing it as commands.</p>
                 <p class="note review"><strong>External review input</strong>Strong technical-detail material, but too much emphasis on one project and overly absolute output claims.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -504,7 +452,6 @@
                 <h3><a href="v20/index.html"><span class="tag">v20</span>Contact sheet</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Last broad exploration: every project appears at once as one uniform frame, like a photographer’s contact sheet, each a complete entry (artifact or diagram, title, contribution, link to details). Featured projects get an editor’s red frame, and each frame says whether it is a real screenshot or a simplified diagram.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Answers v10’s fragmentation: one frame per project instead of separate tiles for role, stack and copy. Keeps v15’s rule that real artifacts are labelled as such. Diagrams are HTML rather than SVG, so they reflow on phones instead of scrolling sideways as v14’s did.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -543,7 +490,6 @@
                 <h3><a href="v23/index.html"><span class="tag">v23</span>Fast overview</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Can a visitor understand my focus and pick a project in seconds? All three featured projects sit side by side right under a compact hero, each answering ‘what it does’, ‘what I built’ and ‘observed/artifact/output’. Full cases follow as one readable column, with the technical ‘how it works’ tucked into native disclosure elements.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Starts from v21 (Anees’s chosen direction), keeping its order, type and contribution marking. Removes v21’s hero diagram so the architecture appears only once, inside its case. New structure: overview band, then single-column long-read cases (not v20’s artifact frames or v16’s hidden panes).</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -556,7 +502,6 @@
                 <h3><a href="v24/index.html"><span class="tag">v24</span>Artifact-led casebook</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Lead every case with its visual: a full-width dark figure spread holding an explanatory diagram (and, for PublicPath, the captioned homepage beside the data flow), then three short columns: what it does, what I built, and observed behaviour, artifact or output. A ‘list of figures’ in the hero makes every visual findable.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Builds on v21’s order and contribution marking, v14’s diagram clarity and v15’s artifact labelling, but changes the composition: figure first, text after, in full-width spreads (not v14’s side-by-side plates). Every figure states whether it is an explanatory diagram or a project artifact.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
               </div>
             </article>
           </li>
@@ -568,13 +513,59 @@
               <div class="card-body">
                 <h3><a href="v25/index.html"><span class="tag">v25</span>Recommended synthesis</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Combine v23’s fast choice with v24’s visible contribution diagrams: a persistent profile sidebar keeps name, intro, actions, a one-line index of all three projects and contact visible while the cases scroll; each case shows a light, labelled diagram with my stages marked, then ‘what it does / what I built / observed behaviour, artifact or output’.</p>
-                <p class="note"><strong>Builds on / rejects</strong>From v23: all three projects discoverable at once, and tools tucked into disclosure. From v24: diagram before prose, explicit diagram/artifact labels, and a small captioned screenshot. Drops v24’s heavy dark panels and v23’s hidden diagrams. Differs from v16: nothing is hidden; the sidebar is identity plus navigation, not a pane switcher. On phones the sidebar becomes the header, then the cases.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
+                <p class="note"><strong>Builds on / rejects</strong>From v23: all three projects discoverable at once, and quick access to every project. From v24: diagram before prose, explicit diagram/artifact labels, and a small captioned screenshot. Drops v24’s heavy dark panels and v23’s hidden diagrams. Differs from v16: nothing is hidden; the sidebar is identity plus navigation, not a pane switcher. On phones the sidebar becomes the header, then the cases.</p>
+                <p class="note"><strong>Anees’s evaluation</strong>Final selection (see top of page).</p>
               </div>
             </article>
           </li>
         </ol>
       </section>
+      <h2 id="record-title" class="record-title">Process record</h2>
+      <p class="lede" style="margin-top:0">Who decided what: Anees’s goals and choices; external AI-assisted review (labelled on each card); Claude’s implementation notes (“Builds on / rejects” on each card); and the checks that were actually run.</p>
+
+      <section aria-labelledby="owner-title">
+        <h2 id="owner-title">Anees’s goals and choices</h2>
+        <ul class="process">
+          <li><h3>Goal and audience</h3><p>A portfolio for AI engineering recruiters, startup teams and potential collaborators, positioned as “I build AI tools and data products for real-world decisions.”</p></li>
+          <li><h3>Content decisions</h3><p>Use only facts from the CV, project materials or Anees’s own statements. Ourea Brain was built and deployed; PublicPath title is “Co-founder, Engineering and Data”; link joinpublicpath.com as “Project website”; Chicago Eviction Risk’s repository stays private; the team dashboard may be reused with credit.</p></li>
+          <li><h3>Chosen direction (after v22)</h3><p>In Anees’s words: “Leading with Ourea Brain introduces my deployed AI work first. PublicPath should follow to demonstrate co-founder experience and data engineering, with CLARITY third to demonstrate another application of my engineering skills.”</p></li>
+          <li><h3>Final choice</h3><p>v25, chosen by Anees on 6 October 2026, with the reasoning quoted at the top of this page.</p></li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="process-title">
+        <h2 id="process-title">Phases in detail</h2>
+        <ol class="process">
+          <li><h3>v01–v12 · Go wide</h3><p>Twelve deliberately different directions: editorial, terminal, policy memo, pipeline schematic, brutalist, map, single column, scorecard, newspaper, bento, audience selector, exhibition.</p></li>
+          <li><h3>Review input</h3><p>An external AI-assisted design review (not user testing) evaluated v01–v12 and recommended combining v01’s editorial type and project-first order, v04’s explicit contribution and system diagrams, and v12’s spacing and concise labels. Its notes are shown on each card, attributed, until Anees records an evaluation.</p></li>
+          <li><h3>Content upgrade</h3><p>From v13, content comes from Anees’s CV and checked project evidence: real links, a live PublicPath screenshot, a team dashboard image, and diagrams labelled conceptual where the work is private.</p></li>
+          <li><h3>v13–v19 · Recombine</h3><p>Seven structurally different compositions built on the same principles, so the choice is between real alternatives, not variations of one template. Anees reviewed these before the final convergence.</p></li>
+          <li><h3>Distinctness audit (v01–v25)</h3><p>Conservative count: 20 distinct designs. Grouped as one design each: v01/v13/v21/v22 (same rail-and-case skeleton; v21–v22 differ only in order), v12/v15 (framed artifact plus label, top to bottom), v20/v23 (overview cards, then detail). v14 was restructured into a swimlane atlas so that it no longer duplicates v04. Uncertain pairs counted as distinct: v08/v18 (both tables, but rows are projects vs. capabilities), v10/v20 (both grids, but fragmented tiles vs. one frame per project), v16/v25 (both left columns, but pane switching vs. a persistent profile with all content visible). A stricter reading could merge those three pairs, giving 17. This audit covers only this gallery, not classmates’ work.</p></li>
+          <li><h3>v20–v22 · Converge</h3><p>v20 closes the broad exploration. v21 (Ourea Brain first) and v22 (PublicPath first) share one visual system so the only variable is which project introduces the portfolio. Anees chose v21.</p></li>
+          <li><h3>v23–v25 · Final convergence</h3><p>From Anees’s chosen v21: v23 tests a fast overview, v24 an artifact-led casebook, and v25 combines the strongest parts of both. External review notes on v13–v19 came from an AI-assisted critique; the build decisions and wording are Claude’s, recorded on each card under “Builds on / rejects”.</p></li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="corrections-title">
+        <h2 id="corrections-title">Factual corrections log</h2>
+        <p class="lede" style="margin-top:0">Content fixes, kept separate from design decisions. Layouts were not changed.</p>
+        <ul class="process">
+          <li><h3>6 Oct · Ourea Brain status</h3><p>Earlier versions described Ourea Brain as designed only. Anees confirmed it was built and deployed internally (Google Cloud Run, Claude API, answering in Slack). v01–v19 were updated in place; design-only labels and “intended” diagrams were replaced with a simplified architecture.</p></li>
+          <li><h3>6 Oct · PublicPath link and claims</h3><p>All versions now link the project website, joinpublicpath.com. v13+ label it “Project website” with a short note that job search was not loading when checked. The CV’s 50+ API and 50,000+ listing figures are not used because they could not be verified.</p></li>
+          <li><h3>6 Oct · Wording audits</h3><p>v19’s step results were rewritten as purposes (a schedule does not prove every run succeeded; deduplication and validation are mechanisms, not guarantees). Screenshot captions now say the homepage shows the team’s product.</p></li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="checks-title">
+        <h2 id="checks-title">Checks actually performed</h2>
+        <ul class="process">
+          <li><h3>Rendering</h3><p>Headless Chrome screenshots at 1280×800 and 390px wide for every version as it was built; final candidates (v21–v25) inspected section by section at both widths.</p></li>
+          <li><h3>Keyboard</h3><p>Real Tab and Enter key events sent through Chrome’s DevTools protocol on v13, v14 and v20–v25: every focused element showed a visible focus style, and Enter on the main “work” link moved to it.</p></li>
+          <li><h3>Structure and contrast</h3><p>Automated checks for one h1, heading order, image alt text, page-level horizontal overflow (none), broken local links and anchors (none), and WCAG contrast ratios of the key colour pairs (all ≥ 4.5:1 after fixes).</p></li>
+          <li><h3>Not performed</h3><p>No user testing, no screen-reader testing, no real phones or Safari/Firefox. LinkedIn blocks automated requests, so that link is unverified. joinpublicpath.com loads, but its job search was failing when checked.</p></li>
+        </ul>
+      </section>
+
     </main>
 
     <footer>
