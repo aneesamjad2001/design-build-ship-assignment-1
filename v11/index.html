@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v11 · Choose your path</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --bg: #fffaf3;
+      --ink: #1b1a1f;
+      --muted: #5d5a63;
+      --line: #ece4d6;
+      --card: #ffffff;
+      --accent: #3157d5;
+      --accent-soft: #e7ecfc;
+      --sans: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+    body[data-lens="startup"] { --accent: #c4501a; --accent-soft: #fde9dd; }
+    body[data-lens="collab"]  { --accent: #1d7a55; --accent-soft: #dcf2e7; }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+      transition: background-color 0.3s;
+    }
+
+    a { color: var(--accent); text-underline-offset: 0.2em; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
+
+    .skip { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: #fff; padding: 0.4rem 0.7rem; }
+    .skip:focus { top: 1rem; }
+
+    .wrap { max-width: 56rem; margin: 0 auto; padding: 1rem clamp(1rem, 4vw, 2rem) 3rem; }
+
+    .top { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.85rem; color: var(--muted); }
+    .top a { color: var(--ink); font-weight: 700; text-decoration: none; }
+    .top a:hover { text-decoration: underline; }
+
+    header { text-align: center; padding: clamp(2.5rem, 7vw, 4.5rem) 0 1.5rem; }
+    .hello { margin: 0; font-weight: 600; color: var(--muted); }
+    h1 { margin: 0.5rem auto 0; max-width: 20ch; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.08; letter-spacing: -0.02em; }
+    .intro { margin: 1rem auto 0; max-width: 40rem; color: var(--muted); }
+
+    /* The question */
+    .ask { margin-top: 2rem; text-align: center; }
+    .ask h2 { margin: 0 0 1rem; font-size: 1.25rem; }
+    .choices { display: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+    .js .choices { display: grid; }
+    .choice {
+      font: inherit;
+      text-align: left;
+      padding: 1rem 1.1rem;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+      color: var(--ink);
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .choice:hover { transform: translateY(-2px); border-color: var(--muted); }
+    .choice strong { display: block; font-size: 1.05rem; }
+    .choice span { display: block; font-size: 0.88rem; color: var(--muted); margin-top: 0.15rem; }
+    .choice[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+    .nojs-note { color: var(--muted); font-size: 0.9rem; }
+    .js .nojs-note { display: none; }
+
+    /* Lens panels */
+    .lens { margin-top: 2.5rem; }
+    .lens[hidden] { display: none; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .lens > h2 {
+      margin: 0 0 0.25rem;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      letter-spacing: -0.01em;
+    }
+    .lens > h2 small { display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem; }
+    .lens > p { margin: 0 0 1.25rem; color: var(--muted); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 1.25rem 1.4rem;
+      margin-bottom: 0.9rem;
+    }
+    .card.lead { border: 2px solid var(--accent); }
+    .card h3 { margin: 0; font-size: 1.2rem; }
+    .card .sub { margin: 0.15rem 0 0; font-weight: 600; color: var(--accent); font-size: 0.92rem; }
+    .card p { margin: 0.5rem 0 0; }
+    .card dl { margin: 0.85rem 0 0; display: grid; grid-template-columns: 8rem 1fr; gap: 0.4rem 1rem; font-size: 0.95rem; }
+    .card dt { color: var(--muted); }
+    .card dd { margin: 0; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+    .grid2 .card { margin-bottom: 0; }
+    .theme { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+    .cta {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.1rem;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .btn.primary { background: var(--accent); color: #fff; }
+    .btn:hover { filter: brightness(0.92); }
+
+    @media (prefers-reduced-motion: reduce) { body, .choice { transition: none; } .choice:hover { transform: none; } }
+
+    @media (max-width: 680px) {
+      .js .choices { grid-template-columns: 1fr; }
+      .grid2 { grid-template-columns: 1fr; }
+      .card dl { grid-template-columns: 1fr; gap: 0 1rem; }
+      .card dd { margin-bottom: 0.4rem; }
+    }
+  </style>
+</head>
+<body data-lens="recruiter">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="wrap">
+    <nav class="top" aria-label="Prototype navigation">
+      <a href="../index.html">← Gallery</a>
+      <span>v11 · Choose your path</span>
+    </nav>
+
+    <header>
+      <p class="hello">Hi, I’m Anees Amjad.</p>
+      <h1>I build AI tools and data products for real-world decisions.</h1>
+      <p class="intro">I’m a graduate student in Computational Analysis and Public Policy at the University of Chicago. My work spans AI workflows, public-sector software, and applied machine learning.</p>
+    </header>
+
+    <main id="main">
+      <section class="ask" aria-labelledby="ask-h">
+        <h2 id="ask-h">What brings you here?</h2>
+        <div class="choices" role="group" aria-label="Choose what to see">
+          <button class="choice" type="button" data-lens="recruiter" aria-pressed="true" aria-controls="lens-recruiter"><strong>I’m hiring</strong><span>Role, contribution, and stack</span></button>
+          <button class="choice" type="button" data-lens="startup" aria-pressed="false" aria-controls="lens-startup"><strong>I’m building a startup</strong><span>What I’ve built</span></button>
+          <button class="choice" type="button" data-lens="collab" aria-pressed="false" aria-controls="lens-collab"><strong>Let’s work together</strong><span>The problems I work on</span></button>
+        </div>
+        <p class="nojs-note">Three views of the same work follow: for hiring teams, startup teams, and collaborators.</p>
+        <p class="sr" id="lens-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- Recruiter view -->
+      <section class="lens" id="lens-recruiter" data-lens="recruiter" aria-labelledby="r-h">
+        <h2 id="r-h"><small>For hiring teams</small>Here’s exactly what I did.</h2>
+        <p>Role and contribution first, project by project.</p>
+
+        <article class="card lead" aria-labelledby="r-pp">
+          <h3 id="r-pp">PublicPath</h3>
+          <p class="sub">Co-founder, Engineering and Data</p>
+          <dl>
+            <dt>Contribution</dt><dd>Built the platform as one of two engineers</dd>
+            <dt>Owned</dt><dd>API ingestion; data-quality workflows</dd>
+            <dt>Stack</dt><dd>Python, GitHub Actions, Supabase, Postgres</dd>
+            <dt>Product</dt><dd>A nonprofit platform helping students and early-career candidates land roles in government · <a href="https://tahvia127.github.io/PublicPath/">site</a></dd>
+          </dl>
+        </article>
+        <div class="grid2">
+          <article class="card" aria-labelledby="r-ob"><h3 id="r-ob">Ourea Brain</h3><p>Designed an internal AI knowledge system connecting company information across communication and document sources.</p></article>
+          <article class="card" aria-labelledby="r-em"><h3 id="r-em">Energy Market Intelligence</h3><p>Built a weekly AI-assisted workflow filtering energy-storage and related market signals into leadership updates.</p></article>
+          <article class="card" aria-labelledby="r-ev"><h3 id="r-ev">Chicago Eviction Risk</h3><p>Built an interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</p></article>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="mailto:aneesamjad@uchicago.edu">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a>
+          <a class="btn" href="https://github.com/aneesamjad2001">GitHub</a>
+        </div>
+      </section>
+
+      <!-- Startup view -->
+      <section class="lens" id="lens-startup" data-lens="startup" aria-labelledby="s-h">
+        <h2 id="s-h"><small>For startup teams</small>I co-founded one and built its platform.</h2>
+        <p>What I’ve built on small teams.</p>
+
+        <article class="card lead" aria-labelledby="s-pp">
+          <h3 id="s-pp">PublicPath</h3>
+          <p class="sub">Co-founder · one of two engineers</p>
+          <p>A nonprofit platform that helps students and early-career candidates discover, navigate, and land roles in government, from city hall to Capitol Hill. With one other engineer, I built the platform, working on API ingestion and data-quality workflows in Python, GitHub Actions, Supabase, and Postgres. <a href="https://tahvia127.github.io/PublicPath/">See it ↗</a></p>
+        </article>
+        <div class="grid2">
+          <article class="card" aria-labelledby="s-em"><h3 id="s-em">Energy Market Intelligence</h3><p>A weekly AI-assisted workflow that filters energy-storage and related market signals into leadership updates.</p></article>
+          <article class="card" aria-labelledby="s-ob"><h3 id="s-ob">Ourea Brain</h3><p>An internal AI knowledge system I designed to connect company information across communication and document sources.</p></article>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/aneesamjad2001">See my GitHub</a>
+          <a class="btn" href="mailto:aneesamjad@uchicago.edu">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a>
+        </div>
+      </section>
+
+      <!-- Collaborator view -->
+      <section class="lens" id="lens-collab" data-lens="collab" aria-labelledby="c-h">
+        <h2 id="c-h"><small>For collaborators</small>The problems I keep coming back to.</h2>
+        <p>Grouped by the question each project works on, not by job title.</p>
+        <div class="grid2">
+          <article class="card lead" aria-labelledby="c-pp"><span class="theme">Access to public service</span><h3 id="c-pp">PublicPath</h3><p>Helping students and early-career candidates discover, navigate, and land roles in government. I co-founded it and built its API ingestion and data-quality workflows.</p></article>
+          <article class="card" aria-labelledby="c-ev"><span class="theme">Housing in Chicago</span><h3 id="c-ev">Chicago Eviction Risk</h3><p>An interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</p></article>
+          <article class="card" aria-labelledby="c-em"><span class="theme">Energy markets</span><h3 id="c-em">Energy Market Intelligence</h3><p>Filtering energy-storage and related market signals into weekly leadership updates.</p></article>
+          <article class="card" aria-labelledby="c-ob"><span class="theme">Organisational knowledge</span><h3 id="c-ob">Ourea Brain</h3><p>Connecting company information across communication and document sources with an internal AI knowledge system.</p></article>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="mailto:aneesamjad@uchicago.edu">Start a conversation</a>
+          <a class="btn" href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a>
+          <a class="btn" href="https://github.com/aneesamjad2001">GitHub</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Without JS all three views show in sequence; with JS the visitor picks one.
+    document.documentElement.classList.add('js');
+    const buttons = document.querySelectorAll('.choice');
+    const panels = document.querySelectorAll('.lens');
+    const status = document.getElementById('lens-status');
+    function show(lens) {
+      document.body.dataset.lens = lens;
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lens === lens)));
+      panels.forEach(p => { p.hidden = p.dataset.lens !== lens; });
+      const h = document.querySelector(`.lens[data-lens="${lens}"] h2`);
+      return h;
+    }
+    show('recruiter');
+    buttons.forEach(b => b.addEventListener('click', () => {
+      const h = show(b.dataset.lens);
+      status.textContent = `Showing: ${h.textContent}`;
+    }));
+  </script>
+</body>
+</html>
