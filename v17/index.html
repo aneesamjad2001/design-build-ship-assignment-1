@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v17 · Problem-led narrative</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --bg: #fbf8f3;
+      --ink: #221f1a;
+      --muted: #645d52;
+      --line: #e3dccf;
+      --q1: #eef3fb;
+      --q2: #f4effa;
+      --q3: #eef7f2;
+      --accent: #b4441f;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
+    a { color: var(--ink); text-underline-offset: 0.2em; }
+    a:hover { color: var(--accent); }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    img { max-width: 100%; height: auto; display: block; }
+    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--ink); color: #fff; padding: 0.5rem 0.75rem; }
+    .skip:focus { top: 0.5rem; }
+
+    .assignment { background: #2b2822; color: #cfc8ba; font: 0.78rem/1.4 ui-monospace, Menlo, monospace; }
+    .assignment div { max-width: 70rem; margin: 0 auto; padding: 0.45rem clamp(1rem, 4vw, 2.5rem); display: flex; justify-content: space-between; gap: 1rem; }
+    .assignment a { color: #fff; }
+
+    .wrap { max-width: 70rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem); }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.5rem 3rem; padding-block: clamp(1.75rem, 4vw, 2.75rem) 1.75rem; }
+    .hero .name { margin: 0; font-weight: 600; color: var(--muted); font-size: 0.9rem; }
+    .hero h1 { margin: 0.35rem 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3.2vw, 2.5rem); line-height: 1.12; }
+    .hero .intro { margin: 0.8rem 0 0; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: center; margin-top: 1rem; }
+    .actions .primary { padding: 0.5rem 1rem; border-radius: 999px; background: var(--ink); color: #fff; text-decoration: none; font-weight: 600; }
+    .actions .primary:hover { background: var(--accent); color: #fff; }
+    .open { margin: 0.6rem 0 0; font-size: 0.85rem; color: var(--muted); }
+    .questions { align-self: end; margin: 0; padding: 1rem 1.25rem; border-left: 3px solid var(--accent); }
+    .questions p { margin: 0 0 0.5rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .questions ol { margin: 0; padding-left: 1.2rem; font-family: var(--serif); font-size: 1.02rem; line-height: 1.4; }
+    .questions li { margin-bottom: 0.35rem; }
+    .questions a { text-decoration: none; }
+    .questions a:hover { text-decoration: underline; }
+
+    /* A question band */
+    .q { padding: clamp(2rem, 5vw, 3.5rem) 0; scroll-margin-top: 0.5rem; }
+    .q.c1 { background: var(--q1); }
+    .q.c2 { background: var(--q2); }
+    .q.c3 { background: var(--q3); }
+    .ask { margin: 0; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .q h2 { margin: 0.4rem 0 0; max-width: 32ch; font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 3.2vw, 2.5rem); line-height: 1.1; letter-spacing: -0.01em; }
+    .answer { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1.5rem 3rem; margin-top: 1.5rem; }
+    .answer h3 { margin: 0 0 0.4rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .project { margin: 0 0 0.75rem; font-size: 1.05rem; }
+    .project strong { font-size: 1.25rem; }
+    .answer p { margin: 0 0 0.75rem; }
+    .facts { margin: 0.75rem 0 0; font-size: 0.88rem; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.2rem 1rem; }
+    .facts dt { color: var(--muted); }
+    .facts dd { margin: 0; }
+    .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+    .steps li { counter-increment: s; position: relative; padding: 0.45rem 0 0.45rem 2.25rem; border-bottom: 1px solid rgba(0,0,0,0.08); font-size: 0.95rem; }
+    .steps li::before { content: counter(s); position: absolute; left: 0; top: 0.5rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; border: 1.5px solid var(--ink); font-size: 0.75rem; font-weight: 700; display: grid; place-items: center; }
+    .steps li.mine::before { background: var(--ink); color: #fff; }
+    .steps li.mine::after { content: "my work"; margin-left: 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+    .note { margin: 0.5rem 0 0; font-size: 0.8rem; color: var(--muted); }
+    .shot { margin: 1.25rem 0 0; }
+    .shot img { border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .shot figcaption { margin-top: 0.4rem; font-size: 0.8rem; color: var(--muted); }
+
+    /* Shorter questions for supporting work */
+    .short { padding-block: 2.5rem; border-top: 1px solid var(--line); }
+    .short > h2 { margin: 0 0 1.25rem; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .short ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem; }
+    .short h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.2; }
+    .short .proj { margin: 0.6rem 0 0.25rem; font-weight: 600; }
+    .short p { margin: 0; font-size: 0.95rem; }
+    .short a { display: inline-block; margin-top: 0.4rem; font-size: 0.88rem; font-weight: 600; }
+
+    .bg { padding-block: 2.5rem; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem 3rem; }
+    .bg h2 { grid-column: 1 / -1; margin: 0; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .bg p { margin: 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.5; }
+    .bg ul { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+    .bg li { padding: 0.3rem 0; border-bottom: 1px solid var(--line); }
+    .bg li span { color: var(--muted); }
+
+    .contact { padding-block: 2.5rem 3.5rem; border-top: 2px solid var(--ink); }
+    .contact h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); }
+    .contact ul { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; font-size: 1.1rem; font-weight: 600; }
+
+    @media (max-width: 860px) {
+      .hero, .answer, .bg { grid-template-columns: minmax(0, 1fr); }
+      .short ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to selected work</a>
+  <nav class="assignment" aria-label="Assignment navigation">
+    <div><a href="../index.html">← Gallery</a><span>Prototype v17 · Problem-led narrative</span></div>
+  </nav>
+
+  <header class="wrap hero">
+    <div>
+      <p class="name">Anees Amjad</p>
+      <h1>I build AI tools and data products for real-world decisions.</h1>
+      <p class="intro">I’m a master’s student in Computational Analysis and Public Policy at the University of Chicago. I build AI workflows, data pipelines, and software across energy, public service, and research.</p>
+      <div class="actions">
+        <a class="primary" href="#work">Explore selected work</a>
+        <a href="#contact">Get in touch</a>
+      </div>
+      <p class="open">Open to AI engineering roles, startup opportunities, and collaboration.</p>
+    </div>
+    <nav class="questions" aria-label="Questions my work addresses">
+      <p>Questions my work addresses</p>
+      <ol>
+        <li><a href="#q-publicpath">How do students and early-career candidates find government roles in one place?</a></li>
+        <li><a href="#q-knowledge">How can a team find what the company already knows?</a></li>
+        <li><a href="#q-clarity">How can a clinical note become an explanation a patient can follow?</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main id="work">
+    <section class="q c1" id="q-publicpath" aria-labelledby="q1-h">
+      <div class="wrap">
+        <p class="ask">Question 1</p>
+        <h2 id="q1-h">How do students and early-career candidates find government roles in one place?</h2>
+        <div class="answer">
+          <div>
+            <h3>What I built</h3>
+            <p class="project"><strong>PublicPath</strong> — making public-sector opportunities easier to find.</p>
+            <p>I co-built PublicPath, a platform helping students and early-career candidates explore government careers. My work focused on API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</p>
+            <dl class="facts">
+              <dt>Role</dt><dd>Co-founder, Engineering and Data; one of two engineers</dd>
+              <dt>Tools</dt><dd>Python, GitHub Actions, Supabase, Postgres</dd>
+              <dt>Live</dt><dd><a href="https://www.joinpublicpath.com">Visit PublicPath at joinpublicpath.com ↗</a></dd>
+            </dl>
+          </div>
+          <div>
+            <h3>How it works</h3>
+            <ol class="steps">
+              <li class="mine">Pull listings from external job APIs on a schedule</li>
+              <li class="mine">Clean, deduplicate, normalize, validate</li>
+              <li>Store in Postgres on Supabase</li>
+              <li>Serve search and filtering on the site</li>
+            </ol>
+            <p class="note">Simplified sequence.</p>
+            <figure class="shot">
+              <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy">
+              <figcaption>Live homepage, captured 6 October 2026.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="q c2" id="q-knowledge" aria-labelledby="q2-h">
+      <div class="wrap">
+        <p class="ask">Question 2</p>
+        <h2 id="q2-h">How can a team find what the company already knows?</h2>
+        <div class="answer">
+          <div>
+            <h3>What I designed</h3>
+            <p class="project"><strong>Ourea Brain</strong> — connecting company knowledge across tools.</p>
+            <p>At Ourea Energy, I designed an internal AI knowledge system connecting Slack, Gmail, Google Docs, and meeting notes. The system was designed to help teams retrieve company context, clarify ownership and follow-ups, and identify information gaps.</p>
+            <dl class="facts">
+              <dt>Context</dt><dd>Ourea Energy, Agentic AI Intern</dd>
+              <dt>Status</dt><dd>System design; internal</dd>
+            </dl>
+          </div>
+          <div>
+            <h3>How it is meant to work</h3>
+            <ol class="steps">
+              <li>Sources: Slack, Gmail, Google Docs, meeting notes</li>
+              <li class="mine">Connected in one internal AI knowledge system</li>
+              <li>Intended use: retrieve context, clarify owners and follow-ups, surface gaps</li>
+            </ol>
+            <p class="note">Conceptual. Intended capabilities, not measured results; internal work, so nothing is shown.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="q c3" id="q-clarity" aria-labelledby="q3-h">
+      <div class="wrap">
+        <p class="ask">Question 3</p>
+        <h2 id="q3-h">How can a clinical note become an explanation a patient can follow?</h2>
+        <div class="answer">
+          <div>
+            <h3>What I built</h3>
+            <p class="project"><strong>CLARITY</strong> — turning clinical notes into patient-friendly explanations.</p>
+            <p>I built a Python pipeline for the CLARITY healthcare-AI project that converts de-identified clinical-note JSON into patient-friendly explanatory videos. The workflow automates narration, slide generation, and MP4 production using Microsoft Neural TTS.</p>
+            <dl class="facts">
+              <dt>Context</dt><dd>Research Assistant, HOPE Lab, UChicago Booth</dd>
+              <dt>Tools</dt><dd>Python, Microsoft Neural TTS</dd>
+            </dl>
+          </div>
+          <div>
+            <h3>How it works</h3>
+            <ol class="steps">
+              <li>De-identified clinical note (JSON)</li>
+              <li class="mine">Explanatory content</li>
+              <li class="mine">Narration and slides</li>
+              <li class="mine">MP4 video</li>
+            </ol>
+            <p class="note">Conceptual. Clinical material is not public, so no examples are shown.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap short" aria-labelledby="more-h">
+      <h2 id="more-h">More questions I’ve worked on</h2>
+      <ul>
+        <li>
+          <h3>What in the energy market should leadership see each week?</h3>
+          <p class="proj">Energy Market Intelligence · Ourea Energy</p>
+          <p>Built a weekly AI-assisted market-intelligence workflow that filtered 50+ recurring signals across energy storage, utilities, and data centers into leadership updates on competitors, investments, and partnerships.</p>
+        </li>
+        <li>
+          <h3>Where do eviction-risk patterns show up across Chicago?</h3>
+          <p class="proj">Chicago Eviction Risk</p>
+          <p>Built an interpretable machine-learning and geospatial workflow to explore eviction-risk patterns in Chicago.</p>
+        </li>
+        <li>
+          <h3>Do campaign speeches reflect the issues voters care about?</h3>
+          <p class="proj">Political Narrative Navigator · team project</p>
+          <p>Analyzed 2,000+ presidential campaign speeches alongside YouGov data using AI-assisted text workflows.</p>
+          <a href="https://github.com/uchicago-2026-capp30122/political-narrative-navigator">Political Narrative Navigator on GitHub ↗</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap bg" aria-labelledby="bg-h">
+      <h2 id="bg-h">Background</h2>
+      <p>I combine software building with applied research: data platforms and AI workflows, alongside machine learning, survey analysis, and geospatial work.</p>
+      <ul>
+        <li>Ourea Energy · Financial Health Network · HOPE Lab, UChicago Booth · PublicPath <span>— 2026, current</span></li>
+        <li>PAMS (machine learning) · CERP (analyst) <span>— 2024–2025</span></li>
+        <li>MS, Computational Analysis and Public Policy, University of Chicago <span>— expected June 2027</span></li>
+        <li>BS, Economics and Political Science, Lahore School of Economics <span>— May 2024</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="wrap contact" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Working on a question like these? Get in touch.</h2>
+    <ul>
+      <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+      <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
+    </ul>
+  </footer>
+</body>
+</html>
