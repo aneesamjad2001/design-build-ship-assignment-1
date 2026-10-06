@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v05 · Brutalist manifesto</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #000000;
+      --signal: #ff4400;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --b: 4px solid var(--black);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--sans);
+      line-height: 1.35;
+    }
+
+    a { color: var(--black); }
+    a:focus-visible {
+      outline: 6px solid var(--signal);
+      outline-offset: 0;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .skip {
+      position: absolute;
+      left: 0;
+      top: -5rem;
+      background: var(--signal);
+      color: var(--black);
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+    }
+    .skip:focus { top: 0; }
+
+    .bar {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: var(--b);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+    .bar a, .bar span { padding: 0.6rem 1rem; }
+    .bar a { font-weight: 700; text-decoration: none; border-right: var(--b); }
+    .bar a:hover { background: var(--black); color: var(--white); }
+
+    /* Manifesto headline: stacked, enormous, edge to edge */
+    .manifesto { border-bottom: var(--b); }
+    .manifesto .who {
+      margin: 0;
+      padding: 0.75rem 1rem;
+      border-bottom: var(--b);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0;
+      padding: 0.5rem 1rem 0.25rem;
+      font-size: clamp(2.6rem, 10.5vw, 9.5rem);
+      line-height: 0.88;
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+    }
+    h1 .line { display: block; }
+    h1 .hl { color: var(--signal); }
+    h1 .small {
+      display: block;
+      font-size: 0.42em;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      padding: 0.15em 0 0.25em;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      border-bottom: var(--b);
+    }
+    .intro p { margin: 0; padding: 1rem; font-size: clamp(1.05rem, 1.8vw, 1.35rem); }
+    .intro .lab {
+      border-right: var(--b);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    /* Projects as a hard grid of cells */
+    .works { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .cell {
+      padding: 1rem;
+      border-bottom: var(--b);
+      border-right: var(--b);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .cell:last-child { border-right: 0; }
+    .cell .no { font-family: var(--mono); font-size: 0.9rem; }
+    .cell h3 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+    .cell p { margin: 0; }
+
+    /* Lead project spans the full width and is black */
+    .lead {
+      grid-column: 1 / -1;
+      border-right: 0;
+      background: var(--black);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 1rem 2rem;
+      padding: clamp(1rem, 3vw, 2rem) 1rem;
+    }
+    .lead .no { color: var(--signal); }
+    .lead h2 {
+      margin: 0.25rem 0 0;
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+    .lead .what { font-size: clamp(1.1rem, 1.8vw, 1.35rem); margin-top: 1rem; max-width: 32rem; }
+    .lead a { color: var(--white); }
+    .lead a:focus-visible { background: var(--signal); color: var(--black); outline-color: var(--white); }
+    .did {
+      align-self: end;
+      border: 4px solid var(--signal);
+      padding: 1rem;
+    }
+    .did h3 {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      color: var(--signal);
+      margin: 0 0 0.5rem;
+      line-height: 1.3;
+    }
+    .did ul { list-style: none; margin: 0; padding: 0; }
+    .did li {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      padding: 0.3rem 0;
+      border-bottom: 2px solid #333;
+    }
+    .did li:last-child { border-bottom: 0; }
+    .did .stack { font-family: var(--mono); font-size: 0.85rem; font-weight: 400; text-transform: none; letter-spacing: 0; color: #ccc; }
+
+    .contact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .contact h2 {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 0.6rem 1rem;
+      border-bottom: var(--b);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+    .contact a {
+      display: block;
+      padding: 1.5rem 1rem;
+      border-right: var(--b);
+      border-bottom: var(--b);
+      font-size: clamp(1.25rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+    .contact a:last-child { border-right: 0; }
+    .contact a:hover { background: var(--signal); }
+    .contact a::after { content: " ↗"; }
+
+    @media (max-width: 760px) {
+      .intro { grid-template-columns: 1fr; }
+      .intro .lab { border-right: 0; border-bottom: var(--b); }
+      .works { grid-template-columns: 1fr; }
+      .cell { border-right: 0; }
+      .lead { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; }
+      .contact a { border-right: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="bar" aria-label="Prototype navigation">
+    <a href="../index.html">← Gallery</a>
+    <span>v05 / Brutalist manifesto</span>
+  </nav>
+
+  <header class="manifesto">
+    <p class="who"><span>Anees Amjad</span><span>Chicago</span></p>
+    <h1>
+      <span class="line">Build AI tools.</span>
+      <span class="line">Build <span class="hl">data</span> products.</span>
+      <span class="line small">For real-world decisions.</span>
+    </h1>
+  </header>
+
+  <section class="intro" aria-label="Introduction">
+    <p class="lab">Who</p>
+    <p>I’m Anees Amjad, a graduate student in Computational Analysis and Public Policy at the University of Chicago. My work spans AI workflows, public-sector software, and applied machine learning.</p>
+  </section>
+
+  <main id="main" class="works">
+    <article class="cell lead" aria-labelledby="pp">
+      <div>
+        <span class="no">01 / Lead project</span>
+        <h2 id="pp">PublicPath</h2>
+        <p class="what">A nonprofit platform that helps students and early-career candidates discover, navigate, and land roles in government, from city hall to Capitol Hill.</p>
+        <p class="what"><a href="https://tahvia127.github.io/PublicPath/">Visit PublicPath ↗</a></p>
+      </div>
+      <section class="did" aria-labelledby="pp-did">
+        <h3 id="pp-did">Co-founder, Engineering and Data — one of two engineers. I built:</h3>
+        <ul>
+          <li>API ingestion</li>
+          <li>Data-quality workflows</li>
+          <li class="stack">Python / GitHub Actions / Supabase / Postgres</li>
+        </ul>
+      </section>
+    </article>
+
+    <article class="cell" aria-labelledby="ob">
+      <span class="no">02</span>
+      <h3 id="ob">Ourea Brain</h3>
+      <p>Designed an internal AI knowledge system connecting company information across communication and document sources.</p>
+    </article>
+    <article class="cell" aria-labelledby="em">
+      <span class="no">03</span>
+      <h3 id="em">Energy Market Intelligence</h3>
+      <p>Built a weekly AI-assisted workflow filtering energy-storage and related market signals into leadership updates.</p>
+    </article>
+    <article class="cell" aria-labelledby="ev">
+      <span class="no">04</span>
+      <h3 id="ev">Chicago Eviction Risk</h3>
+      <p>Built an interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</p>
+    </article>
+  </main>
+
+  <footer class="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Contact</h2>
+    <a href="mailto:aneesamjad@uchicago.edu">Email</a>
+    <a href="https://github.com/aneesamjad2001">GitHub</a>
+    <a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a>
+  </footer>
+</body>
+</html>
