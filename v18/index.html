@@ -3,249 +3,175 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anees Amjad — v18 · Capability matrix</title>
+  <title>Anees Amjad — v18 · Capability index</title>
   <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
   <style>
     :root {
-      --bg: #f7f4ec;
-      --card: #fffdf7;
-      --ink: #1f2420;
-      --muted: #5d625b;
-      --line: #ddd6c6;
-      --green: #2f6b4f;
-      --green-soft: #e3efe6;
-      --gold: #c98b1a;
+      --paper: #f8f4ea;
+      --ink: #221e17;
+      --muted: #625a4c;
+      --rule: #d9cfbb;
+      --accent: #2f6b4f;
       --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       --sans: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.5; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); line-height: 1.55; }
     a { color: var(--ink); text-underline-offset: 0.2em; }
-    a:hover { color: var(--green); }
-    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
-    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--ink); color: #fff; padding: 0.5rem 0.75rem; }
+    a:hover { color: var(--accent); }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--ink); color: #fff; padding: 0.5rem 0.75rem; font-family: var(--sans); }
     .skip:focus { top: 0.5rem; }
-    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .assignment { background: #e7e1d2; color: #4a4638; font: 0.78rem/1.4 ui-monospace, Menlo, monospace; border-bottom: 1px solid var(--rule); }
+    .assignment div { max-width: 66rem; margin: 0 auto; padding: 0.45rem clamp(1rem, 4vw, 2.5rem); display: flex; justify-content: space-between; gap: 1rem; }
+    .book { max-width: 66rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem); }
 
-    .assignment { background: #e7e1d2; color: #4a4638; font: 0.78rem/1.4 ui-monospace, Menlo, monospace; border-bottom: 1px solid var(--line); }
-    .assignment div { max-width: 82rem; margin: 0 auto; padding: 0.45rem clamp(1rem, 3vw, 2rem); display: flex; justify-content: space-between; gap: 1rem; }
+    /* Title page */
+    .title { text-align: center; padding-block: clamp(1.75rem, 4vw, 2.75rem) 1.5rem; border-bottom: 3px double var(--ink); }
+    .title h1 { margin: 0; font-weight: 400; font-size: clamp(2.2rem, 4.4vw, 3.2rem); letter-spacing: 0.02em; }
+    .title .headline { margin: 0.4rem 0 0; font-style: italic; font-size: 1.2rem; }
+    .title .intro { margin: 0.6rem auto 0; max-width: 40rem; color: var(--muted); font-size: 0.98rem; }
+    .title nav { margin-top: 0.9rem; font-family: var(--sans); font-size: 0.9rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4rem 1.5rem; }
+    .title .open { margin: 0.5rem 0 0; font-family: var(--sans); font-size: 0.82rem; color: var(--muted); }
 
-    .wrap { max-width: 82rem; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2rem); }
+    /* The index, set like the back of a book */
+    .index { padding-block: 1.75rem 2rem; }
+    .index > h2, .refs > h2, .bg h2 { margin: 0 0 0.25rem; font-weight: 400; font-size: 1.6rem; text-align: center; letter-spacing: 0.08em; text-transform: uppercase; }
+    .index > p { margin: 0 0 1.25rem; text-align: center; font-family: var(--sans); font-size: 0.82rem; color: var(--muted); }
+    .cols { column-count: 3; column-gap: 2.25rem; column-rule: 1px solid var(--rule); }
+    .letter { break-after: avoid; margin: 0.9rem 0 0.2rem; font-size: 1.5rem; font-weight: 400; line-height: 1; color: var(--accent); }
+    .letter:first-child { margin-top: 0; }
+    .entries { list-style: none; margin: 0; padding: 0; }
+    .entries > li { break-inside: avoid; margin: 0 0 0.45rem; padding-left: 1.2em; text-indent: -1.2em; font-size: 0.98rem; }
+    .entries b { font-weight: 600; }
+    .entries ul { list-style: none; margin: 0; padding: 0 0 0 0.6em; text-indent: 0; font-size: 0.9rem; color: var(--muted); }
+    .entries ul a { color: var(--ink); }
 
-    .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1rem 3rem; align-items: end; padding-block: clamp(1.5rem, 3.5vw, 2.5rem) 1.25rem; }
-    .hero .name { margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--muted); }
-    .hero h1 { margin: 0.25rem 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.12; }
-    .hero .intro { margin: 0.6rem 0 0; color: var(--muted); }
-    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: center; margin-top: 0.9rem; }
-    .actions .primary { padding: 0.5rem 1rem; background: var(--green); color: #fff; text-decoration: none; font-weight: 600; border-radius: 4px; }
-    .actions .primary:hover { background: var(--ink); color: #fff; }
-    .open { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--muted); }
-    .how { margin: 0; padding: 0.9rem 1rem; background: var(--card); border: 1px solid var(--line); font-size: 0.88rem; }
-    .how strong { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
+    /* Projects referenced */
+    .refs { padding-block: 1.75rem 2rem; border-top: 3px double var(--ink); }
+    .refs ol { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2.5rem; }
+    .refs li { scroll-margin-top: 1rem; padding-top: 0.6rem; border-top: 1px solid var(--rule); }
+    .refs h3 { margin: 0; font-weight: 400; font-size: 1.35rem; }
+    .refs .role { margin: 0.1rem 0 0.4rem; font-family: var(--sans); font-size: 0.8rem; color: var(--muted); }
+    .refs p { margin: 0 0 0.35rem; font-size: 0.95rem; }
+    .refs .small { font-family: var(--sans); font-size: 0.82rem; color: var(--muted); }
+    .refs li:target { background: #eee6d2; }
 
-    /* Matrix */
-    .matrix-wrap { background: var(--card); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-    caption { text-align: left; padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--muted); caption-side: bottom; border-top: 1px solid var(--line); }
-    th, td { padding: 0.75rem 0.7rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
-    thead th { position: sticky; top: 0; background: var(--ink); color: #fff; font-size: 0.82rem; font-weight: 600; line-height: 1.25; }
-    thead th small { display: block; font-weight: 400; color: #c9cfc6; font-size: 0.72rem; margin-top: 0.15rem; }
-    thead th:first-child { width: 15rem; background: #2c332e; }
-    thead th a { color: #fff; text-decoration: none; }
-    thead th a:hover { text-decoration: underline; color: #fff; }
-    tbody th { font-family: var(--serif); font-weight: 400; font-size: 1.12rem; line-height: 1.25; }
-    tbody tr:nth-child(even) { background: #faf6ec; }
-    td { font-size: 0.84rem; line-height: 1.4; }
-    td.yes { background: var(--green-soft); box-shadow: inset 3px 0 0 var(--green); }
-    td.yes::before { content: "●"; display: block; color: var(--green); font-size: 0.7rem; margin-bottom: 0.2rem; }
+    .bg { padding-block: 1.5rem; border-top: 1px solid var(--rule); text-align: center; font-size: 0.92rem; }
+    .bg p { margin: 0.4rem auto 0; max-width: 46rem; }
+    .contact { padding-block: 1.5rem 3rem; border-top: 3px double var(--ink); text-align: center; font-family: var(--sans); }
+    .contact ul { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem 2rem; font-size: 1.05rem; font-weight: 600; }
+    .contact h2 { margin: 0; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
-    /* Project notes under the matrix */
-    .projects { padding-block: 2.25rem 1rem; }
-    .projects > h2, .bg h2 { margin: 0 0 1rem; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-    .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
-    .cards li { padding: 1.1rem 1.2rem; background: var(--card); border: 1px solid var(--line); scroll-margin-top: 1rem; }
-    .cards li.featured { border-top: 4px solid var(--green); }
-    .cards h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 1.45rem; }
-    .cards .sub { margin: 0.15rem 0 0.6rem; font-size: 0.85rem; color: var(--muted); font-style: italic; }
-    .cards p { margin: 0 0 0.6rem; font-size: 0.93rem; }
-    .cards .meta { font-size: 0.8rem; color: var(--muted); }
-    .cards a { font-size: 0.85rem; font-weight: 600; }
-    .cards img { display: block; width: 100%; height: auto; margin-top: 0.75rem; border: 1px solid var(--line); }
-    .cards figcaption { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
-
-    .bg { padding-block: 1.5rem 2rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 0.5rem 3rem; border-top: 1px solid var(--line); }
-    .bg h2 { grid-column: 1 / -1; }
-    .bg p { margin: 0; }
-    .bg ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.25rem 1.5rem; font-size: 0.86rem; }
-    .bg li span { color: var(--muted); }
-
-    .contact { padding-block: 1.5rem 3rem; border-top: 2px solid var(--ink); display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; align-items: baseline; }
-    .contact h2 { margin: 0; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-    .contact ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; font-size: 1.1rem; font-weight: 600; }
-
-    /* Narrow: each capability becomes a card listing only its evidence */
-    @media (max-width: 900px) {
-      .hero, .bg { grid-template-columns: minmax(0, 1fr); }
-      .bg ul { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: 1fr; }
-      thead { position: absolute; left: -9999px; }
-      table, tbody, tr, th, td { display: block; width: 100%; }
-      tbody tr { padding: 0.75rem 0.9rem; background: var(--card) !important; border-bottom: 1px solid var(--line); }
-      tbody th { padding: 0 0 0.4rem; border: 0; }
-      td { border: 0; padding: 0.45rem 0.6rem; margin-top: 0.35rem; }
-      td.no { display: none; }
-      caption { display: block; width: 100%; border-top: 0; border-bottom: 1px solid var(--line); }
-      td.yes::before { content: attr(data-project); display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); }
-    }
-    .pp-avail { display: block; margin-top: 0.25rem; font-size: 0.8rem; font-weight: 400; opacity: 0.85; }
+    @media (max-width: 900px) { .cols { column-count: 2; } }
+    @media (max-width: 600px) { .cols { column-count: 1; } .refs ol { grid-template-columns: minmax(0, 1fr); } }
   </style>
 </head>
 <body>
-  <a class="skip" href="#work">Skip to selected work</a>
+  <a class="skip" href="#work">Skip to the index</a>
   <nav class="assignment" aria-label="Assignment navigation">
-    <div><a href="../index.html">← Gallery</a><span>Prototype v18 · Capability matrix</span></div>
+    <div><a href="../index.html">← Gallery</a><span>Prototype v18 · Capability index (late revision)</span></div>
   </nav>
 
-  <div class="wrap">
-    <header class="hero">
-      <div>
-        <p class="name">Anees Amjad</p>
-        <h1>I build AI tools and data products for real-world decisions.</h1>
-        <p class="intro">I’m a master’s student in Computational Analysis and Public Policy at the University of Chicago. I build AI workflows, data pipelines, and software across energy, public service, and research.</p>
-        <div class="actions">
-          <a class="primary" href="#work">Explore selected work</a>
-          <a href="#contact">Get in touch</a>
-        </div>
-        <p class="open">Open to AI engineering roles, startup opportunities, and collaboration.</p>
-      </div>
-      <p class="how"><strong>How to read this</strong>Rows are things I can do; columns are projects. A filled cell names the specific evidence. Project names link to the details below.</p>
+  <div class="book">
+    <header class="title">
+      <h1>Anees Amjad</h1>
+      <p class="headline">I build AI tools and data products for real-world decisions.</p>
+      <p class="intro">My work spans an internal AI assistant at Ourea Energy, a public-sector careers platform I co-founded, and research software. I’m pursuing an MS in Computational Analysis and Public Policy at the University of Chicago.</p>
+      <nav aria-label="Page"><a href="#work">Index of capabilities</a><a href="#projects">Projects referenced</a><a href="#contact">Get in touch</a></nav>
+      <p class="open">Open to AI engineering roles, startup opportunities, and collaboration.</p>
     </header>
 
     <main id="work">
-      <div class="matrix-wrap">
-        <table>
-          <caption>Capabilities mapped to project evidence. Political Narrative Navigator was a team project.</caption>
-          <thead>
-            <tr>
-              <th scope="col">Capability</th>
-              <th scope="col"><a href="#publicpath">PublicPath</a><small>Co-founder, engineering</small></th>
-              <th scope="col"><a href="#ourea-brain">Ourea Brain</a><small>Built, internal</small></th>
-              <th scope="col"><a href="#clarity">CLARITY</a><small>Research pipeline</small></th>
-              <th scope="col"><a href="#energy">Energy Market Intelligence</a><small>Weekly workflow</small></th>
-              <th scope="col"><a href="#eviction">Chicago Eviction Risk</a><small>Applied ML</small></th>
-              <th scope="col"><a href="#narrative">Political Narrative Navigator</a><small>Team project</small></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Data ingestion and automated pipelines</th>
-              <td class="yes" data-project="PublicPath">API ingestion on a daily GitHub Actions schedule</td>
-              <td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="CLARITY">Automated pipeline from clinical-note JSON to MP4</td>
-              <td class="yes" data-project="Energy Market Intelligence">Weekly workflow over recurring market signals</td>
-              <td class="no"><span class="sr">No</span></td>
-              <td class="no"><span class="sr">No</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Data quality</th>
-              <td class="yes" data-project="PublicPath">Cleaning, deduplicating, normalizing, and validating listings</td>
-              <td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td>
-            </tr>
-            <tr>
-              <th scope="row">AI-assisted workflows</th>
-              <td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="Ourea Brain">Internal AI assistant in Slack using the Claude API</td>
-              <td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="Energy Market Intelligence">AI-assisted filtering of 50+ recurring signals into leadership updates</td>
-              <td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="Political Narrative Navigator">AI-assisted text workflows over 2,000+ speeches</td>
-            </tr>
-            <tr>
-              <th scope="row">System design across tools</th>
-              <td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="Ourea Brain">Connects Slack, Gmail, Google Docs, and meeting notes; runs on Google Cloud Run</td>
-              <td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Automated media generation</th>
-              <td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="CLARITY">Narration with Microsoft Neural TTS, generated slides, MP4 output</td>
-              <td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Interpretable ML and geospatial analysis</th>
-              <td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="Chicago Eviction Risk">Interpretable ML and geospatial workflow on eviction-risk patterns</td>
-              <td class="no"><span class="sr">No</span></td>
-            </tr>
-            <tr>
-              <th scope="row">Text and survey analysis</th>
-              <td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td>
-              <td class="yes" data-project="Political Narrative Navigator">Campaign speeches compared with YouGov data</td>
-            </tr>
-            <tr>
-              <th scope="row">Databases</th>
-              <td class="yes" data-project="PublicPath">Postgres on Supabase</td>
-              <td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td><td class="no"><span class="sr">No</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <section class="index" aria-labelledby="idx-h">
+        <h2 id="idx-h">Index of capabilities</h2>
+        <p>Look up a capability; each entry points to the project where it shows up.</p>
+        <div class="cols">
+          <h3 class="letter">A</h3>
+          <ul class="entries">
+            <li><b>AI assistant, internal</b>, built and deployed
+              <ul><li>Slack-based company knowledge, <a href="#p-ourea">Ourea Brain</a></li></ul></li>
+            <li><b>AI-assisted workflows</b>
+              <ul><li>weekly market signals to leadership updates, <a href="#p-energy">Energy Market Intelligence</a></li>
+                  <li>campaign-speech text analysis (team), <a href="#p-pnn">Political Narrative Navigator</a></li></ul></li>
+            <li><b>API ingestion</b>
+              <ul><li>job listings from external APIs, <a href="#p-publicpath">PublicPath</a></li></ul></li>
+          </ul>
+          <h3 class="letter">C</h3>
+          <ul class="entries">
+            <li><b>Claude API (Anthropic)</b>
+              <ul><li><a href="#p-ourea">Ourea Brain</a></li></ul></li>
+            <li><b>Cloud deployment</b>
+              <ul><li>Google Cloud Run, Secret Manager, <a href="#p-ourea">Ourea Brain</a></li></ul></li>
+          </ul>
+          <h3 class="letter">D</h3>
+          <ul class="entries">
+            <li><b>Data quality</b>
+              <ul><li>cleaning, deduplicating, normalizing, validating listings, <a href="#p-publicpath">PublicPath</a></li></ul></li>
+            <li><b>Databases</b>
+              <ul><li>Postgres on Supabase, <a href="#p-publicpath">PublicPath</a></li></ul></li>
+          </ul>
+          <h3 class="letter">G</h3>
+          <ul class="entries">
+            <li><b>Geospatial analysis</b>
+              <ul><li><a href="#p-eviction">Chicago Eviction Risk</a></li></ul></li>
+          </ul>
+          <h3 class="letter">I</h3>
+          <ul class="entries">
+            <li><b>Interpretable machine learning</b>
+              <ul><li><a href="#p-eviction">Chicago Eviction Risk</a></li></ul></li>
+          </ul>
+          <h3 class="letter">M</h3>
+          <ul class="entries">
+            <li><b>Media generation, automated</b>
+              <ul><li>narration (Microsoft Neural TTS), slides, MP4, <a href="#p-clarity">CLARITY</a></li></ul></li>
+          </ul>
+          <h3 class="letter">P</h3>
+          <ul class="entries">
+            <li><b>Pipelines, scheduled and automated</b>
+              <ul><li>daily ingestion with GitHub Actions, <a href="#p-publicpath">PublicPath</a></li>
+                  <li>clinical-note JSON to video, <a href="#p-clarity">CLARITY</a></li></ul></li>
+            <li><b>Python</b>
+              <ul><li><a href="#p-publicpath">PublicPath</a>, <a href="#p-clarity">CLARITY</a></li></ul></li>
+          </ul>
+          <h3 class="letter">S</h3>
+          <ul class="entries">
+            <li><b>Slack integration</b>
+              <ul><li><a href="#p-ourea">Ourea Brain</a></li></ul></li>
+          </ul>
+          <h3 class="letter">T</h3>
+          <ul class="entries">
+            <li><b>Text analysis</b>
+              <ul><li>2,000+ speeches with YouGov data (team), <a href="#p-pnn">Political Narrative Navigator</a></li></ul></li>
+          </ul>
+        </div>
+      </section>
 
-      <section class="projects" aria-labelledby="proj-h">
-        <h2 id="proj-h">The projects behind the matrix</h2>
-        <ul class="cards">
-          <li class="featured" id="publicpath">
-            <h3>PublicPath</h3>
-            <p class="sub">Making public-sector opportunities easier to find.</p>
-            <p>I co-built PublicPath, a platform helping students and early-career candidates explore government careers. My work focused on API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</p>
-            <p class="meta">Co-founder, Engineering and Data; one of two engineers · Python, GitHub Actions, Supabase, Postgres</p>
-            <a href="https://www.joinpublicpath.com">Project website (joinpublicpath.com) ↗</a> <span class="pp-avail">Job search was not loading when checked on 6 Oct 2026.</span>
-            <figure style="margin:0"><img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy"><figcaption>Project homepage (team product), captured 6 October 2026.</figcaption></figure>
-          </li>
-          <li class="featured" id="ourea-brain">
-            <h3>Ourea Brain</h3>
-            <p class="sub">Company knowledge, accessible through Slack.</p>
-            <p>I built and deployed Ourea Brain, an internal AI assistant that brings company context into Slack. It connects information across Slack, Gmail, Google Docs, and meeting notes to help colleagues retrieve project context, identify owners, and follow up on decisions. The application runs on Google Cloud Run and uses Anthropic’s Claude API; an early live deployment answered a Slack question using meeting-note context.</p>
-            <p class="meta">Builder · Agentic AI Intern, Ourea Energy · built and deployed internally</p>
-          </li>
-          <li class="featured" id="clarity">
-            <h3>CLARITY</h3>
-            <p class="sub">Turning clinical notes into patient-friendly explanations.</p>
-            <p>I built a Python pipeline for the CLARITY healthcare-AI project that converts de-identified clinical-note JSON into patient-friendly explanatory videos. The workflow automates narration, slide generation, and MP4 production using Microsoft Neural TTS.</p>
-            <p class="meta">Research Assistant, HOPE Lab, UChicago Booth · clinical material is not public</p>
-          </li>
-          <li id="energy">
-            <h3>Energy Market Intelligence</h3>
-            <p>Built a weekly AI-assisted market-intelligence workflow that filtered 50+ recurring signals across energy storage, utilities, and data centers into leadership updates on competitors, investments, and partnerships.</p>
-            <p class="meta">Ourea Energy · internal</p>
-          </li>
-          <li id="eviction">
-            <h3>Chicago Eviction Risk</h3>
-            <p>Built an interpretable machine-learning and geospatial workflow to explore eviction-risk patterns in Chicago.</p>
-          </li>
-          <li id="narrative">
-            <h3>Political Narrative Navigator</h3>
+      <section class="refs" id="projects" aria-labelledby="refs-h">
+        <h2 id="refs-h">Projects referenced</h2>
+        <ol>
+          <li id="p-ourea"><h3>Ourea Brain</h3><p class="role">Builder · Agentic AI Intern, Ourea Energy · built and deployed internally</p>
+            <p>I built and deployed an internal AI assistant that brings company context from Slack, Gmail, Google Docs, and meeting notes into Slack, using Anthropic’s Claude API on Google Cloud Run.</p>
+            <p class="small">Observed: an early live deployment answered a Slack question using meeting-note context.</p></li>
+          <li id="p-publicpath"><h3>PublicPath</h3><p class="role">Co-founder, Engineering and Data · one of two engineers</p>
+            <p>A platform helping students and early-career candidates explore government careers. I worked on API ingestion and data quality for its listings.</p>
+            <p class="small"><a href="https://www.joinpublicpath.com">Project website ↗</a> Job search was not loading when checked on 6 Oct 2026.</p></li>
+          <li id="p-clarity"><h3>CLARITY</h3><p class="role">Research Assistant, HOPE Lab, UChicago Booth</p>
+            <p>I built the Python pipeline that turns de-identified clinical-note JSON into patient-friendly explanatory MP4 videos.</p></li>
+          <li id="p-energy"><h3>Energy Market Intelligence</h3><p class="role">Ourea Energy · separate from Ourea Brain</p>
+            <p>A weekly AI-assisted workflow that filtered 50+ recurring signals across energy storage, utilities, and data centers into leadership updates.</p></li>
+          <li id="p-eviction"><h3>Chicago Eviction Risk</h3><p class="role">Applied machine learning · private repository</p>
+            <p>An interpretable machine-learning and geospatial workflow to explore eviction-risk patterns in Chicago.</p></li>
+          <li id="p-pnn"><h3>Political Narrative Navigator</h3><p class="role">Team project, University of Chicago</p>
             <p>Analyzed 2,000+ presidential campaign speeches alongside YouGov data using AI-assisted text workflows.</p>
-            <p class="meta">Team project, University of Chicago</p>
-            <a href="https://github.com/uchicago-2026-capp30122/political-narrative-navigator">Political Narrative Navigator on GitHub ↗</a>
-          </li>
-        </ul>
+            <p class="small"><a href="https://github.com/uchicago-2026-capp30122/political-narrative-navigator">Team repository on GitHub ↗</a></p></li>
+        </ol>
       </section>
 
       <section class="bg" aria-labelledby="bg-h">
         <h2 id="bg-h">Background</h2>
-        <p>I combine software building with applied research: data platforms and AI workflows, alongside machine learning, survey analysis, and geospatial work.</p>
-        <ul>
-          <li>Ourea Energy — Agentic AI Intern <span>2026–</span></li>
-          <li>Financial Health Network — Research Intern <span>2026–</span></li>
-          <li>HOPE Lab, UChicago Booth — Research Assistant <span>2026–</span></li>
-          <li>PublicPath — Co-founder <span>2026–</span></li>
-          <li>PAMS — Research Associate, ML <span>2025</span></li>
-          <li>CERP — Analyst <span>2024–25</span></li>
-          <li>UChicago — MS, Computational Analysis and Public Policy <span>2027 exp.</span></li>
-          <li>Lahore School of Economics — BS, Economics and Political Science <span>2024</span></li>
-        </ul>
+        <p>Ourea Energy (Agentic AI Intern) · Financial Health Network (Research Intern) · HOPE Lab, UChicago Booth (Research Assistant) · PublicPath (Co-founder, Engineering and Data) · PAMS (Research Associate, ML) · CERP (Analyst)</p>
+        <p>MS, Computational Analysis and Public Policy, University of Chicago (expected June 2027) · BS, Economics and Political Science, Lahore School of Economics (2024)</p>
       </section>
     </main>
 

@@ -145,6 +145,7 @@
       letter-spacing: 0.06em;
       color: var(--muted);
     }
+    .note.late { padding: 0.5rem 0.65rem; background: #fff6e0; border-left: 3px solid #c98b1a; border-radius: 3px; }
     .pending { color: var(--muted); font-style: italic; }
     .note.review { padding: 0.5rem 0.65rem; background: #f3f4f7; border-left: 3px solid #9aa3b2; border-radius: 3px; }
     .process { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem 2rem; margin: 0; padding: 0; list-style: none; }
@@ -423,8 +424,9 @@
                 <iframe src="v18/index.html" title="Preview of v18" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v18/index.html"><span class="tag">v18</span>Capability matrix</a></h3>
-                <p class="note"><strong>Hypothesis</strong>Answer a recruiter’s real question, ‘can this person do X?’, directly: engineering capabilities as rows, projects as columns, and every filled cell names its evidence. Full project notes sit under the matrix. On phones each capability becomes a card that lists only its evidence, with no blank cells.</p>
+                <h3><a href="v18/index.html"><span class="tag">v18</span>Capability index</a></h3>
+                <p class="note late"><strong>Late structural revision (6 Oct, after v25 was chosen)</strong>Rebuilt as a back-of-book index: alphabetical capability entries, each pointing to the project that shows it, then the referenced projects. This removes the table structure it shared with v08 and tests whether a capability-first visitor can look things up like an index. Original version: commit 9bc887f.</p>
+                <p class="note"><strong>Original hypothesis</strong>Answer a recruiter’s real question, ‘can this person do X?’, directly: engineering capabilities as rows, projects as columns, and every filled cell names its evidence. Full project notes sit under the matrix. On phones each capability becomes a card that lists only its evidence, with no blank cells.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v08’s comparison structure but drops what the review flagged: no ‘Not listed’ fields, and warm editorial type instead of database styling. Keeps v13’s featured-project copy and the real PublicPath screenshot below the matrix.</p>
                 <p class="note review"><strong>External review input</strong>Useful content audit, but sparse cells and decoding effort weaken the homepage.</p>
               </div>
