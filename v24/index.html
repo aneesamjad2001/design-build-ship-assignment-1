@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v24 · Artifact-led casebook</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --paper: #f6f2ea;
+      --card: #fffdf8;
+      --ink: #1c1a16;
+      --muted: #5b554b;
+      --rule: #d8cfbe;
+      --accent: #a8361d;
+      --panel: #23211d;
+      --panel-ink: #f3efe6;
+      --panel-muted: #c4bdb0;
+      --mine: #e2795c;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+    a:hover { color: var(--accent); }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    img { max-width: 100%; height: auto; display: block; }
+    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--ink); color: #fff; padding: 0.5rem 0.75rem; }
+    .skip:focus { top: 0.5rem; }
+    .assignment { background: #e6e0d4; color: #3e3a33; font: 0.78rem/1.4 var(--mono); border-bottom: 1px solid var(--rule); }
+    .assignment div { max-width: 74rem; margin: 0 auto; padding: 0.45rem clamp(1rem, 4vw, 2.5rem); display: flex; justify-content: space-between; gap: 1rem; }
+    .page { max-width: 74rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem); }
+    .label { margin: 0; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+
+    /* Hero with a list of figures instead of a diagram */
+    .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 1.25rem clamp(2rem, 4vw, 3.5rem); align-items: end; padding-block: 1.75rem 1.5rem; border-bottom: 2px solid var(--ink); }
+    .hero h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 4.6vw, 3.4rem); line-height: 1; letter-spacing: -0.02em; }
+    .headline { margin: 0.5rem 0 0; font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.25; }
+    .intro { margin: 0.6rem 0 0; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.6rem 1.25rem; align-items: center; margin-top: 1rem; }
+    .btn { display: inline-block; padding: 0.55rem 1rem; background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 600; }
+    .btn:hover { background: var(--accent); color: #fff; }
+    .open { margin: 0.55rem 0 0; font-size: 0.85rem; color: var(--muted); }
+    .figures { margin: 0; padding: 0.9rem 1rem; background: var(--card); border: 1px solid var(--rule); }
+    .figures ol { list-style: none; margin: 0.5rem 0 0; padding: 0; font-size: 0.92rem; }
+    .figures li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr); padding: 0.28rem 0; border-top: 1px solid var(--rule); }
+    .figures li span { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); padding-top: 0.12rem; }
+    .figures a { text-decoration: none; }
+    .figures a:hover { text-decoration: underline; }
+
+    /* Case: figure spread first, then three short columns */
+    .case { padding-block: 2.25rem 2.5rem; border-bottom: 1px solid var(--rule); scroll-margin-top: 0.5rem; }
+    .case-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1.25rem; margin-bottom: 1rem; }
+    .case-head h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1; }
+    .case-head .sub { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--muted); }
+
+    .spread { margin: 0; background: var(--panel); color: var(--panel-ink); padding: clamp(1.25rem, 3vw, 2rem); }
+    .spread .kind { margin: 0 0 1rem; font-family: var(--mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--panel-muted); }
+    .spread figcaption { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #45413a; font-size: 0.88rem; color: var(--panel-muted); }
+    .spread figcaption b { color: var(--panel-ink); font-weight: 600; }
+    .spread a { color: var(--panel-ink); }
+    .spread a:focus-visible { outline-color: var(--mine); }
+
+    .bigflow { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 1.6rem; counter-reset: f; }
+    .bigflow li { counter-increment: f; position: relative; padding: 0.9rem 0.9rem 1rem; border: 1.5px solid #6b655b; background: #2d2a25; }
+    .bigflow li::before { content: counter(f); display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; margin-bottom: 0.45rem; border-radius: 50%; border: 1.5px solid var(--panel-muted); font-family: var(--mono); font-size: 0.75rem; }
+    .bigflow li:not(:last-child)::after { content: "→"; position: absolute; right: -1.3rem; top: 50%; transform: translateY(-50%); color: var(--panel-muted); }
+    .bigflow li.mine { border-color: var(--mine); background: #3a2a24; }
+    .bigflow li.mine::before { background: var(--mine); border-color: var(--mine); color: #1c1a16; }
+    .bigflow b { display: block; font-size: 1rem; line-height: 1.25; }
+    .bigflow small { display: block; margin-top: 0.25rem; font-size: 0.8rem; color: var(--panel-muted); line-height: 1.35; }
+    .bigflow .who { display: block; margin-top: 0.4rem; font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; color: var(--mine); }
+
+    .pair { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
+    .pair .bigflow { grid-auto-flow: row; gap: 1.1rem; }
+    .pair .bigflow li:not(:last-child)::after { content: "↓"; right: auto; left: 1.2rem; top: auto; bottom: -1.15rem; transform: none; }
+    .pair .bigflow li { padding: 0.6rem 0.8rem 0.7rem 3rem; }
+    .pair .bigflow li::before { position: absolute; left: 0.75rem; top: 0.65rem; margin: 0; }
+    .shot img { border: 1px solid #45413a; }
+    .shot p { margin: 0.5rem 0 0; font-size: 0.82rem; color: var(--panel-muted); }
+
+    .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem 2rem; margin-top: 1.25rem; }
+    .cols h3 { margin: 0 0 0.3rem; font-family: var(--mono); font-size: 0.74rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); }
+    .cols p { margin: 0; font-size: 0.95rem; }
+    .tools { margin: 1rem 0 0; font-size: 0.85rem; color: var(--muted); }
+    .tools b { font-family: var(--mono); font-size: 0.72rem; font-weight: 400; text-transform: uppercase; margin-right: 0.4rem; }
+
+    .support { padding-block: 2rem; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 1.5rem 2.5rem; align-items: start; }
+    .support > .label { grid-column: 1 / -1; }
+    .support ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; font-size: 0.93rem; }
+    .support h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 1.2rem; }
+    .support .ctx { margin: 0.1rem 0 0.3rem; font-size: 0.78rem; color: var(--muted); }
+    .support p { margin: 0; }
+    .support figure { margin: 0; }
+    .support figure img { border: 1px solid var(--rule); }
+    .support figcaption { margin-top: 0.4rem; font-size: 0.82rem; color: var(--muted); }
+    .support figcaption a { font-weight: 600; color: var(--ink); }
+
+    .background { padding-block: 1.75rem; border-bottom: 1px solid var(--rule); font-size: 0.9rem; }
+    .background p { margin: 0.5rem 0; font-family: var(--serif); font-size: 1.05rem; }
+    .background ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 2rem; }
+    .background li { break-inside: avoid; padding: 0.15rem 0; }
+    .background li span { color: var(--muted); }
+    .contact { padding-block: 1.75rem 3rem; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; align-items: baseline; }
+    .contact ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; font-family: var(--serif); font-size: 1.3rem; }
+
+    @media (max-width: 880px) {
+      .hero, .pair, .support { grid-template-columns: minmax(0, 1fr); }
+      .bigflow { grid-auto-flow: row; gap: 1.1rem; }
+      .bigflow li:not(:last-child)::after { content: "↓"; right: auto; left: 1.2rem; top: auto; bottom: -1.15rem; transform: none; }
+      .cols { grid-template-columns: minmax(0, 1fr); }
+      .background ul { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to selected work</a>
+  <nav class="assignment" aria-label="Assignment navigation">
+    <div><a href="../index.html">← Gallery</a><span>Prototype v24 · Artifact-led casebook</span></div>
+  </nav>
+
+  <div class="page">
+    <header class="hero">
+      <div>
+        <h1>Anees Amjad</h1>
+        <p class="headline">I build AI tools and data products for real-world decisions.</p>
+        <p class="intro">My work spans an internal AI assistant at Ourea Energy, a public-sector careers platform I co-founded, and research software. I’m pursuing an MS in Computational Analysis and Public Policy at the University of Chicago.</p>
+        <div class="actions"><a class="btn" href="#work">Selected work</a><a href="#contact">Get in touch</a></div>
+        <p class="open">Open to AI engineering roles, startup opportunities, and collaboration.</p>
+      </div>
+      <nav class="figures" aria-label="List of figures">
+        <p class="label">List of figures</p>
+        <ol>
+          <li><span>Fig. 1</span><a href="#ourea-brain">Ourea Brain — simplified architecture</a></li>
+          <li><span>Fig. 2</span><a href="#publicpath">PublicPath — data flow and project homepage</a></li>
+          <li><span>Fig. 3</span><a href="#clarity">CLARITY — pipeline sequence</a></li>
+          <li><span>Fig. 4</span><a href="#supporting">Political Narrative Navigator — team dashboard</a></li>
+        </ol>
+      </nav>
+    </header>
+
+    <main id="work">
+      <article class="case" id="ourea-brain" aria-labelledby="ob-h">
+        <div class="case-head"><h2 id="ob-h">Ourea Brain</h2><p class="sub">Company knowledge, accessible through Slack.</p></div>
+        <figure class="spread">
+          <p class="kind">Fig. 1 · Explanatory diagram · simplified architecture</p>
+          <ol class="bigflow" aria-label="Ourea Brain simplified architecture">
+            <li><b>Question in Slack</b><small>A colleague asks about a project</small></li>
+            <li class="mine"><b>App on Google Cloud Run</b><small>Credentials in Secret Manager</small><span class="who">built by me</span></li>
+            <li class="mine"><b>Company context + Claude API</b><small>Slack, Gmail, Google Docs, meeting notes</small><span class="who">built by me</span></li>
+            <li><b>Response in Slack</b><small>The answer is posted back</small></li>
+          </ol>
+          <figcaption><b>Fig. 1.</b> How a question moves through Ourea Brain. Drawn for this page; not a screenshot of the internal tool.</figcaption>
+        </figure>
+        <div class="cols">
+          <div><h3>What it does</h3><p>An internal AI assistant that brings company context into Slack for colleagues at Ourea Energy, designed to help them retrieve project context, identify owners, and follow up on decisions.</p></div>
+          <div><h3>What I built</h3><p>As an Agentic AI Intern, I built and deployed the assistant: the Slack-connected app on Google Cloud Run, its connections to company sources, and its use of Anthropic’s Claude API.</p></div>
+          <div><h3>Observed behaviour</h3><p>An early live deployment answered a Slack question using meeting-note context. It is an internal tool with no public link.</p></div>
+        </div>
+        <p class="tools"><b>Tools</b>Slack integration · Anthropic Claude API · Google Cloud Run · Google Workspace sources · meeting-note integration · Secret Manager</p>
+      </article>
+
+      <article class="case" id="publicpath" aria-labelledby="pp-h">
+        <div class="case-head"><h2 id="pp-h">PublicPath</h2><p class="sub">Making public-sector opportunities easier to find.</p></div>
+        <figure class="spread">
+          <p class="kind">Fig. 2 · Left: explanatory diagram · Right: project artifact</p>
+          <div class="pair">
+            <ol class="bigflow" aria-label="PublicPath simplified data flow">
+              <li><b>External job APIs</b></li>
+              <li class="mine"><b>Scheduled ingestion</b><small>Python, run daily by GitHub Actions</small><span class="who">my work</span></li>
+              <li class="mine"><b>Data quality</b><small>Clean, deduplicate, normalize, validate</small><span class="who">my work</span></li>
+              <li><b>Postgres on Supabase</b></li>
+              <li><b>Search and filters on the site</b></li>
+            </ol>
+            <div class="shot">
+              <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy">
+              <p>Project homepage, captured 6 Oct 2026: the team’s product. <a href="https://www.joinpublicpath.com">Project website ↗</a> Job search was not loading when checked on 6 Oct 2026.</p>
+            </div>
+          </div>
+          <figcaption><b>Fig. 2.</b> The data flow behind the listings (left), with my stages marked, beside the team’s homepage (right). The screenshot shows the product, not my backend work.</figcaption>
+        </figure>
+        <div class="cols">
+          <div><h3>What it does</h3><p>Helps students and early-career candidates explore government careers.</p></div>
+          <div><h3>What I built</h3><p>As co-founder (Engineering and Data) and one of two engineers, I worked on API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</p></div>
+          <div><h3>Project artifact</h3><p>The live project website and its homepage (Fig. 2, right).</p></div>
+        </div>
+        <p class="tools"><b>Tools</b>Python · GitHub Actions · Supabase · Postgres</p>
+      </article>
+
+      <article class="case" id="clarity" aria-labelledby="cl-h">
+        <div class="case-head"><h2 id="cl-h">CLARITY</h2><p class="sub">Turning clinical notes into patient-friendly explanations.</p></div>
+        <figure class="spread">
+          <p class="kind">Fig. 3 · Explanatory diagram · pipeline sequence</p>
+          <ol class="bigflow" aria-label="CLARITY pipeline sequence">
+            <li><b>De-identified clinical note</b><small>JSON input</small></li>
+            <li class="mine"><b>Explanatory content</b><span class="who">my pipeline</span></li>
+            <li class="mine"><b>Narration and slides</b><small>Microsoft Neural TTS</small><span class="who">my pipeline</span></li>
+            <li class="mine"><b>MP4 video</b><span class="who">my pipeline</span></li>
+          </ol>
+          <figcaption><b>Fig. 3.</b> The sequence my Python pipeline automates. No clinical material is shown.</figcaption>
+        </figure>
+        <div class="cols">
+          <div><h3>What it does</h3><p>Part of CLARITY, a healthcare-AI research project at HOPE Lab, UChicago Booth: turning de-identified clinical notes into patient-friendly explanatory videos.</p></div>
+          <div><h3>What I built</h3><p>As a Research Assistant, I built the Python pipeline that automates explanatory content, narration, slide generation, and MP4 production.</p></div>
+          <div><h3>Output</h3><p>MP4 explanatory videos. Clinical material is not public, so no example is shown.</p></div>
+        </div>
+        <p class="tools"><b>Tools</b>Python · Microsoft Neural TTS</p>
+      </article>
+
+      <section class="support" id="supporting" aria-labelledby="sup-h">
+        <h2 class="label" id="sup-h">Supporting work</h2>
+        <figure>
+          <img src="../assets/pnn-dashboard.jpg" width="1400" height="845" alt="Political Narrative Navigator team dashboard: monthly line charts comparing voter issue priorities with campaign speech topics in 2016, 2020, and 2024." loading="lazy">
+          <figcaption><b>Fig. 4.</b> Political Narrative Navigator dashboard, a team project at the University of Chicago; image from the team’s README. <a href="https://github.com/uchicago-2026-capp30122/political-narrative-navigator">Team repository on GitHub ↗</a></figcaption>
+        </figure>
+        <ul>
+          <li><h3>Political Narrative Navigator</h3><p class="ctx">Team project</p><p>Analyzed 2,000+ presidential campaign speeches alongside YouGov data using AI-assisted text workflows.</p></li>
+          <li><h3>Energy Market Intelligence</h3><p class="ctx">Ourea Energy · separate from Ourea Brain</p><p>Built a weekly AI-assisted workflow that filtered 50+ recurring signals across energy storage, utilities, and data centers into leadership updates.</p></li>
+          <li><h3>Chicago Eviction Risk</h3><p class="ctx">Applied ML · private repository</p><p>Built an interpretable machine-learning and geospatial workflow to explore eviction-risk patterns in Chicago.</p></li>
+        </ul>
+      </section>
+
+      <section class="background" aria-labelledby="bg-h">
+        <h2 class="label" id="bg-h">Background</h2>
+        <p>I combine software building with applied research in machine learning, survey analysis, and geospatial work.</p>
+        <ul>
+          <li>Ourea Energy — Agentic AI Intern <span>· 2026–</span></li>
+          <li>Financial Health Network — Research Intern, Data Analytics <span>· 2026–</span></li>
+          <li>HOPE Lab, UChicago Booth — Research Assistant <span>· 2026–</span></li>
+          <li>PublicPath — Co-founder, Engineering and Data <span>· 2026–</span></li>
+          <li>PAMS — Research Associate, ML <span>· 2025</span></li>
+          <li>CERP — Analyst <span>· 2024–25</span></li>
+          <li>MS, Computational Analysis and Public Policy, UChicago <span>· expected June 2027</span></li>
+          <li>BS, Economics and Political Science, Lahore School of Economics <span>· May 2024</span></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="contact" id="contact" aria-labelledby="contact-h">
+      <h2 class="label" id="contact-h">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+        <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+</html>
