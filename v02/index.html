@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v02 · Terminal session</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --bg: #0d1110;
+      --panel: #131917;
+      --text: #d4dbd6;
+      --dim: #8a968f;
+      --green: #7ee2a8;
+      --amber: #f3c969;
+      --cyan: #7cc7e8;
+      --line: #26302c;
+      --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      padding: clamp(0.75rem, 3vw, 2.5rem);
+    }
+
+    a { color: var(--cyan); text-underline-offset: 0.2em; }
+    a:hover { color: var(--green); }
+    a:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 2px;
+      background: rgba(243, 201, 105, 0.12);
+    }
+
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: var(--amber);
+      color: #000;
+      padding: 0.4rem 0.7rem;
+    }
+    .skip:focus { top: 1rem; }
+
+    /* Window chrome */
+    .window {
+      max-width: 60rem;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+    .titlebar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.8rem;
+      color: var(--dim);
+    }
+    .dots { display: flex; gap: 0.4rem; }
+    .dots i { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #3a4440; }
+    .titlebar .path { flex: 1; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .titlebar a { color: var(--text); text-decoration: none; white-space: nowrap; }
+    .titlebar a:hover { color: var(--green); }
+
+    .screen { padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 3.5vw, 2.25rem) 2.5rem; }
+
+    /* A "block" = one command and its output */
+    .block { margin: 0 0 2rem; }
+    .cmd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+    .cmd::before { content: "anees@chicago ~ % "; color: var(--green); }
+    .out { margin: 0.5rem 0 0; padding-left: 0; }
+    .comment { color: var(--dim); }
+
+    h1, h2, h3 { font-size: inherit; margin: 0; font-weight: 700; }
+    h1 { color: var(--amber); }
+    .big {
+      margin: 0.75rem 0 0.75rem;
+      font-size: clamp(1.4rem, 3.4vw, 2.1rem);
+      line-height: 1.25;
+      color: #f4f7f5;
+      font-weight: 700;
+      max-width: 34ch;
+    }
+
+    /* ls -l style listing */
+    .ls { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+    .ls li {
+      display: grid;
+      grid-template-columns: 11ch 1fr;
+      gap: 0 1.5ch;
+    }
+    .ls .perm { color: var(--dim); }
+    .ls a, .ls .dir { color: var(--cyan); font-weight: 700; }
+
+    /* README card for the lead project */
+    .readme {
+      margin: 0.75rem 0 0;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--green);
+      padding: 1rem 1.25rem;
+      background: rgba(126, 226, 168, 0.04);
+    }
+    .readme h2 { color: #f4f7f5; font-size: 1.15rem; }
+    .readme h2::before { content: "# "; color: var(--dim); }
+    .readme p { margin: 0.5rem 0 0; max-width: 64ch; }
+    .readme h3 { margin-top: 1rem; color: var(--amber); }
+    .readme h3::before { content: "## "; color: var(--dim); }
+    .readme ul { margin: 0.35rem 0 0; padding-left: 2ch; list-style: none; }
+    .readme li::before { content: "- "; color: var(--dim); margin-left: -2ch; }
+    .kv { display: grid; grid-template-columns: 8ch 1fr; gap: 0 1ch; margin: 0.35rem 0 0; }
+    .kv dt { color: var(--dim); }
+    .kv dd { margin: 0; }
+
+    /* Other projects as log lines */
+    .log { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+    .log li { padding: 0.6rem 0; border-top: 1px dashed var(--line); }
+    .log li:first-child { border-top: 0; }
+    .log h3 { color: var(--cyan); }
+    .log p { margin: 0.15rem 0 0; max-width: 70ch; }
+    .tag { color: var(--green); }
+
+    .contact { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+    .contact li { display: grid; grid-template-columns: 9ch 1fr; gap: 0 1ch; }
+    .contact span { color: var(--dim); }
+
+    .cursor {
+      display: inline-block;
+      width: 0.6em;
+      height: 1.1em;
+      vertical-align: text-bottom;
+      background: var(--green);
+      animation: blink 1.1s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+
+    @media (max-width: 560px) {
+      body { font-size: 0.85rem; padding: 0; }
+      .window { border-radius: 0; border-left: 0; border-right: 0; }
+      .titlebar .path { display: none; }
+      .cmd::before { content: "~ % "; }
+      .ls li { grid-template-columns: 1fr; }
+      .ls .perm { display: none; }
+      .kv { grid-template-columns: 1fr; }
+      .kv dd { margin-bottom: 0.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="window">
+    <nav class="titlebar" aria-label="Prototype navigation">
+      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="path">v02 · Terminal session — ~/portfolio</span>
+      <a href="../index.html">← Gallery</a>
+    </nav>
+
+    <main id="main" class="screen">
+      <section class="block" aria-labelledby="who">
+        <p class="cmd">whoami</p>
+        <div class="out">
+          <h1 id="who">Anees Amjad</h1>
+          <p class="big">I build AI tools and data products for real-world decisions.</p>
+          <p class="comment">// I’m a graduate student in Computational Analysis and Public Policy at the University of Chicago. My work spans AI workflows, public-sector software, and applied machine learning.</p>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="ls-title">
+        <p class="cmd">ls -l projects/</p>
+        <div class="out">
+          <h2 id="ls-title" class="comment">// 4 projects, lead project first</h2>
+          <ul class="ls">
+            <li><span class="perm" aria-hidden="true">drwxr-xr-x</span><a href="#publicpath">publicpath/</a></li>
+            <li><span class="perm" aria-hidden="true">drwxr-xr-x</span><a href="#ourea-brain">ourea-brain/</a></li>
+            <li><span class="perm" aria-hidden="true">drwxr-xr-x</span><a href="#energy-market">energy-market-intelligence/</a></li>
+            <li><span class="perm" aria-hidden="true">drwxr-xr-x</span><a href="#eviction-risk">chicago-eviction-risk/</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="publicpath">
+        <p class="cmd">cat projects/publicpath/README.md</p>
+        <article class="out readme">
+          <h2 id="publicpath">PublicPath</h2>
+          <p>A nonprofit platform that helps students and early-career candidates discover, navigate, and land roles in government, from city hall to Capitol Hill.</p>
+
+          <h3>My role</h3>
+          <p>Co-founder, Engineering and Data. Built the platform as one of two engineers.</p>
+
+          <h3>What I worked on</h3>
+          <ul>
+            <li>API ingestion</li>
+            <li>Data-quality workflows</li>
+          </ul>
+
+          <h3>Stack</h3>
+          <dl class="kv">
+            <dt>lang</dt><dd>Python</dd>
+            <dt>ci</dt><dd>GitHub Actions</dd>
+            <dt>data</dt><dd>Supabase · Postgres</dd>
+          </dl>
+
+          <p><a href="https://tahvia127.github.io/PublicPath/">open https://tahvia127.github.io/PublicPath/</a></p>
+        </article>
+      </section>
+
+      <section class="block" aria-labelledby="others">
+        <p class="cmd">git log --oneline projects/ --not publicpath</p>
+        <div class="out">
+          <h2 id="others" class="comment">// other work</h2>
+          <ul class="log">
+            <li id="ourea-brain">
+              <h3>ourea-brain</h3>
+              <p><span class="tag">design:</span> Designed an internal AI knowledge system connecting company information across communication and document sources.</p>
+            </li>
+            <li id="energy-market">
+              <h3>energy-market-intelligence</h3>
+              <p><span class="tag">build:</span> Built a weekly AI-assisted workflow filtering energy-storage and related market signals into leadership updates.</p>
+            </li>
+            <li id="eviction-risk">
+              <h3>chicago-eviction-risk</h3>
+              <p><span class="tag">build:</span> Built an interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="contact-title">
+        <p class="cmd">contact --list</p>
+        <div class="out">
+          <h2 id="contact-title" class="comment">// reach out</h2>
+          <ul class="contact">
+            <li><span>email</span><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+            <li><span>github</span><a href="https://github.com/aneesamjad2001">github.com/aneesamjad2001</a></li>
+            <li><span>linkedin</span><a href="https://www.linkedin.com/in/anees-amjad/">linkedin.com/in/anees-amjad</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <p class="cmd" aria-hidden="true"><span class="cursor"></span></p>
+    </main>
+  </div>
+</body>
+</html>
