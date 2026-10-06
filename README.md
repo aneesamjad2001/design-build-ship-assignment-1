@@ -30,14 +30,19 @@ Each version lives at `vNN/index.html` and links back to the gallery.
    diagrams and v12's labels. Content moved to verified CV facts. Anees chose
    v21's AI-first order over v22's product-first order; v23 and v24 tested a
    fast overview against artifact-led cases.
-3. **Decide (v25):** Anees selected v25, a persistent-sidebar portfolio with
-   continuous case studies. The reasoning is recorded at the top of the gallery.
+3. **Decide (v25):** Anees selected v25, a portfolio with continuous case studies
+   (originally a persistent-sidebar layout). The reasoning is recorded at the top of the gallery.
 
 After the selection, a polish pass refined v25's spacing and diagrams and added
 an optional interactive architecture walkthrough for Ourea Brain (vanilla JS;
 the full diagram and text remain without JavaScript), a project-in-view marker,
 Copy email, print styles and a local favicon. The gallery adds a v23/v24/v25
 comparison, labelled as AI-assisted critique supporting Anees's choice.
+
+A later art-direction revision (at Anees's request) replaced v25's beige
+sidebar layout with an ink-dark opening, a project index and full-width cases
+with three different visual compositions; Anees had not yet reviewed it when
+it was deployed. Recovery tag: `pre-art-direction-redesign`.
 
 Late structural revisions (v14, and later v16/v18/v20 where noted) and all
 factual corrections are labelled in the gallery and visible in the Git history.

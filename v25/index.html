@@ -10,357 +10,461 @@
   <meta property="og:description" content="I build AI tools and data products for real-world decisions. Case studies: Ourea Brain, PublicPath, and CLARITY.">
   <meta property="og:url" content="https://design-build-ship-assignment-1.vercel.app/v25/">
   <meta property="og:image" content="https://design-build-ship-assignment-1.vercel.app/assets/v25-share.png">
-  <meta property="og:image:alt" content="The portfolio's opening view: name, headline, project index, and the Ourea Brain case.">
+  <meta property="og:image:alt" content="The portfolio's opening: name, positioning, and an index of three projects.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#f6f2ea">
+  <meta name="theme-color" content="#101114">
   <link rel="icon" href="../assets/aa.svg" type="image/svg+xml">
   <script>document.documentElement.classList.add('js');</script>
   <style>
     :root {
-      --paper: #f6f2ea;
-      --side: #efe9dd;
-      --card: #fffdf8;
-      --ink: #1c1a16;
-      --muted: #5b554b;
-      --rule: #d8cfbe;
-      --accent: #a8361d;
-      --accent-soft: #f7e3da;
-      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      --mono: ui-monospace, Menlo, Consolas, monospace;
-      /* one spacing scale for every case */
-      --s1: 0.4rem; --s2: 0.75rem; --s3: 1.25rem; --s4: 1.75rem; --s5: 2.75rem;
+      --ink: #101114;
+      --ink-2: #1a1c21;
+      --ink-line: #33363f;
+      --paper: #f4f3ef;
+      --white: #ffffff;
+      --blue: #2457f5;
+      --blue-light: #8fadff;
+      --blue-soft: #e6ecfe;
+      --text: #15161a;
+      --muted: #55575e;
+      --on-ink: #f4f3ef;
+      --on-ink-muted: #a7aab3;
+      --rule: #d6d4cc;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --max: 75rem;
+      --gut: clamp(1rem, 4vw, 3rem);
       --ease: 160ms ease-out;
     }
     * { box-sizing: border-box; }
-    ::selection { background: #f0c8b6; color: var(--ink); }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); transition: color var(--ease), text-decoration-color var(--ease); }
-    a:hover { color: var(--accent); text-decoration-color: currentColor; }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    ::selection { background: #c9d6ff; color: var(--ink); }
+    body { margin: 0; background: var(--paper); color: var(--text); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.22em; transition: color var(--ease); }
+    a:hover { color: var(--blue); }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+    .dark :focus-visible, .panel :focus-visible { outline-color: var(--blue-light); }
     img { max-width: 100%; height: auto; display: block; }
     button { font: inherit; color: inherit; }
-    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--ink); color: #fff; padding: 0.5rem 0.75rem; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gut); }
+    .mono { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--blue); color: #fff; padding: 0.5rem 0.75rem; }
     .skip:focus { top: 0.5rem; }
-    .assignment { background: #26241f; color: #d9d4c8; font: 0.78rem/1.4 var(--mono); }
-    .assignment div { padding: 0.45rem clamp(1rem, 3vw, 2rem); display: flex; justify-content: space-between; gap: 1rem; }
-    .assignment a { color: #fff; }
-    .assignment a:focus-visible { outline-color: #f0b49f; }
-    .label { margin: 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 
-    /* Layout: persistent profile sidebar + reading column */
-    .layout { display: grid; grid-template-columns: minmax(17rem, 22rem) minmax(0, 1fr); }
-    .side { position: sticky; top: 0; align-self: start; min-height: 100vh; background: var(--side); border-right: 1px solid var(--rule); padding: 1.25rem clamp(1rem, 2vw, 1.75rem); display: flex; flex-direction: column; gap: 0.85rem; }
-    .side h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 2.15rem; line-height: 1; letter-spacing: -0.02em; }
-    .headline { margin: 0.45rem 0 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.3; text-wrap: balance; }
-    .intro { margin: 0.5rem 0 0; font-size: 0.88rem; color: var(--muted); }
-    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; font-size: 0.9rem; }
-    .btn { display: inline-block; padding: 0.45rem 0.85rem; background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 600; transition: background-color var(--ease); }
-    .btn:hover { background: var(--accent); color: #fff; }
-    .open { margin: 0.4rem 0 0; font-size: 0.8rem; color: var(--muted); }
-    .index ol { list-style: none; margin: 0.4rem 0 0; padding: 0; }
-    .index li { border-top: 1px solid var(--rule); }
-    .index a { position: relative; display: block; padding: 0.35rem 0; text-decoration: none; }
-    .index a strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.1rem; line-height: 1.2; }
-    .index a strong span { display: inline-block; min-width: 1.6rem; color: var(--accent); font: 700 0.72rem var(--mono); }
-    .index a small { display: block; padding-left: 1.6rem; font-size: 0.8rem; color: var(--muted); line-height: 1.35; }
-    .index a:hover strong { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-    /* active-project indicator (set by script; no effect without it) */
-    .index a::before { content: ""; position: absolute; left: calc(-1 * clamp(1rem, 2vw, 1.75rem)); top: 0.35rem; bottom: 0.35rem; width: 3px; background: var(--accent); opacity: 0; transition: opacity var(--ease); }
-    .index a[aria-current="true"]::before { opacity: 1; }
-    .index a[aria-current="true"] strong { font-style: italic; }
-    .index .minor { display: flex; gap: 1.25rem; }
-    .index .minor a { padding: 0.35rem 0; font-size: 0.85rem; }
-    .index .minor a[aria-current="true"] { font-weight: 700; }
-    .index .minor a::before { display: none; }
-    .side-contact { padding-top: 0.65rem; border-top: 1px solid var(--rule); font-size: 0.85rem; }
-    .side-contact ul { list-style: none; margin: 0.3rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; }
-    .copy { padding: 0 0.4rem; border: 1px solid var(--rule); background: var(--card); font-size: 0.75rem; line-height: 1.6; cursor: pointer; transition: border-color var(--ease); }
-    .copy:hover { border-color: var(--ink); }
-    .copy-status { font-size: 0.75rem; color: var(--muted); }
-    .copy-status:empty { display: none; }
-    @media (max-height: 700px) and (min-width: 901px) { .side { position: static; min-height: 0; } }
+    /* ---------- Opening (ink) ---------- */
+    .dark { background: var(--ink); color: var(--on-ink); }
+    .dark a:hover { color: var(--blue-light); }
+    .topbar { border-bottom: 1px solid var(--ink-line); }
+    .topbar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 1.5rem; min-height: 3.5rem; padding-block: 0.4rem; }
+    .brand { font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+    .topnav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1.5rem; font-size: 0.92rem; }
+    .topnav a { text-decoration: none; color: var(--on-ink-muted); padding-block: 0.3rem; }
+    .topnav a:hover { color: var(--on-ink); }
+    .topnav .gal { font-family: var(--mono); font-size: 0.74rem; border: 1px solid var(--ink-line); padding: 0.2rem 0.55rem; }
+    .opening .wrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 4.5rem); padding-block: clamp(2rem, 4.5vw, 3.5rem) clamp(2rem, 4vw, 3.25rem); align-items: end; }
+    .opening .eyebrow { margin: 0 0 1rem; color: var(--blue-light); }
+    .opening h1 { margin: 0; font-size: clamp(2.5rem, 6.4vw, 5.4rem); line-height: 0.95; letter-spacing: -0.045em; font-weight: 750; }
+    .position { margin: 1rem 0 0; font-size: clamp(1.3rem, 2.3vw, 1.95rem); line-height: 1.18; letter-spacing: -0.02em; font-weight: 500; max-width: 22ch; }
+    .position em { font-style: normal; color: var(--blue-light); }
+    .intro { margin: 1rem 0 0; max-width: 34rem; color: var(--on-ink-muted); font-size: 0.98rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; align-items: center; margin-top: 1.5rem; }
+    .btn { display: inline-block; padding: 0.7rem 1.15rem; background: var(--blue); color: #fff; font-weight: 650; text-decoration: none; transition: background-color var(--ease), transform var(--ease); }
+    .dark .btn:hover { background: #1a46d6; color: #fff; }
+    .btn:active { transform: translateY(1px); }
+    .ghost { font-weight: 600; }
+    .projindex { border-top: 1px solid var(--ink-line); }
+    .projindex .mono { color: var(--on-ink-muted); margin: 0.9rem 0 0.4rem; }
+    .projindex ol { list-style: none; margin: 0; padding: 0; }
+    .projindex li { border-bottom: 1px solid var(--ink-line); }
+    .projindex a { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr) auto; gap: 0 0.5rem; align-items: baseline; padding: 0.85rem 0; text-decoration: none; }
+    .projindex .n { font-family: var(--mono); font-size: 0.78rem; color: var(--blue-light); }
+    .projindex strong { font-size: clamp(1.35rem, 2.3vw, 1.8rem); font-weight: 650; letter-spacing: -0.025em; line-height: 1.1; }
+    .projindex small { grid-column: 2 / 3; font-size: 0.86rem; color: var(--on-ink-muted); margin-top: 0.25rem; line-height: 1.4; }
+    .projindex .arr { grid-row: 1; grid-column: 3; color: var(--on-ink-muted); transition: transform var(--ease), color var(--ease); }
+    .projindex a:hover .arr { transform: translateY(2px); color: var(--blue-light); }
+    .projindex a:hover strong { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
 
-    .main { padding: 0 clamp(1rem, 4vw, 3rem); }
-    .col { max-width: 48rem; }
+    /* ---------- Cases (paper) ---------- */
+    .case { padding-block: clamp(2.75rem, 7vw, 5.5rem); border-bottom: 1px solid var(--rule); scroll-margin-top: 0; }
+    .case-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 0.5rem clamp(1.5rem, 4vw, 3rem); align-items: end; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+    .num { margin: 0; color: var(--blue); }
+    .num b { font-size: 0.95rem; margin-right: 0.6rem; }
+    .case h2 { margin: 0.35rem 0 0; font-size: clamp(2.4rem, 5.2vw, 4.25rem); line-height: 0.95; letter-spacing: -0.045em; font-weight: 750; }
+    .sub { margin: 0; font-size: clamp(1.1rem, 1.8vw, 1.4rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--muted); max-width: 30ch; justify-self: end; text-align: right; }
+    .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem clamp(1.5rem, 3vw, 2.5rem); margin: clamp(1.75rem, 3vw, 2.5rem) 0 0; }
+    .facts div { border-top: 2px solid var(--text); padding-top: 0.75rem; }
+    .facts dt { color: var(--muted); }
+    .facts dd { margin: 0.45rem 0 0; font-size: 0.98rem; }
+    .facts .note { display: block; margin-top: 0.35rem; font-size: 0.84rem; color: var(--muted); }
+    .tools { margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-size: 0.82rem; }
+    .tools .mono { color: var(--muted); margin-right: 0.4rem; }
+    .tools span:not(.mono) { border: 1px solid var(--rule); padding: 0.1rem 0.5rem; background: var(--white); }
 
-    /* Cases */
-    .case { padding-block: var(--s5); border-bottom: 1px solid var(--rule); scroll-margin-top: 0.5rem; }
-    .case:first-child { padding-top: 1.5rem; }
-    .kicker { margin: 0; font: 700 0.72rem/1.4 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
-    .case h2 { margin: var(--s1) 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 3.8vw, 2.7rem); line-height: 1.02; letter-spacing: -0.01em; }
-    .case .sub { margin: var(--s1) 0 0; font-family: var(--serif); font-style: italic; font-size: 1.12rem; color: var(--muted); }
-
-    .fig { margin: var(--s3) 0 0; padding: var(--s2) 1rem; background: var(--card); border: 1px solid var(--rule); }
-    .fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s1) 1rem; margin: 0 0 var(--s2); min-height: 1.6rem; }
-    .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 1.5rem; counter-reset: f; font-size: 0.88rem; line-height: 1.3; }
+    /* Ourea Brain: ink technical panel with the walkthrough */
+    .panel { background: var(--ink); color: var(--on-ink); padding: clamp(1.25rem, 3vw, 2.25rem); margin: 0; }
+    .panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.6rem 1.25rem; margin-bottom: 1.4rem; }
+    .panel-head .mono { margin: 0; color: var(--on-ink-muted); }
+    .panel-head .grow { flex: 1 1 auto; }
+    .legend { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--on-ink-muted); }
+    .legend i { width: 0.8rem; height: 0.8rem; border: 2px solid var(--blue-light); background: #17244f; }
+    .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.25rem; counter-reset: f; }
     .flow li { counter-increment: f; position: relative; display: flex; }
-    .node { flex: 1; display: block; width: 100%; padding: 0.6rem 0.7rem 0.65rem; border: 1px solid var(--rule); background: #fff; text-align: left; }
-    .node::before { content: counter(f, decimal-leading-zero); display: block; font: 700 0.68rem/1.2 var(--mono); color: var(--muted); margin-bottom: 0.3rem; }
-    .flow li:not(:last-child)::after { content: "→"; position: absolute; right: -1.5rem; width: 1.5rem; top: 50%; transform: translateY(-50%); text-align: center; color: var(--muted); }
-    .flow li.mine .node { border-color: var(--accent); border-left-width: 3px; background: var(--accent-soft); }
-    .flow li.mine .node::before { content: counter(f, decimal-leading-zero) " · my work"; color: var(--accent); }
-    .fig figcaption { margin-top: var(--s2); font-size: 0.8rem; color: var(--muted); }
-    .fig figcaption::before { content: ""; display: inline-block; width: 0.7rem; height: 0.7rem; margin-right: 0.45rem; vertical-align: -0.05rem; background: var(--accent-soft); border: 1px solid var(--accent); border-left-width: 3px; }
-
-    /* Interactive architecture walkthrough (enhancement; content is complete without it) */
+    .node { position: relative; flex: 1; display: block; width: 100%; min-height: 7.5rem; padding: 0.9rem 1rem 1rem; border: 1px solid var(--ink-line); background: var(--ink-2); text-align: left; font-size: 1.02rem; line-height: 1.3; font-weight: 600; color: var(--on-ink); }
+    .node::before { content: counter(f, decimal-leading-zero); display: block; margin-bottom: 1.3rem; font: 500 0.72rem/1.2 var(--mono); letter-spacing: 0.06em; color: var(--on-ink-muted); }
+    .flow li:not(:last-child)::after { content: ""; position: absolute; top: 50%; right: -2.25rem; width: 2.1rem; height: 1px; background: var(--on-ink-muted); }
+    .flow li:not(:last-child)::before { content: ""; position: absolute; top: calc(50% - 4px); right: -2.2rem; border-style: solid; border-color: transparent; border-width: 4px 0 4px 6px; border-left-color: var(--on-ink-muted); z-index: 1; }
+    .flow li.mine .node { border: 2px solid var(--blue-light); background: #17244f; }
+    .flow li.mine .node::before { content: counter(f, decimal-leading-zero) " · MY IMPLEMENTATION"; color: var(--blue-light); }
     .wt-tag { display: none; }
     .js .wt-tag { display: inline; }
     .js .wt-static { display: none; }
-    .wt-reset { display: none; padding: 0.15rem 0.6rem; border: 1px solid var(--ink); background: transparent; font-size: 0.78rem; cursor: pointer; transition: background-color var(--ease), color var(--ease); }
+    .wt-reset { display: none; padding: 0.3rem 0.75rem; border: 1px solid var(--on-ink-muted); background: transparent; color: var(--on-ink); font-size: 0.8rem; cursor: pointer; transition: background-color var(--ease), color var(--ease); }
     .js .wt-reset { display: inline-block; }
-    .wt-reset[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-    button.node { cursor: pointer; font-size: inherit; line-height: inherit; transition: border-color var(--ease), box-shadow var(--ease), background-color var(--ease); }
-    button.node:hover { border-color: var(--ink); }
-    .flow li.mine button.node:hover { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
-    button.node[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--ink) !important; border-color: var(--ink) !important; }
+    .wt-reset[aria-pressed="true"] { background: var(--on-ink); color: var(--ink); }
+    button.node { cursor: pointer; font-family: var(--sans); transition: border-color var(--ease), background-color var(--ease), transform var(--ease); }
+    button.node:hover { border-color: var(--on-ink); }
+    button.node:active { transform: translateY(1px); }
+    .flow li button.node[aria-pressed="true"] { background: var(--white); color: var(--ink); border: 2px solid var(--white); }
+    .flow li button.node[aria-pressed="true"]::before { color: var(--blue); }
     button.node[aria-pressed="true"] .t { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
-    .wt-panel { margin-top: var(--s2); padding-top: var(--s2); border-top: 1px dashed var(--rule); font-size: 0.9rem; }
-    .wt-panel h3 { margin: 0 0 0.2rem; font: 700 0.72rem/1.4 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; }
-    .wt-panel p { margin: 0; max-width: 38rem; }
-    .wt-panel .mine-note { margin-top: 0.25rem; }
-    .wt-panel .mine-note b { color: var(--accent); }
-    .wt-overview { margin-bottom: var(--s2); }
-    .wt-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
-    .js .wt-panel { min-height: 7.5rem; }
+    .wt-panel { margin-top: 1.5rem; padding-top: 1.1rem; border-top: 1px solid var(--ink-line); }
+    .wt-panel h3 { margin: 0 0 0.35rem; font: 600 0.74rem/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-light); }
+    .wt-panel p { margin: 0; max-width: 44rem; color: var(--on-ink); }
+    .wt-panel .mine-note { margin-top: 0.3rem; color: var(--on-ink-muted); }
+    .wt-panel .mine-note b { color: var(--on-ink); }
+    .wt-overview { margin-bottom: 1rem; }
+    .wt-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+    .js .wt-panel { min-height: 7.75rem; }
     .js .wt-steps > li { display: none; }
     .js .wt-steps > li.on { display: block; }
+    .js .wt-overview { margin-bottom: 0; }
     .js .wt-overview.off { display: none; }
     .js .wt-panel .wt-live { animation: wt-in 160ms ease-out; }
     @keyframes wt-in { from { opacity: 0; } to { opacity: 1; } }
+    .panel figcaption { margin-top: 1.25rem; font-size: 0.82rem; color: var(--on-ink-muted); }
 
-    .answers { margin: var(--s3) 0 0; display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: var(--s2) 1.25rem; }
-    .answers dt { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-top: 0.25rem; }
-    .answers dd { margin: 0; max-width: 38rem; }
-    .answers .note { display: block; font-size: 0.82rem; color: var(--muted); }
-    .artifact { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 0.9rem; align-items: start; }
-    .artifact img { border: 1px solid var(--rule); }
-    .tools { margin: var(--s3) 0 0; padding-top: var(--s2); border-top: 1px dotted var(--rule); font-size: 0.86rem; color: var(--muted); }
-    .tools span { margin-right: 0.6rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    /* PublicPath: framed artifact + narrow flow */
+    .pp-grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(1.5rem, 3.5vw, 3rem); align-items: start; }
+    .shot { margin: 0 10px 0 0; }
+    .shot .frame { background: var(--white); border: 1px solid var(--text); box-shadow: 10px 10px 0 var(--ink); }
+    .shot .bar { display: flex; align-items: center; gap: 0.35rem; padding: 0.45rem 0.7rem; border-bottom: 1px solid var(--text); font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+    .shot .bar i { width: 0.5rem; height: 0.5rem; border: 1px solid var(--muted); border-radius: 50%; }
+    .shot .bar span { margin-left: 0.5rem; }
+    .shot figcaption { margin-top: 1.5rem; font-size: 0.9rem; color: var(--muted); max-width: 44rem; }
+    .shot figcaption a { color: var(--text); font-weight: 600; }
+    .shot figcaption .note { display: block; margin-top: 0.2rem; }
+    .vflow { margin: 0; }
+    .vflow .mono { margin: 0 0 0.75rem; color: var(--muted); }
+    .vflow ol { list-style: none; margin: 0; padding: 0; counter-reset: v; }
+    .vflow li { counter-increment: v; position: relative; padding: 0.75rem 0.9rem 0.8rem 3rem; border: 1px solid var(--rule); background: var(--white); font-size: 0.93rem; line-height: 1.35; font-weight: 550; }
+    .vflow li + li { margin-top: 1.4rem; }
+    .vflow li::before { content: counter(v, decimal-leading-zero); position: absolute; left: 0.9rem; top: 0.85rem; font: 500 0.72rem var(--mono); color: var(--muted); }
+    .vflow li:not(:last-child)::after { content: ""; position: absolute; left: 1.35rem; bottom: calc(-1.4rem - 1px); height: 1.4rem; width: 1px; background: var(--muted); }
+    .vflow li.mine { border: 2px solid var(--blue); background: var(--blue-soft); }
+    .vflow li.mine::before { color: var(--blue); }
+    .vflow li.mine small { display: block; margin-top: 0.15rem; font: 600 0.68rem var(--mono); letter-spacing: 0.06em; color: var(--blue); }
+    .vflow figcaption { margin-top: 0.9rem; font-size: 0.82rem; color: var(--muted); }
 
-    .support { padding-block: var(--s5) var(--s4); border-bottom: 1px solid var(--rule); scroll-margin-top: 0.5rem; }
-    .support ul { list-style: none; margin: var(--s2) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; font-size: 0.9rem; }
-    .support h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; line-height: 1.2; }
-    .support .ctx { margin: 0.1rem 0 0.3rem; font-size: 0.76rem; color: var(--muted); }
-    .support p { margin: 0 0 0.3rem; }
-    .support a { font-weight: 600; font-size: 0.84rem; }
-    .background { padding-block: var(--s4) var(--s5); font-size: 0.88rem; scroll-margin-top: 0.5rem; }
-    .background p { margin: 0.5rem 0; font-family: var(--serif); font-size: 1.05rem; max-width: 38rem; }
-    .background ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 2rem; }
-    .background li { break-inside: avoid; padding: 0.15rem 0; }
-    .background li span { color: var(--muted); }
-    .foot { padding-block: 1.5rem 3rem; border-top: 2px solid var(--ink); }
-    .foot ul { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.75rem; font-family: var(--serif); font-size: 1.3rem; }
-    .foot .copy { font-family: var(--sans); vertical-align: 0.2em; margin-left: 0.4rem; }
+    /* CLARITY: text left, illustration right */
+    .cl-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
+    .cl-grid .case-head { grid-template-columns: minmax(0, 1fr); margin-bottom: 0; }
+    .cl-grid .sub { justify-self: start; text-align: left; margin-top: 0.6rem; }
+    .cl-grid .facts { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+    .illus { margin: 0; padding: clamp(1rem, 2.5vw, 1.75rem); background: var(--white); border: 1px solid var(--rule); border-top: 4px solid var(--blue); }
+    .illus .mono { margin: 0 0 1.25rem; color: var(--muted); }
+    .steps4 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .steps4 li { position: relative; padding: 0.9rem; border: 1px solid var(--rule); background: var(--paper); }
+    .steps4 li.mine { border: 2px solid var(--blue); }
+    .steps4 svg { display: block; width: 100%; height: auto; max-height: 6.5rem; }
+    .steps4 .k { display: block; margin-top: 0.7rem; font: 500 0.7rem var(--mono); letter-spacing: 0.05em; color: var(--muted); }
+    .steps4 li.mine .k { color: var(--blue); font-weight: 600; }
+    .steps4 b { display: block; margin-top: 0.1rem; font-size: 0.95rem; line-height: 1.3; font-weight: 600; }
+    .illus figcaption { margin-top: 1rem; font-size: 0.82rem; color: var(--muted); }
 
-    /* Narrow: sidebar becomes the page header; reading order = intro → index → cases */
-    @media (max-width: 900px) {
-      .layout { grid-template-columns: minmax(0, 1fr); }
-      .side { position: static; min-height: 0; border-right: 0; border-bottom: 1px solid var(--rule); gap: 0.6rem; padding-block: 1rem; }
-      .side h1 { font-size: 1.9rem; }
-      .headline { font-size: 1.05rem; }
-      .index a small { display: none; }
-      .index a::before { display: none; }
-      .index a strong span { min-width: 0; margin-right: 0.3rem; }
-      .index ol { display: flex; flex-wrap: wrap; gap: 0 1.1rem; }
-      .index li { border-top: 0; }
-      .index .minor { gap: 1.1rem; }
-      .side-contact { display: none; }
-      .case { padding-block: var(--s4) var(--s5); }
-      .flow { grid-auto-flow: row; gap: 1.5rem; }
-      .flow li:not(:last-child)::after { content: "↓"; right: auto; left: 0; width: 2.4rem; top: auto; bottom: -1.5rem; height: 1.5rem; line-height: 1.5rem; transform: none; }
-      .js .wt-panel { min-height: 11rem; }
-      .answers { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
-      .answers dd { margin-bottom: 0.65rem; }
-      .artifact { grid-template-columns: minmax(0, 1fr); }
-      .support ul { grid-template-columns: minmax(0, 1fr); }
-      .background ul { columns: 1; }
+    /* Supporting + background */
+    .section { padding-block: clamp(2.75rem, 6vw, 4.5rem); border-bottom: 1px solid var(--rule); scroll-margin-top: 0; }
+    .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 1.5rem; }
+    .section h2 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.03em; line-height: 1.05; font-weight: 700; }
+    .rows { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--text); }
+    .rows li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 0.4rem 2.5rem; padding: 1.2rem 0; border-bottom: 1px solid var(--rule); }
+    .rows h3 { margin: 0; font-size: 1.2rem; letter-spacing: -0.015em; font-weight: 650; line-height: 1.25; }
+    .rows .ctx { margin: 0.3rem 0 0; color: var(--muted); }
+    .rows p { margin: 0; font-size: 0.97rem; }
+    .rows a { display: inline-block; margin-top: 0.35rem; font-weight: 600; font-size: 0.9rem; }
+    .bg-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1.5rem clamp(1.5rem, 4vw, 3rem); }
+    .bg-grid > p { margin: 0; font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.35; letter-spacing: -0.01em; }
+    .bg-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--text); font-size: 0.93rem; }
+    .bg-list li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
+    .bg-list span { color: var(--muted); font-family: var(--mono); font-size: 0.76rem; white-space: nowrap; padding-top: 0.15rem; }
+
+    /* Contact (ink) */
+    .contact { padding-block: clamp(3.5rem, 8vw, 6rem) 2rem; }
+    .contact .mono { margin: 0; color: var(--blue-light); }
+    .contact h2 { margin: 0.75rem 0 0; font-size: clamp(2.3rem, 6vw, 4.75rem); line-height: 0.98; letter-spacing: -0.045em; font-weight: 750; max-width: 14ch; }
+    .contact .open { margin: 1.25rem 0 0; max-width: 34rem; color: var(--on-ink-muted); }
+    .contact ul { list-style: none; margin: 2rem 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 2rem; }
+    .contact .email { font-size: clamp(1.15rem, 3vw, 1.85rem); font-weight: 600; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+    .contact li > a:not(.email) { font-weight: 600; }
+    .copy { margin-left: 0.75rem; padding: 0.3rem 0.7rem; border: 1px solid var(--on-ink-muted); background: transparent; color: var(--on-ink); font-size: 0.8rem; cursor: pointer; vertical-align: 0.3em; transition: border-color var(--ease), background-color var(--ease); }
+    .copy:hover { border-color: var(--on-ink); background: var(--ink-2); }
+    .copy-status { display: block; margin-top: 0.3rem; font-size: 0.82rem; color: var(--on-ink-muted); }
+    .copy-status:empty { display: none; }
+    .endbar { margin-top: clamp(3rem, 7vw, 5rem); padding-top: 1.1rem; border-top: 1px solid var(--ink-line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; font-size: 0.82rem; color: var(--on-ink-muted); }
+
+    @media (max-width: 960px) {
+      .opening .wrap { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 2rem; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2.25rem; }
+      .flow li:nth-child(2)::after, .flow li:nth-child(2)::before { display: none; }
+      .pp-grid, .cl-grid, .bg-grid { grid-template-columns: minmax(0, 1fr); }
+      .facts { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+      .rows li { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .topnav { gap: 0.1rem 1.1rem; font-size: 0.88rem; }
+      .opening .wrap { padding-block: 1.6rem 1.9rem; gap: 1.5rem; }
+      .opening h1 { font-size: clamp(2.4rem, 11.5vw, 3rem); }
+      .case-head { grid-template-columns: minmax(0, 1fr); }
+      .sub { justify-self: start; text-align: left; }
+      .flow { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+      .node { min-height: 0; }
+      .node::before { margin-bottom: 0.45rem; }
+      .flow li:not(:last-child)::after { top: auto; bottom: -1.4rem; right: auto; left: 1.5rem; width: 1px; height: 1.3rem; }
+      .flow li:not(:last-child)::before { top: auto; right: auto; bottom: -1.4rem; left: calc(1.5rem - 4px); border-width: 6px 4px 0 4px; border-color: transparent; border-top-color: var(--on-ink-muted); }
+      .flow li:nth-child(2)::after, .flow li:nth-child(2)::before { display: block; }
+      .js .wt-panel { min-height: 12.5rem; }
+      .shot { margin-right: 6px; }
+      .shot .frame { box-shadow: 6px 6px 0 var(--ink); }
+      .steps4 { gap: 0.75rem; }
+      .steps4 li { padding: 0.7rem; }
+      .bg-list li { flex-direction: column; gap: 0; }
+      .copy { margin-left: 0; margin-top: 0.5rem; display: block; vertical-align: 0; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition: none !important; animation: none !important; }
     }
     @media print {
-      body { background: #fff; font-size: 11pt; }
-      .assignment, .skip, .actions, .index, .copy, .copy-status, .wt-reset, .wt-tag { display: none !important; }
-      .layout { display: block; }
-      .side { position: static; min-height: 0; border: 0; padding: 0 0 1rem; background: none; }
-      .side-contact { display: block; }
-      .main { padding: 0; }
-      .col { max-width: none; }
-      .case { break-inside: auto; padding-block: 1.25rem; }
-      .fig, .flow li, .artifact, .support li { break-inside: avoid; }
-      .js .wt-static { display: block; }
+      body { background: #fff; font-size: 10.5pt; }
+      .skip, .topbar, .actions, .copy, .copy-status, .wt-reset, .wt-tag, .endbar { display: none !important; }
+      .dark { background: #fff; color: #000; }
+      .opening .wrap, .pp-grid, .cl-grid, .bg-grid { grid-template-columns: minmax(0, 1fr); }
+      .opening .wrap { padding-block: 0 1rem; }
+      .opening h1 { font-size: 30pt; }
+      .projindex .mono, .projindex small, .projindex .n, .intro, .position em, .contact .open, .contact .mono, .opening .eyebrow { color: #000; }
+      .panel { background: #fff; color: #000; border: 1px solid #000; }
+      .node, .flow li.mine .node { background: #fff; color: #000; }
+      .wt-panel p, .wt-panel .mine-note, .wt-panel .mine-note b, .panel figcaption, .panel-head .mono, .legend { color: #000; }
+      .js .wt-static { display: inline; }
       .js .wt-panel { min-height: 0; }
       .js .wt-steps > li, .js .wt-overview.off { display: block; }
-      .flow { grid-auto-flow: column; }
-      .flow li:not(:last-child)::after { content: "→"; right: -1.5rem; left: auto; top: 50%; bottom: auto; transform: translateY(-50%); }
-      main a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: var(--muted); word-break: break-all; }
+      .js .wt-overview { margin-bottom: 1rem; }
+      .case, .section, .contact { padding-block: 1.25rem; }
+      .panel, .shot, .vflow, .illus, .rows li { break-inside: avoid; }
+      .shot .frame { box-shadow: none; }
+      main a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
     }
   </style>
 </head>
 <body>
   <a class="skip" href="#work">Skip to selected work</a>
-  <nav class="assignment" aria-label="Assignment navigation">
-    <div><a href="../index.html">← Gallery</a><span>Prototype v25 · Final selection</span></div>
-  </nav>
 
-  <div class="layout">
-    <header class="side">
-      <div>
-        <h1>Anees Amjad</h1>
-        <p class="headline">I build AI tools and data products for real-world decisions.</p>
-        <p class="intro">MS student in Computational Analysis and Public Policy, University of Chicago.</p>
+  <header class="dark">
+    <div class="topbar">
+      <div class="wrap">
+        <a class="brand" href="#top">Anees Amjad</a>
+        <nav class="topnav" aria-label="Site">
+          <a href="#work">Work</a>
+          <a href="#background">Background</a>
+          <a href="#contact">Contact</a>
+          <a class="gal" href="../index.html">← Gallery · v25</a>
+        </nav>
       </div>
-      <div>
-        <div class="actions"><a class="btn" href="#work">Selected work</a><a href="#contact">Get in touch</a></div>
-        <p class="open">Open to AI engineering roles, startup opportunities, and collaboration.</p>
+    </div>
+    <div class="opening" id="top">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow mono">AI engineering · Data products · Research</p>
+          <h1>Anees Amjad</h1>
+          <p class="position">I build AI tools and data products for <em>real-world decisions.</em></p>
+          <p class="intro">Built work across internal AI, public-sector software, and research. MS Computational Analysis and Public Policy, University of Chicago.</p>
+          <div class="actions"><a class="btn" href="#work">Explore selected work</a><a class="ghost" href="#contact">Get in touch</a></div>
+        </div>
+        <nav class="projindex" aria-label="Selected work">
+          <p class="mono">Selected work · 3 cases</p>
+          <ol>
+            <li><a href="#ourea-brain"><span class="n">01</span><strong>Ourea Brain</strong><span class="arr" aria-hidden="true">↓</span><small>Internal AI assistant in Slack · built and deployed</small></a></li>
+            <li><a href="#publicpath"><span class="n">02</span><strong>PublicPath</strong><span class="arr" aria-hidden="true">↓</span><small>Public-sector careers platform · co-founder, data engineering</small></a></li>
+            <li><a href="#clarity"><span class="n">03</span><strong>CLARITY</strong><span class="arr" aria-hidden="true">↓</span><small>Clinical note to explanatory video · research pipeline</small></a></li>
+          </ol>
+        </nav>
       </div>
-      <nav class="index" aria-label="Selected work">
-        <p class="label">Selected work</p>
-        <ol>
-          <li><a href="#ourea-brain"><strong><span>01</span>Ourea Brain</strong><small>Internal AI assistant in Slack · built and deployed</small></a></li>
-          <li><a href="#publicpath"><strong><span>02</span>PublicPath</strong><small>Public-sector careers platform · co-founder, data engineering</small></a></li>
-          <li><a href="#clarity"><strong><span>03</span>CLARITY</strong><small>Clinical note to explanatory video · research pipeline</small></a></li>
-          <li class="minor"><a href="#supporting">Supporting work</a><a href="#background">Background</a></li>
-        </ol>
-      </nav>
-      <div class="side-contact">
-        <p class="label">Get in touch</p>
-        <ul>
-          <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a> <button type="button" class="copy" data-copy="aneesamjad@uchicago.edu" hidden>Copy email</button> <span class="copy-status" role="status"></span></li>
-          <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
-        </ul>
-      </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="main" id="work">
-      <div class="col">
-        <article class="case" id="ourea-brain" aria-labelledby="ob-h">
-          <p class="kicker">01 · Built and deployed internally</p>
-          <h2 id="ob-h">Ourea Brain</h2>
+  <main id="work">
+    <!-- 01 · Ourea Brain: dark technical panel -->
+    <article class="case" id="ourea-brain" aria-labelledby="ob-h">
+      <div class="wrap">
+        <div class="case-head">
+          <div><p class="num mono"><b>01</b>Built and deployed internally</p><h2 id="ob-h">Ourea Brain</h2></div>
           <p class="sub">Company knowledge, accessible through Slack.</p>
-          <figure class="fig" data-walkthrough>
-            <div class="fig-head">
-              <p class="label"><span class="wt-static">Explanatory diagram</span><span class="wt-tag">Interactive architecture walkthrough · select a stage</span></p>
-              <button type="button" class="wt-reset" aria-pressed="true">Complete overview</button>
+        </div>
+        <figure class="panel" data-walkthrough>
+          <div class="panel-head">
+            <p class="mono grow"><span class="wt-static">Explanatory diagram · simplified architecture</span><span class="wt-tag">Interactive architecture walkthrough · select a stage</span></p>
+            <span class="legend mono"><i aria-hidden="true"></i>My implementation</span>
+            <button type="button" class="wt-reset" aria-pressed="true">Complete overview</button>
+          </div>
+          <ol class="flow" aria-label="Ourea Brain simplified architecture">
+            <li><span class="node"><span class="t">Question asked in Slack</span></span></li>
+            <li class="mine"><span class="node"><span class="t">App on Google Cloud Run</span></span></li>
+            <li class="mine"><span class="node"><span class="t">Company context + Claude API</span></span></li>
+            <li><span class="node"><span class="t">Response in Slack</span></span></li>
+          </ol>
+          <div class="wt-panel">
+            <div class="wt-overview">
+              <h3>Overview<span class="wt-tag"> · all four stages</span></h3>
+              <p>A colleague’s question travels from Slack to the app, which brings in company context and Anthropic’s Claude API, and the answer returns to Slack. This walkthrough explains the system; it is not a live AI demo.</p>
             </div>
-            <ol class="flow" aria-label="Ourea Brain simplified architecture">
-              <li><span class="node"><span class="t">Question asked in Slack</span></span></li>
-              <li class="mine"><span class="node"><span class="t">App on Google Cloud Run</span></span></li>
-              <li class="mine"><span class="node"><span class="t">Company context + Claude API</span></span></li>
-              <li><span class="node"><span class="t">Response in Slack</span></span></li>
+            <ol class="wt-steps">
+              <li><h3>Stage 01 · Question asked in Slack</h3><p>A colleague at Ourea Energy asks a question in Slack, where the team already works.</p><p class="mine-note"><b>My part:</b> I built the app’s connection to Slack.</p></li>
+              <li><h3>Stage 02 · App on Google Cloud Run</h3><p>The Slack-connected app runs on Google Cloud Run and handles the question.</p><p class="mine-note"><b>My part:</b> I built and deployed this app.</p></li>
+              <li><h3>Stage 03 · Company context + Claude API</h3><p>The app draws on company context from connected sources — Slack, Gmail, Google Docs, and meeting notes — and uses Anthropic’s Claude API to form an answer.</p><p class="mine-note"><b>My part:</b> I built these source connections and the use of the Claude API.</p></li>
+              <li><h3>Stage 04 · Response in Slack</h3><p>The answer is returned in Slack. In an early live deployment, it answered a Slack question using meeting-note context.</p></li>
             </ol>
-            <div class="wt-panel">
-              <div class="wt-overview">
-                <h3>Overview<span class="wt-tag"> · all four stages</span></h3>
-                <p>A colleague’s question travels from Slack to the app, which brings in company context and Anthropic’s Claude API, and the answer returns to Slack. This walkthrough explains the system; it is not a live AI demo.</p>
-              </div>
-              <ol class="wt-steps">
-                <li><h3>Stage 01 · Question asked in Slack</h3><p>A colleague at Ourea Energy asks a question in Slack, where the team already works.</p><p class="mine-note"><b>My part:</b> I built the app’s connection to Slack.</p></li>
-                <li><h3>Stage 02 · App on Google Cloud Run</h3><p>The Slack-connected app runs on Google Cloud Run and handles the question.</p><p class="mine-note"><b>My part:</b> I built and deployed this app.</p></li>
-                <li><h3>Stage 03 · Company context + Claude API</h3><p>The app draws on company context from connected sources — Slack, Gmail, Google Docs, and meeting notes — and uses Anthropic’s Claude API to form an answer.</p><p class="mine-note"><b>My part:</b> I built these source connections and the use of the Claude API.</p></li>
-                <li><h3>Stage 04 · Response in Slack</h3><p>The answer is returned in Slack. In an early live deployment, it answered a Slack question using meeting-note context.</p></li>
-              </ol>
-            </div>
-            <figcaption>Simplified architecture; highlighted stages show my implementation.</figcaption>
-          </figure>
-          <dl class="answers">
-            <dt>What it does</dt><dd>An internal AI assistant that brings company context into Slack for colleagues at Ourea Energy, designed to help them retrieve project context, identify owners, and follow up on decisions.</dd>
-            <dt>What I built</dt><dd>As an Agentic AI Intern, I built and deployed it: the Slack-connected app on Google Cloud Run, its connections to Slack, Gmail, Google Docs, and meeting notes, and its use of Anthropic’s Claude API.</dd>
-            <dt>Observed behaviour</dt><dd>An early live deployment answered a Slack question using meeting-note context.<span class="note">Internal tool.</span></dd>
-          </dl>
-          <p class="tools"><span>Tools</span>Slack integration · Anthropic Claude API · Google Cloud Run · Google Workspace sources · meeting notes · Secret Manager</p>
-        </article>
+          </div>
+          <figcaption>Simplified architecture; highlighted stages show my implementation.</figcaption>
+        </figure>
+        <dl class="facts">
+          <div><dt class="mono">What it does</dt><dd>An internal AI assistant that brings company context into Slack for colleagues at Ourea Energy, designed to help them retrieve project context, identify owners, and follow up on decisions.</dd></div>
+          <div><dt class="mono">What I built</dt><dd>As an Agentic AI Intern, I built and deployed it: the Slack-connected app on Google Cloud Run, its connections to Slack, Gmail, Google Docs, and meeting notes, and its use of Anthropic’s Claude API.</dd></div>
+          <div><dt class="mono">Observed behaviour</dt><dd>An early live deployment answered a Slack question using meeting-note context.<span class="note">Internal tool.</span></dd></div>
+        </dl>
+        <p class="tools"><span class="mono">Tools</span><span>Slack integration</span><span>Anthropic Claude API</span><span>Google Cloud Run</span><span>Google Workspace sources</span><span>meeting notes</span><span>Secret Manager</span></p>
+      </div>
+    </article>
 
-        <article class="case" id="publicpath" aria-labelledby="pp-h">
-          <p class="kicker">02 · Co-founder, Engineering and Data</p>
-          <h2 id="pp-h">PublicPath</h2>
+    <!-- 02 · PublicPath: framed artifact + narrow flow -->
+    <article class="case" id="publicpath" aria-labelledby="pp-h">
+      <div class="wrap">
+        <div class="case-head">
+          <div><p class="num mono"><b>02</b>Co-founder, Engineering and Data</p><h2 id="pp-h">PublicPath</h2></div>
           <p class="sub">Making public-sector opportunities easier to find.</p>
-          <figure class="fig">
-            <div class="fig-head"><p class="label">Explanatory diagram</p></div>
-            <ol class="flow" aria-label="PublicPath simplified data flow">
-              <li><span class="node">External job APIs</span></li>
-              <li class="mine"><span class="node">Scheduled ingestion (Python, GitHub Actions)</span></li>
-              <li class="mine"><span class="node">Clean, deduplicate, normalize, validate</span></li>
-              <li><span class="node">Postgres on Supabase → site search and filters</span></li>
+        </div>
+        <div class="pp-grid">
+          <figure class="shot">
+            <div class="frame">
+              <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>joinpublicpath.com</span></div>
+              <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy">
+            </div>
+            <figcaption>PublicPath team homepage, captured 6 October 2026. My contribution focused on ingestion and data quality. <a href="https://www.joinpublicpath.com">Project website ↗</a><span class="note">Job search was not loading when checked on 6 Oct 2026.</span></figcaption>
+          </figure>
+          <figure class="vflow">
+            <p class="mono">Explanatory diagram · data flow</p>
+            <ol aria-label="PublicPath simplified data flow">
+              <li>External job APIs</li>
+              <li class="mine">Scheduled ingestion (Python, GitHub Actions)<small>MY WORK</small></li>
+              <li class="mine">Clean, deduplicate, normalize, validate<small>MY WORK</small></li>
+              <li>Postgres on Supabase → site search and filters</li>
             </ol>
             <figcaption>Simplified data flow; highlighted stages show my work.</figcaption>
           </figure>
-          <dl class="answers">
-            <dt>What it does</dt><dd>Helps students and early-career candidates explore government careers.</dd>
-            <dt>What I built</dt><dd>I co-founded PublicPath and was one of two engineers. My work focused on API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</dd>
-            <dt>Project artifact</dt>
-            <dd>
-              <div class="artifact">
-                <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy">
-                <p style="margin:0">PublicPath team homepage, captured 6 October 2026. My contribution focused on ingestion and data quality. <a href="https://www.joinpublicpath.com">Project website ↗</a><span class="note">Job search was not loading when checked on 6 Oct 2026.</span></p>
-              </div>
-            </dd>
-          </dl>
-          <p class="tools"><span>Tools</span>Python · GitHub Actions · Supabase · Postgres</p>
-        </article>
-
-        <article class="case" id="clarity" aria-labelledby="cl-h">
-          <p class="kicker">03 · Research Assistant, HOPE Lab, UChicago Booth</p>
-          <h2 id="cl-h">CLARITY</h2>
-          <p class="sub">Turning clinical notes into patient-friendly explanations.</p>
-          <figure class="fig">
-            <div class="fig-head"><p class="label">Explanatory diagram</p></div>
-            <ol class="flow" aria-label="CLARITY pipeline sequence">
-              <li><span class="node">De-identified clinical note (JSON)</span></li>
-              <li class="mine"><span class="node">Explanatory content</span></li>
-              <li class="mine"><span class="node">Narration (Neural TTS) and slides</span></li>
-              <li class="mine"><span class="node">MP4 video</span></li>
-            </ol>
-            <figcaption>Simplified sequence automated by my Python pipeline.</figcaption>
-          </figure>
-          <dl class="answers">
-            <dt>What it does</dt><dd>Part of CLARITY, a healthcare-AI research project: turning de-identified clinical notes into patient-friendly explanatory videos.</dd>
-            <dt>What I built</dt><dd>The Python pipeline that automates the explanatory content, narration with Microsoft Neural TTS, slide generation, and MP4 production.</dd>
-            <dt>Output</dt><dd>MP4 explanatory videos.<span class="note">Clinical material is not public, so no example is shown.</span></dd>
-          </dl>
-          <p class="tools"><span>Tools</span>Python · Microsoft Neural TTS</p>
-        </article>
-
-        <section class="support" id="supporting" aria-labelledby="sup-h">
-          <h2 class="label" id="sup-h">Supporting work</h2>
-          <ul>
-            <li><h3>Energy Market Intelligence</h3><p class="ctx">Ourea Energy · separate from Ourea Brain</p><p>Built a weekly AI-assisted workflow that filtered 50+ recurring signals across energy storage, utilities, and data centers into leadership updates.</p></li>
-            <li><h3>Chicago Eviction Risk</h3><p class="ctx">Applied ML · private repository</p><p>Built an interpretable machine-learning and geospatial workflow to explore eviction-risk patterns in Chicago.</p></li>
-            <li><h3>Political Narrative Navigator</h3><p class="ctx">Team project, University of Chicago</p><p>Analyzed 2,000+ presidential campaign speeches alongside YouGov data using AI-assisted text workflows.</p><a href="https://github.com/uchicago-2026-capp30122/political-narrative-navigator">Team repository on GitHub ↗</a></li>
-          </ul>
-        </section>
-
-        <section class="background" id="background" aria-labelledby="bg-h">
-          <h2 class="label" id="bg-h">Background</h2>
-          <p>I combine software building with applied research in machine learning, survey analysis, and geospatial work.</p>
-          <ul>
-            <li>Ourea Energy — Agentic AI Intern <span>· 2026–</span></li>
-            <li>Financial Health Network — Research Intern, Data Analytics <span>· 2026–</span></li>
-            <li>HOPE Lab, UChicago Booth — Research Assistant <span>· 2026–</span></li>
-            <li>PublicPath — Co-founder, Engineering and Data <span>· 2026–</span></li>
-            <li>PAMS — Research Associate, ML <span>· 2025</span></li>
-            <li>CERP — Analyst <span>· 2024–25</span></li>
-            <li>MS, Computational Analysis and Public Policy, UChicago <span>· expected June 2027</span></li>
-            <li>BS, Economics and Political Science, Lahore School of Economics <span>· May 2024</span></li>
-          </ul>
-        </section>
-
-        <footer class="foot" id="contact" aria-labelledby="foot-h">
-          <h2 class="label" id="foot-h">Get in touch</h2>
-          <ul>
-            <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a><button type="button" class="copy" data-copy="aneesamjad@uchicago.edu" hidden>Copy email</button> <span class="copy-status" role="status"></span></li>
-            <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
-          </ul>
-        </footer>
+        </div>
+        <dl class="facts">
+          <div><dt class="mono">What it does</dt><dd>Helps students and early-career candidates explore government careers.</dd></div>
+          <div><dt class="mono">What I built</dt><dd>I co-founded PublicPath and was one of two engineers. My work focused on API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</dd></div>
+          <div><dt class="mono">Project artifact</dt><dd>The team homepage shown above, as captured on 6 October 2026.</dd></div>
+        </dl>
+        <p class="tools"><span class="mono">Tools</span><span>Python</span><span>GitHub Actions</span><span>Supabase</span><span>Postgres</span></p>
       </div>
-    </main>
-  </div>
+    </article>
+
+    <!-- 03 · CLARITY: text left, illustration right -->
+    <article class="case" id="clarity" aria-labelledby="cl-h">
+      <div class="wrap cl-grid">
+        <div>
+          <div class="case-head">
+            <div><p class="num mono"><b>03</b>Research Assistant, HOPE Lab, UChicago Booth</p><h2 id="cl-h">CLARITY</h2></div>
+            <p class="sub">Turning clinical notes into patient-friendly explanations.</p>
+          </div>
+          <dl class="facts">
+            <div><dt class="mono">What it does</dt><dd>Part of CLARITY, a healthcare-AI research project: turning de-identified clinical notes into patient-friendly explanatory videos.</dd></div>
+            <div><dt class="mono">What I built</dt><dd>The Python pipeline that automates the explanatory content, narration with Microsoft Neural TTS, slide generation, and MP4 production.</dd></div>
+            <div><dt class="mono">Output</dt><dd>MP4 explanatory videos.<span class="note">Clinical material is not public, so no example is shown.</span></dd></div>
+          </dl>
+          <p class="tools"><span class="mono">Tools</span><span>Python</span><span>Microsoft Neural TTS</span></p>
+        </div>
+        <figure class="illus">
+          <p class="mono">Explanatory illustration · abstract symbols, not real output</p>
+          <ol class="steps4" aria-label="CLARITY pipeline sequence">
+            <li>
+              <svg viewBox="0 0 160 90" aria-hidden="true"><rect x="45" y="6" width="70" height="78" fill="#fff" stroke="#15161a" stroke-width="2"/><text x="53" y="28" font-family="Menlo, monospace" font-size="16" fill="#2457f5">{</text><text x="98" y="78" font-family="Menlo, monospace" font-size="16" fill="#2457f5">}</text><g stroke="#9a9ca3" stroke-width="3"><line x1="62" y1="38" x2="100" y2="38"/><line x1="62" y1="48" x2="92" y2="48"/><line x1="62" y1="58" x2="98" y2="58"/></g></svg>
+              <span class="k">01 · INPUT</span><b>De-identified clinical note (JSON)</b>
+            </li>
+            <li class="mine">
+              <svg viewBox="0 0 160 90" aria-hidden="true"><rect x="30" y="10" width="100" height="70" fill="#fff" stroke="#2457f5" stroke-width="2"/><line x1="42" y1="26" x2="104" y2="26" stroke="#15161a" stroke-width="4"/><g stroke="#9a9ca3" stroke-width="3"><line x1="42" y1="40" x2="118" y2="40"/><line x1="42" y1="50" x2="112" y2="50"/><line x1="42" y1="60" x2="96" y2="60"/></g></svg>
+              <span class="k">02 · MY PIPELINE</span><b>Explanatory content</b>
+            </li>
+            <li class="mine">
+              <svg viewBox="0 0 160 90" aria-hidden="true"><g stroke="#2457f5" stroke-width="3" stroke-linecap="round"><line x1="14" y1="42" x2="14" y2="48"/><line x1="22" y1="36" x2="22" y2="54"/><line x1="30" y1="26" x2="30" y2="64"/><line x1="38" y1="38" x2="38" y2="52"/><line x1="46" y1="20" x2="46" y2="70"/><line x1="54" y1="32" x2="54" y2="58"/><line x1="62" y1="40" x2="62" y2="50"/></g><rect x="78" y="18" width="72" height="54" fill="#fff" stroke="#15161a" stroke-width="2"/><rect x="86" y="27" width="28" height="6" fill="#15161a"/><g stroke="#9a9ca3" stroke-width="3"><line x1="86" y1="44" x2="140" y2="44"/><line x1="86" y1="54" x2="130" y2="54"/></g></svg>
+              <span class="k">03 · MY PIPELINE</span><b>Narration (Neural TTS) and slides</b>
+            </li>
+            <li class="mine">
+              <svg viewBox="0 0 160 90" aria-hidden="true"><rect x="25" y="10" width="110" height="62" fill="#15161a"/><polygon points="72,28 72,54 94,41" fill="#fff"/><rect x="25" y="80" width="110" height="3" fill="#d6d4cc"/><rect x="25" y="80" width="46" height="3" fill="#2457f5"/></svg>
+              <span class="k">04 · MY PIPELINE</span><b>MP4 video</b>
+            </li>
+          </ol>
+          <figcaption>Simplified sequence automated by my Python pipeline.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <section class="section" id="supporting" aria-labelledby="sup-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="sup-h">Supporting work</h2></div>
+        <ul class="rows">
+          <li><div><h3>Energy Market Intelligence</h3><p class="ctx mono">Ourea Energy · separate from Ourea Brain</p></div><p>Built a weekly AI-assisted workflow that filtered 50+ recurring signals across energy storage, utilities, and data centers into leadership updates.</p></li>
+          <li><div><h3>Chicago Eviction Risk</h3><p class="ctx mono">Applied ML · private repository</p></div><p>Built an interpretable machine-learning and geospatial workflow to explore eviction-risk patterns in Chicago.</p></li>
+          <li><div><h3>Political Narrative Navigator</h3><p class="ctx mono">Team project, University of Chicago</p></div><p>Analyzed 2,000+ presidential campaign speeches alongside YouGov data using AI-assisted text workflows.<br><a href="https://github.com/uchicago-2026-capp30122/political-narrative-navigator">Team repository on GitHub ↗</a></p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="background" aria-labelledby="bg-h">
+      <div class="wrap">
+        <div class="section-head"><h2 id="bg-h">Background</h2></div>
+        <div class="bg-grid">
+          <p>I combine software building with applied research in machine learning, survey analysis, and geospatial work.</p>
+          <ul class="bg-list">
+            <li>Ourea Energy — Agentic AI Intern <span>2026–</span></li>
+            <li>Financial Health Network — Research Intern, Data Analytics <span>2026–</span></li>
+            <li>HOPE Lab, UChicago Booth — Research Assistant <span>2026–</span></li>
+            <li>PublicPath — Co-founder, Engineering and Data <span>2026–</span></li>
+            <li>PAMS — Research Associate, ML <span>2025</span></li>
+            <li>CERP — Analyst <span>2024–25</span></li>
+            <li>MS, Computational Analysis and Public Policy, UChicago <span>expected June 2027</span></li>
+            <li>BS, Economics and Political Science, Lahore School of Economics <span>May 2024</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="dark contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <p class="mono">Contact</p>
+      <h2 id="contact-h">Let’s build something useful.</h2>
+      <p class="open">Open to AI engineering roles, startup opportunities, and collaboration.</p>
+      <ul>
+        <li><a class="email" href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a><button type="button" class="copy" data-copy="aneesamjad@uchicago.edu" hidden>Copy email</button><span class="copy-status" role="status"></span></li>
+        <li><a href="https://github.com/aneesamjad2001">GitHub ↗</a></li>
+        <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn ↗</a></li>
+      </ul>
+      <div class="endbar"><span>Anees Amjad · Portfolio</span><a href="../index.html">← Assignment gallery (prototype v25)</a></div>
+    </div>
+  </footer>
+
   <script>
   (function () {
-    // 1. Architecture walkthrough: stage nodes become toggle buttons; overview stays the default.
+    // Architecture walkthrough: stage nodes become toggle buttons; the overview stays the default.
     document.querySelectorAll('[data-walkthrough]').forEach(function (fig) {
       var items = fig.querySelectorAll('.flow > li');
       var steps = fig.querySelectorAll('.wt-steps > li');
@@ -373,7 +477,7 @@
         b.type = 'button'; b.className = 'node';
         b.innerHTML = span.innerHTML;
         b.setAttribute('aria-pressed', 'false');
-        b.setAttribute('aria-label', 'Stage ' + (i + 1) + ': ' + span.textContent.trim() + (li.classList.contains('mine') ? ', my work' : ''));
+        b.setAttribute('aria-label', 'Stage ' + (i + 1) + ': ' + span.textContent.trim() + (li.classList.contains('mine') ? ', my implementation' : ''));
         span.replaceWith(b); buttons.push(b);
         b.addEventListener('click', function () { select(b.getAttribute('aria-pressed') === 'true' ? -1 : i); });
       });
@@ -387,28 +491,7 @@
       fig.addEventListener('keydown', function (e) { if (e.key === 'Escape') select(-1); });
     });
 
-    // 2. Active-project indicator: marks the index link for the section in view (no URL or focus changes).
-    var links = {};
-    document.querySelectorAll('.index a[href^="#"]').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (!en.isIntersecting) return;
-          Object.keys(links).forEach(function (id) { links[id].removeAttribute('aria-current'); });
-          if (links[en.target.id]) links[en.target.id].setAttribute('aria-current', 'true');
-        });
-      }, { rootMargin: '-35% 0px -60% 0px' });
-      Object.keys(links).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
-      // the last short sections can never reach the observation band, so mark Background at the page end
-      addEventListener('scroll', function () {
-        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4 && links.background) {
-          Object.keys(links).forEach(function (id) { links[id].removeAttribute('aria-current'); });
-          links.background.setAttribute('aria-current', 'true');
-        }
-      }, { passive: true });
-    }
-
-    // 3. Copy email: only shown when the Clipboard API exists; reports success or failure.
+    // Copy email: only shown when the Clipboard API exists; reports success or failure.
     if (navigator.clipboard && window.isSecureContext) {
       document.querySelectorAll('.copy').forEach(function (b) {
         var status = b.parentNode.querySelector('.copy-status'), t;
