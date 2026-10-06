@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anees Amjad — Portfolio (v25, final selection)</title>
   <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions: Ourea Brain, PublicPath, and CLARITY case studies.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Anees Amjad — AI tools and data products">
+  <meta property="og:description" content="I build AI tools and data products for real-world decisions. Case studies: Ourea Brain, PublicPath, and CLARITY.">
+  <meta property="og:url" content="https://design-build-ship-assignment-1.vercel.app/v25/">
+  <meta property="og:image" content="https://design-build-ship-assignment-1.vercel.app/assets/v25-share.png">
+  <meta property="og:image:alt" content="The portfolio's opening view: name, headline, project index, and the Ourea Brain case.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f6f2ea">
+  <link rel="icon" href="../assets/aa.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     :root {
       --paper: #f6f2ea;
@@ -17,16 +27,22 @@
       --accent-soft: #f7e3da;
       --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, Menlo, Consolas, monospace;
+      /* one spacing scale for every case */
+      --s1: 0.4rem; --s2: 0.75rem; --s3: 1.25rem; --s4: 1.75rem; --s5: 2.75rem;
+      --ease: 160ms ease-out;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
-    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-    a:hover { color: var(--accent); }
-    a:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    ::selection { background: #f0c8b6; color: var(--ink); }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); transition: color var(--ease), text-decoration-color var(--ease); }
+    a:hover { color: var(--accent); text-decoration-color: currentColor; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
     img { max-width: 100%; height: auto; display: block; }
+    button { font: inherit; color: inherit; }
     .skip { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--ink); color: #fff; padding: 0.5rem 0.75rem; }
     .skip:focus { top: 0.5rem; }
-    .assignment { background: #26241f; color: #d9d4c8; font: 0.78rem/1.4 ui-monospace, Menlo, monospace; }
+    .assignment { background: #26241f; color: #d9d4c8; font: 0.78rem/1.4 var(--mono); }
     .assignment div { padding: 0.45rem clamp(1rem, 3vw, 2rem); display: flex; justify-content: space-between; gap: 1rem; }
     .assignment a { color: #fff; }
     .assignment a:focus-visible { outline-color: #f0b49f; }
@@ -36,67 +52,106 @@
     .layout { display: grid; grid-template-columns: minmax(17rem, 22rem) minmax(0, 1fr); }
     .side { position: sticky; top: 0; align-self: start; min-height: 100vh; background: var(--side); border-right: 1px solid var(--rule); padding: 1.25rem clamp(1rem, 2vw, 1.75rem); display: flex; flex-direction: column; gap: 0.85rem; }
     .side h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 2.15rem; line-height: 1; letter-spacing: -0.02em; }
-    .headline { margin: 0.45rem 0 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.3; }
+    .headline { margin: 0.45rem 0 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.3; text-wrap: balance; }
     .intro { margin: 0.5rem 0 0; font-size: 0.88rem; color: var(--muted); }
     .actions { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; font-size: 0.9rem; }
-    .btn { display: inline-block; padding: 0.45rem 0.85rem; background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 600; }
+    .btn { display: inline-block; padding: 0.45rem 0.85rem; background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 600; transition: background-color var(--ease); }
     .btn:hover { background: var(--accent); color: #fff; }
     .open { margin: 0.4rem 0 0; font-size: 0.8rem; color: var(--muted); }
     .index ol { list-style: none; margin: 0.4rem 0 0; padding: 0; }
     .index li { border-top: 1px solid var(--rule); }
-    .index a { display: block; padding: 0.35rem 0; text-decoration: none; }
+    .index a { position: relative; display: block; padding: 0.35rem 0; text-decoration: none; }
     .index a strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.1rem; line-height: 1.2; }
-    .index a strong span { color: var(--accent); font-family: var(--sans); font-size: 0.75rem; font-weight: 700; margin-right: 0.35rem; }
-    .index a small { display: block; font-size: 0.8rem; color: var(--muted); line-height: 1.35; }
-    .index a:hover strong { text-decoration: underline; }
+    .index a strong span { display: inline-block; min-width: 1.6rem; color: var(--accent); font: 700 0.72rem var(--mono); }
+    .index a small { display: block; padding-left: 1.6rem; font-size: 0.8rem; color: var(--muted); line-height: 1.35; }
+    .index a:hover strong { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+    /* active-project indicator (set by script; no effect without it) */
+    .index a::before { content: ""; position: absolute; left: calc(-1 * clamp(1rem, 2vw, 1.75rem)); top: 0.35rem; bottom: 0.35rem; width: 3px; background: var(--accent); opacity: 0; transition: opacity var(--ease); }
+    .index a[aria-current="true"]::before { opacity: 1; }
+    .index a[aria-current="true"] strong { font-style: italic; }
     .index .minor { display: flex; gap: 1.25rem; }
     .index .minor a { padding: 0.35rem 0; font-size: 0.85rem; }
+    .index .minor a[aria-current="true"] { font-weight: 700; }
+    .index .minor a::before { display: none; }
     .side-contact { padding-top: 0.65rem; border-top: 1px solid var(--rule); font-size: 0.85rem; }
     .side-contact ul { list-style: none; margin: 0.3rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; }
+    .copy { padding: 0 0.4rem; border: 1px solid var(--rule); background: var(--card); font-size: 0.75rem; line-height: 1.6; cursor: pointer; transition: border-color var(--ease); }
+    .copy:hover { border-color: var(--ink); }
+    .copy-status { font-size: 0.75rem; color: var(--muted); }
+    .copy-status:empty { display: none; }
     @media (max-height: 700px) and (min-width: 901px) { .side { position: static; min-height: 0; } }
 
     .main { padding: 0 clamp(1rem, 4vw, 3rem); }
     .col { max-width: 48rem; }
 
     /* Cases */
-    .case { padding-block: 1.75rem 2.25rem; border-bottom: 1px solid var(--rule); scroll-margin-top: 0.5rem; }
+    .case { padding-block: var(--s5); border-bottom: 1px solid var(--rule); scroll-margin-top: 0.5rem; }
     .case:first-child { padding-top: 1.5rem; }
-    .kicker { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
-    .case h2 { margin: 0.2rem 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 3.8vw, 2.7rem); line-height: 1.02; }
-    .case .sub { margin: 0.3rem 0 0; font-family: var(--serif); font-style: italic; font-size: 1.12rem; color: var(--muted); }
+    .kicker { margin: 0; font: 700 0.72rem/1.4 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+    .case h2 { margin: var(--s1) 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 3.8vw, 2.7rem); line-height: 1.02; letter-spacing: -0.01em; }
+    .case .sub { margin: var(--s1) 0 0; font-family: var(--serif); font-style: italic; font-size: 1.12rem; color: var(--muted); }
 
-    .fig { margin: 1.1rem 0 0; padding: 0.9rem 1rem 0.8rem; background: var(--card); border: 1px solid var(--rule); }
-    .fig .kind { margin: 0 0 0.6rem; }
-    .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 1.4rem; counter-reset: f; font-size: 0.88rem; line-height: 1.3; }
-    .flow li { counter-increment: f; position: relative; padding: 0.55rem 0.65rem 0.6rem; border: 1px solid var(--rule); background: #fff; }
-    .flow li::before { content: counter(f); display: block; font-size: 0.7rem; font-weight: 700; color: var(--muted); margin-bottom: 0.15rem; }
-    .flow li:not(:last-child)::after { content: "→"; position: absolute; right: -1.15rem; top: 50%; transform: translateY(-50%); color: var(--muted); }
-    .flow li.mine { border-color: var(--accent); background: var(--accent-soft); }
-    .flow li.mine::before { content: counter(f) " · my work"; color: var(--accent); }
-    .fig figcaption { margin-top: 0.6rem; font-size: 0.8rem; color: var(--muted); }
+    .fig { margin: var(--s3) 0 0; padding: var(--s2) 1rem; background: var(--card); border: 1px solid var(--rule); }
+    .fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s1) 1rem; margin: 0 0 var(--s2); min-height: 1.6rem; }
+    .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 1.5rem; counter-reset: f; font-size: 0.88rem; line-height: 1.3; }
+    .flow li { counter-increment: f; position: relative; display: flex; }
+    .node { flex: 1; display: block; width: 100%; padding: 0.6rem 0.7rem 0.65rem; border: 1px solid var(--rule); background: #fff; text-align: left; }
+    .node::before { content: counter(f, decimal-leading-zero); display: block; font: 700 0.68rem/1.2 var(--mono); color: var(--muted); margin-bottom: 0.3rem; }
+    .flow li:not(:last-child)::after { content: "→"; position: absolute; right: -1.5rem; width: 1.5rem; top: 50%; transform: translateY(-50%); text-align: center; color: var(--muted); }
+    .flow li.mine .node { border-color: var(--accent); border-left-width: 3px; background: var(--accent-soft); }
+    .flow li.mine .node::before { content: counter(f, decimal-leading-zero) " · my work"; color: var(--accent); }
+    .fig figcaption { margin-top: var(--s2); font-size: 0.8rem; color: var(--muted); }
+    .fig figcaption::before { content: ""; display: inline-block; width: 0.7rem; height: 0.7rem; margin-right: 0.45rem; vertical-align: -0.05rem; background: var(--accent-soft); border: 1px solid var(--accent); border-left-width: 3px; }
 
-    .answers { margin: 1.1rem 0 0; display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 0.7rem 1.25rem; }
-    .answers dt { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-top: 0.2rem; }
-    .answers dd { margin: 0; }
+    /* Interactive architecture walkthrough (enhancement; content is complete without it) */
+    .wt-tag { display: none; }
+    .js .wt-tag { display: inline; }
+    .js .wt-static { display: none; }
+    .wt-reset { display: none; padding: 0.15rem 0.6rem; border: 1px solid var(--ink); background: transparent; font-size: 0.78rem; cursor: pointer; transition: background-color var(--ease), color var(--ease); }
+    .js .wt-reset { display: inline-block; }
+    .wt-reset[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+    button.node { cursor: pointer; font-size: inherit; line-height: inherit; transition: border-color var(--ease), box-shadow var(--ease), background-color var(--ease); }
+    button.node:hover { border-color: var(--ink); }
+    .flow li.mine button.node:hover { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+    button.node[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--ink) !important; border-color: var(--ink) !important; }
+    button.node[aria-pressed="true"] .t { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+    .wt-panel { margin-top: var(--s2); padding-top: var(--s2); border-top: 1px dashed var(--rule); font-size: 0.9rem; }
+    .wt-panel h3 { margin: 0 0 0.2rem; font: 700 0.72rem/1.4 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; }
+    .wt-panel p { margin: 0; max-width: 38rem; }
+    .wt-panel .mine-note { margin-top: 0.25rem; }
+    .wt-panel .mine-note b { color: var(--accent); }
+    .wt-overview { margin-bottom: var(--s2); }
+    .wt-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+    .js .wt-panel { min-height: 7.5rem; }
+    .js .wt-steps > li { display: none; }
+    .js .wt-steps > li.on { display: block; }
+    .js .wt-overview.off { display: none; }
+    .js .wt-panel .wt-live { animation: wt-in 160ms ease-out; }
+    @keyframes wt-in { from { opacity: 0; } to { opacity: 1; } }
+
+    .answers { margin: var(--s3) 0 0; display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: var(--s2) 1.25rem; }
+    .answers dt { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-top: 0.25rem; }
+    .answers dd { margin: 0; max-width: 38rem; }
     .answers .note { display: block; font-size: 0.82rem; color: var(--muted); }
     .artifact { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 0.9rem; align-items: start; }
     .artifact img { border: 1px solid var(--rule); }
-    .tools { margin: 0.9rem 0 0; font-size: 0.86rem; color: var(--muted); }
+    .tools { margin: var(--s3) 0 0; padding-top: var(--s2); border-top: 1px dotted var(--rule); font-size: 0.86rem; color: var(--muted); }
     .tools span { margin-right: 0.6rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    .support { padding-block: 1.75rem; border-bottom: 1px solid var(--rule); }
-    .support ul { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; font-size: 0.9rem; }
+    .support { padding-block: var(--s5) var(--s4); border-bottom: 1px solid var(--rule); scroll-margin-top: 0.5rem; }
+    .support ul { list-style: none; margin: var(--s2) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; font-size: 0.9rem; }
     .support h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; line-height: 1.2; }
     .support .ctx { margin: 0.1rem 0 0.3rem; font-size: 0.76rem; color: var(--muted); }
     .support p { margin: 0 0 0.3rem; }
     .support a { font-weight: 600; font-size: 0.84rem; }
-    .background { padding-block: 1.75rem 2.5rem; font-size: 0.88rem; }
-    .background p { margin: 0.5rem 0; font-family: var(--serif); font-size: 1.05rem; }
+    .background { padding-block: var(--s4) var(--s5); font-size: 0.88rem; scroll-margin-top: 0.5rem; }
+    .background p { margin: 0.5rem 0; font-family: var(--serif); font-size: 1.05rem; max-width: 38rem; }
     .background ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 2rem; }
     .background li { break-inside: avoid; padding: 0.15rem 0; }
     .background li span { color: var(--muted); }
     .foot { padding-block: 1.5rem 3rem; border-top: 2px solid var(--ink); }
-    .foot ul { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; font-family: var(--serif); font-size: 1.3rem; }
+    .foot ul { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.75rem; font-family: var(--serif); font-size: 1.3rem; }
+    .foot .copy { font-family: var(--sans); vertical-align: 0.2em; margin-left: 0.4rem; }
 
     /* Narrow: sidebar becomes the page header; reading order = intro → index → cases */
     @media (max-width: 900px) {
@@ -105,17 +160,41 @@
       .side h1 { font-size: 1.9rem; }
       .headline { font-size: 1.05rem; }
       .index a small { display: none; }
+      .index a::before { display: none; }
+      .index a strong span { min-width: 0; margin-right: 0.3rem; }
       .index ol { display: flex; flex-wrap: wrap; gap: 0 1.1rem; }
       .index li { border-top: 0; }
       .index .minor { gap: 1.1rem; }
       .side-contact { display: none; }
-      .flow { grid-auto-flow: row; gap: 1.1rem; }
-      .flow li:not(:last-child)::after { content: "↓"; right: auto; left: 1rem; top: auto; bottom: -1.15rem; transform: none; }
+      .case { padding-block: var(--s4) var(--s5); }
+      .flow { grid-auto-flow: row; gap: 1.5rem; }
+      .flow li:not(:last-child)::after { content: "↓"; right: auto; left: 0; width: 2.4rem; top: auto; bottom: -1.5rem; height: 1.5rem; line-height: 1.5rem; transform: none; }
+      .js .wt-panel { min-height: 11rem; }
       .answers { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
       .answers dd { margin-bottom: 0.65rem; }
       .artifact { grid-template-columns: minmax(0, 1fr); }
       .support ul { grid-template-columns: minmax(0, 1fr); }
       .background ul { columns: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+    @media print {
+      body { background: #fff; font-size: 11pt; }
+      .assignment, .skip, .actions, .index, .copy, .copy-status, .wt-reset, .wt-tag { display: none !important; }
+      .layout { display: block; }
+      .side { position: static; min-height: 0; border: 0; padding: 0 0 1rem; background: none; }
+      .side-contact { display: block; }
+      .main { padding: 0; }
+      .col { max-width: none; }
+      .case { break-inside: auto; padding-block: 1.25rem; }
+      .fig, .flow li, .artifact, .support li { break-inside: avoid; }
+      .js .wt-static { display: block; }
+      .js .wt-panel { min-height: 0; }
+      .js .wt-steps > li, .js .wt-overview.off { display: block; }
+      .flow { grid-auto-flow: column; }
+      .flow li:not(:last-child)::after { content: "→"; right: -1.5rem; left: auto; top: 50%; bottom: auto; transform: translateY(-50%); }
+      main a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: var(--muted); word-break: break-all; }
     }
   </style>
 </head>
@@ -148,7 +227,7 @@
       <div class="side-contact">
         <p class="label">Get in touch</p>
         <ul>
-          <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+          <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a> <button type="button" class="copy" data-copy="aneesamjad@uchicago.edu" hidden>Copy email</button> <span class="copy-status" role="status"></span></li>
           <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
         </ul>
@@ -161,14 +240,29 @@
           <p class="kicker">01 · Built and deployed internally</p>
           <h2 id="ob-h">Ourea Brain</h2>
           <p class="sub">Company knowledge, accessible through Slack.</p>
-          <figure class="fig">
-            <p class="label kind">Explanatory diagram</p>
+          <figure class="fig" data-walkthrough>
+            <div class="fig-head">
+              <p class="label"><span class="wt-static">Explanatory diagram</span><span class="wt-tag">Interactive architecture walkthrough · select a stage</span></p>
+              <button type="button" class="wt-reset" aria-pressed="true">Complete overview</button>
+            </div>
             <ol class="flow" aria-label="Ourea Brain simplified architecture">
-              <li>Question asked in Slack</li>
-              <li class="mine">App on Google Cloud Run</li>
-              <li class="mine">Company context + Claude API</li>
-              <li>Response in Slack</li>
+              <li><span class="node"><span class="t">Question asked in Slack</span></span></li>
+              <li class="mine"><span class="node"><span class="t">App on Google Cloud Run</span></span></li>
+              <li class="mine"><span class="node"><span class="t">Company context + Claude API</span></span></li>
+              <li><span class="node"><span class="t">Response in Slack</span></span></li>
             </ol>
+            <div class="wt-panel">
+              <div class="wt-overview">
+                <h3>Overview<span class="wt-tag"> · all four stages</span></h3>
+                <p>A colleague’s question travels from Slack to the app, which brings in company context and Anthropic’s Claude API, and the answer returns to Slack. This walkthrough explains the system; it is not a live AI demo.</p>
+              </div>
+              <ol class="wt-steps">
+                <li><h3>Stage 01 · Question asked in Slack</h3><p>A colleague at Ourea Energy asks a question in Slack, where the team already works.</p><p class="mine-note"><b>My part:</b> I built the app’s connection to Slack.</p></li>
+                <li><h3>Stage 02 · App on Google Cloud Run</h3><p>The Slack-connected app runs on Google Cloud Run and handles the question.</p><p class="mine-note"><b>My part:</b> I built and deployed this app.</p></li>
+                <li><h3>Stage 03 · Company context + Claude API</h3><p>The app draws on company context from connected sources — Slack, Gmail, Google Docs, and meeting notes — and uses Anthropic’s Claude API to form an answer.</p><p class="mine-note"><b>My part:</b> I built these source connections and the use of the Claude API.</p></li>
+                <li><h3>Stage 04 · Response in Slack</h3><p>The answer is returned in Slack. In an early live deployment, it answered a Slack question using meeting-note context.</p></li>
+              </ol>
+            </div>
             <figcaption>Simplified architecture; highlighted stages show my implementation.</figcaption>
           </figure>
           <dl class="answers">
@@ -184,12 +278,12 @@
           <h2 id="pp-h">PublicPath</h2>
           <p class="sub">Making public-sector opportunities easier to find.</p>
           <figure class="fig">
-            <p class="label kind">Explanatory diagram</p>
+            <div class="fig-head"><p class="label">Explanatory diagram</p></div>
             <ol class="flow" aria-label="PublicPath simplified data flow">
-              <li>External job APIs</li>
-              <li class="mine">Scheduled ingestion (Python, GitHub Actions)</li>
-              <li class="mine">Clean, deduplicate, normalize, validate</li>
-              <li>Postgres on Supabase → site search and filters</li>
+              <li><span class="node">External job APIs</span></li>
+              <li class="mine"><span class="node">Scheduled ingestion (Python, GitHub Actions)</span></li>
+              <li class="mine"><span class="node">Clean, deduplicate, normalize, validate</span></li>
+              <li><span class="node">Postgres on Supabase → site search and filters</span></li>
             </ol>
             <figcaption>Simplified data flow; highlighted stages show my work.</figcaption>
           </figure>
@@ -212,12 +306,12 @@
           <h2 id="cl-h">CLARITY</h2>
           <p class="sub">Turning clinical notes into patient-friendly explanations.</p>
           <figure class="fig">
-            <p class="label kind">Explanatory diagram</p>
+            <div class="fig-head"><p class="label">Explanatory diagram</p></div>
             <ol class="flow" aria-label="CLARITY pipeline sequence">
-              <li>De-identified clinical note (JSON)</li>
-              <li class="mine">Explanatory content</li>
-              <li class="mine">Narration (Neural TTS) and slides</li>
-              <li class="mine">MP4 video</li>
+              <li><span class="node">De-identified clinical note (JSON)</span></li>
+              <li class="mine"><span class="node">Explanatory content</span></li>
+              <li class="mine"><span class="node">Narration (Neural TTS) and slides</span></li>
+              <li class="mine"><span class="node">MP4 video</span></li>
             </ol>
             <figcaption>Simplified sequence automated by my Python pipeline.</figcaption>
           </figure>
@@ -256,7 +350,7 @@
         <footer class="foot" id="contact" aria-labelledby="foot-h">
           <h2 class="label" id="foot-h">Get in touch</h2>
           <ul>
-            <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+            <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a><button type="button" class="copy" data-copy="aneesamjad@uchicago.edu" hidden>Copy email</button> <span class="copy-status" role="status"></span></li>
             <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
           </ul>
@@ -264,5 +358,72 @@
       </div>
     </main>
   </div>
+  <script>
+  (function () {
+    // 1. Architecture walkthrough: stage nodes become toggle buttons; overview stays the default.
+    document.querySelectorAll('[data-walkthrough]').forEach(function (fig) {
+      var items = fig.querySelectorAll('.flow > li');
+      var steps = fig.querySelectorAll('.wt-steps > li');
+      var overview = fig.querySelector('.wt-overview');
+      var reset = fig.querySelector('.wt-reset');
+      var buttons = [];
+      items.forEach(function (li, i) {
+        var span = li.querySelector('.node');
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'node';
+        b.innerHTML = span.innerHTML;
+        b.setAttribute('aria-pressed', 'false');
+        b.setAttribute('aria-label', 'Stage ' + (i + 1) + ': ' + span.textContent.trim() + (li.classList.contains('mine') ? ', my work' : ''));
+        span.replaceWith(b); buttons.push(b);
+        b.addEventListener('click', function () { select(b.getAttribute('aria-pressed') === 'true' ? -1 : i); });
+      });
+      function select(n) {
+        buttons.forEach(function (b, i) { b.setAttribute('aria-pressed', String(i === n)); });
+        reset.setAttribute('aria-pressed', String(n < 0));
+        steps.forEach(function (s, i) { s.classList.toggle('on', i === n); s.classList.toggle('wt-live', i === n); });
+        overview.classList.toggle('off', n >= 0);
+      }
+      reset.addEventListener('click', function () { select(-1); });
+      fig.addEventListener('keydown', function (e) { if (e.key === 'Escape') select(-1); });
+    });
+
+    // 2. Active-project indicator: marks the index link for the section in view (no URL or focus changes).
+    var links = {};
+    document.querySelectorAll('.index a[href^="#"]').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          Object.keys(links).forEach(function (id) { links[id].removeAttribute('aria-current'); });
+          if (links[en.target.id]) links[en.target.id].setAttribute('aria-current', 'true');
+        });
+      }, { rootMargin: '-35% 0px -60% 0px' });
+      Object.keys(links).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+      // the last short sections can never reach the observation band, so mark Background at the page end
+      addEventListener('scroll', function () {
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4 && links.background) {
+          Object.keys(links).forEach(function (id) { links[id].removeAttribute('aria-current'); });
+          links.background.setAttribute('aria-current', 'true');
+        }
+      }, { passive: true });
+    }
+
+    // 3. Copy email: only shown when the Clipboard API exists; reports success or failure.
+    if (navigator.clipboard && window.isSecureContext) {
+      document.querySelectorAll('.copy').forEach(function (b) {
+        var status = b.parentNode.querySelector('.copy-status'), t;
+        b.hidden = false;
+        b.addEventListener('click', function () {
+          navigator.clipboard.writeText(b.dataset.copy).then(function () {
+            b.textContent = 'Copied'; status.textContent = '';
+          }, function () {
+            status.textContent = 'Couldn’t copy — select the address instead.';
+          });
+          clearTimeout(t); t = setTimeout(function () { b.textContent = 'Copy email'; status.textContent = ''; }, 2500);
+        });
+      });
+    }
+  })();
+  </script>
 </body>
 </html>

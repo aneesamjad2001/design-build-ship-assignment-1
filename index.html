@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Process Gallery — Anees Amjad portfolio</title>
   <meta name="description" content="25 landing-page prototypes for Anees Amjad's portfolio, from wide exploration to a final choice.">
+  <link rel="icon" href="assets/aa.svg" type="image/svg+xml">
   <style>
     :root {
       --bg: #fafafa;
@@ -154,6 +155,26 @@
     .process p { margin: 0; font-size: 0.9rem; color: var(--muted); }
     .phase { grid-column: 1 / -1; margin: 1.5rem 0 0.25rem; font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 
+    .why { margin: 1.5rem 0 0; }
+    .why h3 { margin: 0; font-size: 1rem; }
+    .why .attrib { margin: 0.25rem 0 1rem; font-size: 0.85rem; color: var(--muted); }
+    .compare { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .compare li { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+    .compare li.won { border: 2px solid #8a3a12; }
+    .compare img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-bottom: 1px solid var(--line); }
+    .compare div { padding: 0.75rem 0.9rem 0.9rem; font-size: 0.9rem; }
+    .compare h4 { margin: 0 0 0.3rem; font-size: 0.95rem; }
+    .compare .won-tag { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: #8a3a12; margin-left: 0.4rem; }
+    .compare p { margin: 0; color: var(--muted); }
+    .compare p b { color: var(--ink); font-weight: 600; }
+    .phases { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1.25rem; padding: 0; list-style: none; font-size: 0.9rem; }
+    .phases a { display: inline-block; padding: 0.3rem 0.75rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; }
+    .phases a:hover { border-color: var(--ink); }
+    .versions > li { scroll-margin-top: 1rem; }
+    .go { display: block; margin-top: 0.2rem; font-size: 0.8rem; font-weight: 400; color: var(--muted); text-decoration: underline; text-underline-offset: 0.2em; }
+    .card:hover .go { color: var(--ink); }
+    @media (max-width: 760px) { .compare { grid-template-columns: minmax(0, 1fr); } }
+
     footer {
       padding: 2rem 0 3rem;
       border-top: 1px solid var(--line);
@@ -192,6 +213,15 @@
           <p><strong><a href="v25/index.html">v25 · Final portfolio →</a></strong></p>
           <p>“I chose v25 because it puts a complete engineering case on the first screen while keeping my name, project index, and contact available. Ourea Brain leads because AI engineering is a central audience; PublicPath and CLARITY show the breadth of my product and research work. The final design combines editorial typography, diagrams that identify my contribution, and accurately labelled artifacts. I preferred its continuous reading experience to hidden project panels and its compact diagrams to v24’s larger visual spreads. The trade-off is a narrower desktop reading area and a mobile header that needs careful compression.”</p>
         </div>
+              <div class="why">
+          <h3 id="why-title">Why this version won: v23, v24 and v25 compared</h3>
+          <p class="attrib">AI-assisted design critique supporting Anees’s final choice above. These are design observations, not user-testing results.</p>
+          <ul class="compare" aria-labelledby="why-title">
+            <li><a href="v23/index.html" tabindex="-1" aria-hidden="true"><img src="assets/compare-v23.jpg" width="640" height="400" alt="" loading="lazy"></a><div><h4><a href="v23/index.html">v23 · Quick overview</a></h4><p><b>Strength:</b> strongest quick overview. <b>Cost:</b> the detailed work only follows substantial summary cards.</p></div></li>
+            <li><a href="v24/index.html" tabindex="-1" aria-hidden="true"><img src="assets/compare-v24.jpg" width="640" height="400" alt="" loading="lazy"></a><div><h4><a href="v24/index.html">v24 · Artifact-led cases</a></h4><p><b>Strength:</b> strongest visual emphasis. <b>Cost:</b> large figures and divided text make reading more fragmented.</p></div></li>
+            <li class="won"><a href="v25/index.html" tabindex="-1" aria-hidden="true"><img src="assets/compare-v25.jpg" width="640" height="400" alt="" loading="lazy"></a><div><h4><a href="v25/index.html">v25 · Final selection</a><span class="won-tag">Chosen</span></h4><p><b>Strength:</b> the complete first case is immediately available, reading is continuous, and project navigation stays in view. <b>Trade-off:</b> a narrower desktop reading area.</p></div></li>
+          </ul>
+        </div>
       </section>
 
       <section aria-labelledby="story-title">
@@ -206,172 +236,177 @@
 
       <section aria-labelledby="versions-title">
         <h2 id="versions-title">Versions</h2>
+        <ul class="phases" aria-label="Browse by phase">
+          <li><a href="#v01">1 · Explore: v01–v12</a></li>
+          <li><a href="#v13">2 · Converge: v13–v24</a></li>
+          <li><a href="#v25">3 · Decide: v25 (final)</a></li>
+        </ul>
         <ol class="versions">
-          <li>
+          <li id="v01">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v01/index.html" title="Preview of v01" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v01/index.html" title="Preview of v01: Project-first editorial" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v01/index.html"><span class="tag">v01</span>Project-first editorial</a></h3>
+                <h3><a href="v01/index.html"><span class="tag">v01</span>Project-first editorial<span class="go">Open v01 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Recruiters skim for evidence of real work, so leading with one project (PublicPath) and spelling out my exact contribution in a separate box will communicate more than a list of skills. An asymmetric, magazine-style layout should make that lead project feel deliberate rather than templated.</p>
                 <p class="note"><strong>Revision 1</strong>First screenshots showed the headline filling the whole first screen, so the "project-first" page didn't actually show the project there. Shrank the hero, removed a paragraph that repeated the contribution box, and dropped the staggered indents in the secondary list (they read as misalignment).</p>
                 <p class="note review"><strong>External review input</strong>Strong professional foundation; retain typography and ownership clarity, but deepen secondary-project evidence.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v02">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v02/index.html" title="Preview of v02" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v02/index.html" title="Preview of v02: Terminal session" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v02/index.html"><span class="tag">v02</span>Terminal session</a></h3>
+                <h3><a href="v02/index.html"><span class="tag">v02</span>Terminal session<span class="go">Open v02 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Engineers and technical recruiters read a command line as home turf. Framing the portfolio as a terminal session (<code>whoami</code>, <code>ls projects/</code>, <code>cat README.md</code>) should signal engineering fluency before a word is read, and the README gives PublicPath a natural lead slot. Risk: may read as a gimmick to non-technical visitors.</p>
                 <p class="note review"><strong>External review input</strong>Coherent terminal theme, but simulated commands add overhead without proving engineering ability.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v03">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v03/index.html" title="Preview of v03" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v03/index.html" title="Preview of v03: Policy memo" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v03/index.html"><span class="tag">v03</span>Policy memo</a></h3>
+                <h3><a href="v03/index.html"><span class="tag">v03</span>Policy memo<span class="go">Open v03 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Shift tone toward the public-sector half of my work. A government memorandum (TO/FROM/RE, bottom line up front, numbered record of work) matches how policy teams read, and makes the MSCAPP identity visible. Risk: may feel dry or formal to startup readers.</p>
                 <p class="note review"><strong>External review input</strong>Useful structure and policy connection, but the memorandum identity overshadows the person and feels overly formal.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v04">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v04/index.html" title="Preview of v04" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v04/index.html" title="Preview of v04: Pipeline schematic" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v04/index.html"><span class="tag">v04</span>Pipeline schematic</a></h3>
+                <h3><a href="v04/index.html"><span class="tag">v04</span>Pipeline schematic<span class="go">Open v04 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Show my contribution instead of describing it. Each project is drawn as a pipeline on engineering grid paper, and the stages I built are highlighted in orange, so a recruiter sees my exact part of each system at a glance. Risk: the pipeline metaphor fits PublicPath well but is a stretch for projects without clear stages.</p>
                 <p class="note review"><strong>External review input</strong>Best ownership explanation; retain highlighted stages, but remove diagrams that merely repeat prose.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v05">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v05/index.html" title="Preview of v05" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v05/index.html" title="Preview of v05: Brutalist manifesto" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v05/index.html"><span class="tag">v05</span>Brutalist manifesto</a></h3>
+                <h3><a href="v05/index.html"><span class="tag">v05</span>Brutalist manifesto<span class="go">Open v05 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Test loudness as a strategy: enormous stacked type, hard black borders, one signal colour. Does an opinionated, poster-like page make me memorable among many portfolios, or does it overwhelm the content? The headline restates the positioning line as a manifesto.</p>
                 <p class="note review"><strong>External review input</strong>Memorable scale, but the slogan overwhelms the evidence.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v06">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v06/index.html" title="Preview of v06" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v06/index.html" title="Preview of v06: Chicago work map" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v06/index.html"><span class="tag">v06</span>Chicago work map</a></h3>
+                <h3><a href="v06/index.html"><span class="tag">v06</span>Chicago work map<span class="go">Open v06 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Use place as the organizing idea. A stylised Chicago street grid with Lake Michigan, where each project is a pin and PublicPath is the big red one; a legend panel carries the detail. Ties the page to Chicago and to the geospatial side of my work. Risk: the metaphor is decorative, since pins are projects, not addresses (the page says so).</p>
                 <p class="note review"><strong>External review input</strong>Personal Chicago reference, but non-geographic pins make the map mostly decorative.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v07">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v07/index.html" title="Preview of v07" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v07/index.html" title="Preview of v07: One calm column" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v07/index.html"><span class="tag">v07</span>One calm column</a></h3>
+                <h3><a href="v07/index.html"><span class="tag">v07</span>One calm column<span class="go">Open v07 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Strip everything back: one narrow column of plain sentences, no cards, no colour blocks, no visual tricks. Tests whether clear writing alone is enough for a recruiter, and whether quietness reads as confidence or as too little effort.</p>
                 <p class="note review"><strong>External review input</strong>Readable and direct, but too little hierarchy for substantial work.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v08">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v08/index.html" title="Preview of v08" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v08/index.html" title="Preview of v08: Recruiter scorecard" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v08/index.html"><span class="tag">v08</span>Recruiter scorecard</a></h3>
+                <h3><a href="v08/index.html"><span class="tag">v08</span>Recruiter scorecard<span class="go">Open v08 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Design for the skim. A candidate-snapshot card and a project table (contribution, stack, area) with working filter buttons in plain JavaScript. Where my brief has no stack for a project, the table says “Not listed” rather than guessing, which also exposes the content gap. Risk: feels like a database, not a person.</p>
                 <p class="note review"><strong>External review input</strong>Useful comparison structure, but empty fields and database styling feel unfinished and impersonal.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v09">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v09/index.html" title="Preview of v09" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v09/index.html" title="Preview of v09: Newspaper front page" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v09/index.html"><span class="tag">v09</span>Newspaper front page</a></h3>
+                <h3><a href="v09/index.html"><span class="tag">v09</span>Newspaper front page<span class="go">Open v09 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Treat PublicPath as front-page news: masthead, headline, deck, drop cap, an “At a glance” box, and the other projects as briefs in a side rail. Tests whether a story framing makes the lead project feel more significant than a list item does.</p>
                 <p class="note review"><strong>External review input</strong>Strong lead-story hierarchy, but repetition and third-person voice weaken the personal introduction.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v10">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v10/index.html" title="Preview of v10" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v10/index.html" title="Preview of v10: Bento grid" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v10/index.html"><span class="tag">v10</span>Bento grid</a></h3>
+                <h3><a href="v10/index.html"><span class="tag">v10</span>Bento grid<span class="go">Open v10 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>A modern product-page grid: tiles of different sizes and soft colours, with PublicPath, my part, the stack, and contact each getting their own tile. Tests whether chunking the content lets a visitor take in everything at a glance, versus feeling generic and template-like.</p>
                 <p class="note review"><strong>External review input</strong>Efficient scanning, but separate tiles fragment each project’s story.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v11">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v11/index.html" title="Preview of v11" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v11/index.html" title="Preview of v11: Choose your path" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v11/index.html"><span class="tag">v11</span>Choose your path</a></h3>
+                <h3><a href="v11/index.html"><span class="tag">v11</span>Choose your path<span class="go">Open v11 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Let the visitor say who they are (hiring, building a startup, collaborating) and reshape the page: same facts, different order, framing, and call to action, plus an accent colour per path. Vanilla JS; without JS all three views show in sequence. Risk: an extra click before any content.</p>
                 <p class="note review"><strong>External review input</strong>Functional audience adaptation, but the selector delays evidence and duplicates similar information.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v12">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v12/index.html" title="Preview of v12" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v12/index.html" title="Preview of v12: Museum exhibition" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v12/index.html"><span class="tag">v12</span>Museum exhibition</a></h3>
+                <h3><a href="v12/index.html"><span class="tag">v12</span>Museum exhibition<span class="go">Open v12 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Wildcard: present the work as an exhibition, with entrance wall text, framed abstract illustrations, and museum labels (title, medium = stack, role). Tests whether an unexpected, crafted framing makes the portfolio memorable without hiding the facts. Illustrations are labelled as not screenshots.</p>
                 <p class="note review"><strong>External review input</strong>Thoughtful presentation, but abstract artwork and artist framing distract from engineering evidence.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v13">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v13/index.html" title="Preview of v13" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v13/index.html" title="Preview of v13: Editorial casebook" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v13/index.html"><span class="tag">v13</span>Editorial casebook</a></h3>
+                <h3><a href="v13/index.html"><span class="tag">v13</span>Editorial casebook<span class="go">Open v13 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Each project as a short case study: problem, my contribution, a compact system figure with my stages highlighted, then evidence. A compact hero plus a contents list keeps PublicPath on the first screen at laptop size.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v01’s serif type, asymmetric rail and project-first order; v04’s highlighted ‘my work’ stages, now small and only where they add information; v12’s concise labels (Role, Context, Stack). Rejects v05’s oversized slogan and v12’s abstract art; uses a real PublicPath screenshot instead.</p>
                 <p class="note review"><strong>External review input</strong>Best overall reading structure; retain case-study rhythm and role clarity, but shorten the opening and bring evidence higher.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v14">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v14/index.html" title="Preview of v14" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v14/index.html" title="Preview of v14: System atlas" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v14/index.html"><span class="tag">v14</span>System atlas</a></h3>
+                <h3><a href="v14/index.html"><span class="tag">v14</span>System atlas<span class="go">Open v14 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Let diagrams carry the structure: each project is a numbered ‘plate’, and the prose becomes annotations keyed to the diagram, so text and figure don’t repeat each other. A legend separates what I built, what I designed, and the surrounding system.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Builds on v04’s ownership highlighting but answers the review note about diagrams that merely repeat prose: here the diagram is primary and the notes explain each step once. Keeps v01’s compact, project-first opening. Rejects v04’s decorative grid paper and engineering title block.</p>
                 <p class="note review"><strong>External review input</strong>Strongest system explanations; retain accurate diagrams and numbered annotations, but simplify the visual scaffolding and mobile layout.</p>
@@ -379,26 +414,26 @@
               </div>
             </article>
           </li>
-          <li>
+          <li id="v15">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v15/index.html" title="Preview of v15" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v15/index.html" title="Preview of v15: Evidence exhibition" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v15/index.html"><span class="tag">v15</span>Evidence exhibition</a></h3>
+                <h3><a href="v15/index.html"><span class="tag">v15</span>Evidence exhibition<span class="go">Open v15 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Lead with real artifacts, not descriptions: the live PublicPath homepage sits beside the intro on the first screen, and the team dashboard anchors the supporting work. Private work gets plain ‘design sheet’ and ‘pipeline sheet’ cards that say what can’t be shown and why.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Inherits v12’s deliberate spacing and short labels (Artifact, Role, I built, Tools) but replaces its abstract artwork and artist framing with actual screenshots and honest spec sheets. Rejects decorative stand-ins for evidence.</p>
                 <p class="note review"><strong>External review input</strong>Strong artifact presentation; retain real evidence, but prevent a large product-marketing screenshot from overshadowing my contribution.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v16">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v16/index.html" title="Preview of v16" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v16/index.html" title="Preview of v16: Slide deck" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v16/index.html"><span class="tag">v16</span>Slide deck</a></h3>
+                <h3><a href="v16/index.html"><span class="tag">v16</span>Slide deck<span class="go">Open v16 →</span></a></h3>
                 <p class="note late"><strong>Late structural revision (6 Oct, after v25 was chosen)</strong>Rebuilt as a vertical slide deck: a title slide, one full-height slide per featured project (visual beside text), then supporting work and contact, with gentle scroll-snap and a dot navigator that marks the current slide. This replaces the left-index-plus-pane layout that resembled v25’s sidebar. Original version: commit 558d26b.</p>
                 <p class="note"><strong>Original hypothesis</strong>Treat the portfolio like a reading app: a persistent project index beside a substantial reading pane, with PublicPath open by default so real work is visible immediately. Optional technical detail sits in a native details element. On narrow screens (or without JavaScript) the index becomes jump links and every pane stacks.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v11’s idea of letting the visitor steer, but drops its mandatory choice: the work is already showing. Keeps v13’s per-project structure (role, tools, copy, flow, evidence) inside each pane. Rejects v10’s fragmented tiles; each project stays one continuous story.</p>
@@ -406,26 +441,26 @@
               </div>
             </article>
           </li>
-          <li>
+          <li id="v17">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v17/index.html" title="Preview of v17" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v17/index.html" title="Preview of v17: Problem-led narrative" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v17/index.html"><span class="tag">v17</span>Problem-led narrative</a></h3>
+                <h3><a href="v17/index.html"><span class="tag">v17</span>Problem-led narrative<span class="go">Open v17 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Organize the page around the questions the work addresses, not project names, so a collaborator sees the problem before the tool. Each question gets a colour band with ‘What I built’ beside ‘How it works’, and my steps are marked inline. The questions come from the project descriptions and READMEs.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Inherits v09’s strong lead-story hierarchy without its third-person voice or repetition; keeps v04’s explicit ‘my work’ marking as small inline tags. Rejects v11’s audience selector: the framing serves every visitor without a click.</p>
                 <p class="note review"><strong>External review input</strong>Useful problem framing, but long questions repeat content and delay project names.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v18">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v18/index.html" title="Preview of v18" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v18/index.html" title="Preview of v18: Capability index" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v18/index.html"><span class="tag">v18</span>Capability index</a></h3>
+                <h3><a href="v18/index.html"><span class="tag">v18</span>Capability index<span class="go">Open v18 →</span></a></h3>
                 <p class="note late"><strong>Late structural revision (6 Oct, after v25 was chosen)</strong>Rebuilt as a back-of-book index: alphabetical capability entries, each pointing to the project that shows it, then the referenced projects. This removes the table structure it shared with v08 and tests whether a capability-first visitor can look things up like an index. Original version: commit 9bc887f.</p>
                 <p class="note"><strong>Original hypothesis</strong>Answer a recruiter’s real question, ‘can this person do X?’, directly: engineering capabilities as rows, projects as columns, and every filled cell names its evidence. Full project notes sit under the matrix. On phones each capability becomes a card that lists only its evidence, with no blank cells.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Keeps v08’s comparison structure but drops what the review flagged: no ‘Not listed’ fields, and warm editorial type instead of database styling. Keeps v13’s featured-project copy and the real PublicPath screenshot below the matrix.</p>
@@ -433,92 +468,93 @@
               </div>
             </article>
           </li>
-          <li>
+          <li id="v19">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v19/index.html" title="Preview of v19" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v19/index.html" title="Preview of v19: Annotated build sequence" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v19/index.html"><span class="tag">v19</span>Annotated build sequence</a></h3>
+                <h3><a href="v19/index.html"><span class="tag">v19</span>Annotated build sequence<span class="go">Open v19 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Go deep on one build instead of wide on many: PublicPath’s pipeline as a vertical, step-by-step sequence, with what each step produces and whether it was my work or the platform’s. The other projects follow as contrasting builds seen through the same lens.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Takes v04’s ‘stage I built’ idea to its most explicit form, step by step. Keeps v13’s sticky role/tools summary and real screenshot beside the steps. Rejects v02’s simulated terminal: shows the engineering sequence plainly instead of dressing it as commands.</p>
                 <p class="note review"><strong>External review input</strong>Strong technical-detail material, but too much emphasis on one project and overly absolute output claims.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v20">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v20/index.html" title="Preview of v20" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v20/index.html" title="Preview of v20: Project drawers" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v20/index.html"><span class="tag">v20</span>Project drawers</a></h3>
+                <h3><a href="v20/index.html"><span class="tag">v20</span>Project drawers<span class="go">Open v20 →</span></a></h3>
                 <p class="note late"><strong>Late structural revision (6 Oct, after v25 was chosen)</strong>Rebuilt as a single column of project drawers (native details/summary): each row shows number, title and a one-line summary, and opens in place to the full entry with its diagram or artifact. This replaces the card grid it shared with v10 and v23 with an open-in-place browsing model. Original version: commit 20c69f4.</p>
                 <p class="note"><strong>Original hypothesis</strong>Last broad exploration: every project appears at once as one uniform frame, like a photographer’s contact sheet, each a complete entry (artifact or diagram, title, contribution, link to details). Featured projects get an editor’s red frame, and each frame says whether it is a real screenshot or a simplified diagram.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Answers v10’s fragmentation: one frame per project instead of separate tiles for role, stack and copy. Keeps v15’s rule that real artifacts are labelled as such. Diagrams are HTML rather than SVG, so they reflow on phones instead of scrolling sideways as v14’s did.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v21">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v21/index.html" title="Preview of v21" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v21/index.html" title="Preview of v21: Synthesis, AI-first" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v21/index.html"><span class="tag">v21</span>Synthesis, AI-first</a></h3>
+                <h3><a href="v21/index.html"><span class="tag">v21</span>Synthesis, AI-first<span class="go">Open v21 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>First convergence: an editorial portfolio with visible engineering evidence, led by Ourea Brain. A compact hero with a prominent name puts the first case’s architecture on the first screen; each case gives audience, my contribution, a numbered ‘how it works’, and labelled evidence, without repeating the same paragraph.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Structure from v13 (rail, case rhythm, role clarity) with a shorter opening; numbered steps from v14, drawn in HTML so they read on phones; artifact treatment from v15, with the PublicPath screenshot kept small and captioned as the team’s product. Uses v19’s detail only inside ‘How it works’, rewritten as mechanisms rather than guarantees.</p>
                 <p class="note"><strong>Anees’s evaluation</strong>Chosen as the starting direction for the final convergence: “Leading with Ourea Brain introduces my deployed AI work first.”</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v22">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v22/index.html" title="Preview of v22" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v22/index.html" title="Preview of v22: Synthesis, product-first" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v22/index.html"><span class="tag">v22</span>Synthesis, product-first</a></h3>
+                <h3><a href="v22/index.html"><span class="tag">v22</span>Synthesis, product-first<span class="go">Open v22 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Controlled comparison with v21: identical visual system and case content, but PublicPath leads, the intro names the platform first, and the first-screen artifact is PublicPath’s data flow instead of Ourea Brain’s architecture. Tests whether product-building or AI-system experience is the stronger introduction.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Deliberately near-identical to v21; only order, numbering, intro clause order and the hero artifact change. It is a convergence step, not one of the broad explorations.</p>
                 <p class="note"><strong>Anees’s evaluation</strong>Not chosen; Anees preferred the AI-first order of v21.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v23">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v23/index.html" title="Preview of v23" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v23/index.html" title="Preview of v23: Fast overview" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v23/index.html"><span class="tag">v23</span>Fast overview</a></h3>
+                <h3><a href="v23/index.html"><span class="tag">v23</span>Fast overview<span class="go">Open v23 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Can a visitor understand my focus and pick a project in seconds? All three featured projects sit side by side right under a compact hero, each answering ‘what it does’, ‘what I built’ and ‘observed/artifact/output’. Full cases follow as one readable column, with the technical ‘how it works’ tucked into native disclosure elements.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Starts from v21 (Anees’s chosen direction), keeping its order, type and contribution marking. Removes v21’s hero diagram so the architecture appears only once, inside its case. New structure: overview band, then single-column long-read cases (not v20’s artifact frames or v16’s hidden panes).</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v24">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v24/index.html" title="Preview of v24" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v24/index.html" title="Preview of v24: Artifact-led casebook" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v24/index.html"><span class="tag">v24</span>Artifact-led casebook</a></h3>
+                <h3><a href="v24/index.html"><span class="tag">v24</span>Artifact-led casebook<span class="go">Open v24 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Lead every case with its visual: a full-width dark figure spread holding an explanatory diagram (and, for PublicPath, the captioned homepage beside the data flow), then three short columns: what it does, what I built, and observed behaviour, artifact or output. A ‘list of figures’ in the hero makes every visual findable.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Builds on v21’s order and contribution marking, v14’s diagram clarity and v15’s artifact labelling, but changes the composition: figure first, text after, in full-width spreads (not v14’s side-by-side plates). Every figure states whether it is an explanatory diagram or a project artifact.</p>
               </div>
             </article>
           </li>
-          <li>
+          <li id="v25">
             <article class="card">
               <div class="thumb" aria-hidden="true">
-                <iframe src="v25/index.html" title="Preview of v25" loading="lazy" tabindex="-1"></iframe>
+                <iframe src="v25/index.html" title="Preview of v25: Recommended synthesis" loading="lazy" tabindex="-1"></iframe>
               </div>
               <div class="card-body">
-                <h3><a href="v25/index.html"><span class="tag">v25</span>Recommended synthesis</a></h3>
+                <h3><a href="v25/index.html"><span class="tag">v25</span>Recommended synthesis<span class="go">Open v25 →</span></a></h3>
                 <p class="note"><strong>Hypothesis</strong>Combine v23’s fast choice with v24’s visible contribution diagrams: a persistent profile sidebar keeps name, intro, actions, a one-line index of all three projects and contact visible while the cases scroll; each case shows a light, labelled diagram with my stages marked, then ‘what it does / what I built / observed behaviour, artifact or output’.</p>
                 <p class="note"><strong>Builds on / rejects</strong>From v23: all three projects discoverable at once, and quick access to every project. From v24: diagram before prose, explicit diagram/artifact labels, and a small captioned screenshot. Drops v24’s heavy dark panels and v23’s hidden diagrams. Differs from v16: nothing is hidden; the sidebar is identity plus navigation, not a pane switcher. On phones the sidebar becomes the header, then the cases.</p>
                 <p class="note"><strong>Anees’s evaluation</strong>Final selection (see top of page).</p>
+                <p class="note late"><strong>Polish pass after selection (6 Oct, afternoon)</strong>Made after Anees chose v25; layout and content unchanged. One spacing scale for every case; diagram nodes with consistent padding, centred connectors and a consistent “my work” marker; an optional interactive architecture walkthrough for Ourea Brain (explains the system; not a live AI demo; full diagram and text remain without JavaScript); a project-in-view marker in the sidebar index; Copy email; print styles; local “AA” favicon. Anees had not reviewed these changes when this note was written.</p>
               </div>
             </article>
           </li>
@@ -566,6 +602,7 @@
           <li><h3>Rendering</h3><p>Headless Chrome screenshots at 1280×800 and 390px wide for every version as it was built; final candidates (v21–v25) inspected section by section at both widths.</p></li>
           <li><h3>Keyboard</h3><p>Real Tab and Enter key events sent through Chrome’s DevTools protocol on v13, v14, v16, v18 and v20–v25 and on this gallery: every focused element showed a visible focus style; Enter followed the main links, opened v20’s drawers and moved v16 to the right slide.</p></li>
           <li><h3>Final version (v25)</h3><p>Checked at 1280×800, 1280×720, 390×844 and a 200%-zoom equivalent (640px wide): no sideways overflow, the sidebar fits without its own scroll region, and on narrow screens the first case starts after a compact header.</p></li>
+          <li><h3>v25 polish pass</h3><p>Re-checked at 1280×720, 1280×800, 390×844 and 640×360 (200% zoom): no sideways overflow, sidebar still fits without its own scroll. Walkthrough operated with real Tab/Enter/Escape key events; explanation area kept the same height across stages; reduced-motion setting removes transitions; with JavaScript disabled the full diagram and all four stage explanations are shown.</p></li>
           <li><h3>Structure and contrast</h3><p>Automated checks for one h1, heading order, image alt text, page-level horizontal overflow (none), broken local links and anchors (none), and WCAG contrast ratios of the key colour pairs (all ≥ 4.5:1 after fixes).</p></li>
           <li><h3>Not performed</h3><p>No user testing, no screen-reader testing, no real phones or Safari/Firefox. LinkedIn blocks automated requests, so that link is unverified. joinpublicpath.com loads, but its job search was failing when checked.</p></li>
         </ul>
@@ -574,7 +611,7 @@
     </main>
 
     <footer>
-      Plain HTML and CSS. No frameworks, no build step, no external APIs, no data storage.
+      Plain HTML and CSS, with small vanilla JavaScript enhancements in a few versions. No frameworks, no build step, no external APIs, no data storage.
     </footer>
   </div>
 </body>
