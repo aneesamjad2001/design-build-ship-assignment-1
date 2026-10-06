@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v03 · Policy memo</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --desk: #d9dde2;
+      --paper: #ffffff;
+      --ink: #111418;
+      --muted: #4a525c;
+      --rule: #111418;
+      --soft: #c9ced5;
+      --navy: #1c3a63;
+      --serif: "Times New Roman", Times, "Liberation Serif", serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--desk);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.125rem;
+      line-height: 1.55;
+      padding: clamp(0rem, 3vw, 2.5rem) clamp(0rem, 3vw, 2rem) 3rem;
+    }
+
+    a { color: var(--navy); text-underline-offset: 0.15em; }
+    a:focus-visible {
+      outline: 3px solid var(--navy);
+      outline-offset: 2px;
+      background: #e6edf7;
+    }
+
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: var(--navy);
+      color: #fff;
+      padding: 0.4rem 0.7rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+    }
+    .skip:focus { top: 1rem; }
+
+    .backbar {
+      max-width: 48rem;
+      margin: 0 auto 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0 1rem;
+    }
+    .backbar a { color: var(--ink); font-weight: 700; text-decoration: none; }
+    .backbar a:hover { text-decoration: underline; }
+
+    /* The sheet of paper */
+    .memo {
+      max-width: 48rem;
+      margin: 0 auto;
+      background: var(--paper);
+      padding: clamp(1.5rem, 6vw, 4.5rem) clamp(1.25rem, 7vw, 5rem) clamp(2rem, 6vw, 4rem);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 12px 32px rgba(17,20,24,0.12);
+    }
+
+    .classification {
+      margin: 0 0 2rem;
+      text-align: center;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .routing {
+      margin: 1.5rem 0 0;
+      display: grid;
+      grid-template-columns: 6rem 1fr;
+      border-bottom: 3px double var(--rule);
+      padding-bottom: 1rem;
+    }
+    .routing dt {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      padding-top: 0.2rem;
+    }
+    .routing dd { margin: 0 0 0.35rem; }
+    .routing .re { font-weight: 700; }
+
+    h2 {
+      margin: 2.25rem 0 0.75rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .bluf {
+      margin: 0;
+      padding: 1rem 1.25rem;
+      border-left: 4px solid var(--navy);
+      background: #f2f5f9;
+      font-size: 1.25rem;
+      line-height: 1.45;
+    }
+
+    p { margin: 0 0 0.9rem; }
+
+    /* Numbered findings with hanging numbers */
+    .findings {
+      list-style: none;
+      counter-reset: finding;
+      margin: 0;
+      padding: 0;
+    }
+    .findings > li {
+      counter-increment: finding;
+      position: relative;
+      padding: 0 0 1.25rem 2.75rem;
+    }
+    .findings > li::before {
+      content: counter(finding) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+    }
+    .findings h3 {
+      display: inline;
+      font-size: inherit;
+    }
+    .findings h3::after { content: " "; }
+    .findings p { display: inline; }
+
+    /* Lead project gets the full treatment */
+    .lead > p { display: block; margin-top: 0.4rem; }
+    .lead dl {
+      margin: 0.75rem 0 0.5rem;
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      border-top: 1px solid var(--soft);
+      font-size: 1rem;
+    }
+    .lead dt, .lead dd {
+      margin: 0;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--soft);
+    }
+    .lead dt { font-family: var(--sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-top: 0.6rem; }
+
+    .sub { list-style: lower-alpha; margin: 0.5rem 0 0; padding-left: 1.5rem; }
+    .sub li { margin-bottom: 0.3rem; }
+
+    .signature { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--soft); }
+    .signature p { margin: 0; }
+    .signature .name { font-style: italic; font-size: 1.35rem; }
+    .contacts { list-style: none; margin: 0.75rem 0 0; padding: 0; }
+    .contacts li { margin-bottom: 0.2rem; }
+    .contacts span { display: inline-block; width: 5.5rem; font-family: var(--sans); font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+
+    @media (max-width: 560px) {
+      body { font-size: 1.05rem; }
+      .backbar { padding: 0.75rem 1rem 0; }
+      .routing { grid-template-columns: 4.25rem 1fr; }
+      .findings > li { padding-left: 1.9rem; }
+      .lead dl { grid-template-columns: 1fr; }
+      .lead dt { border-bottom: 0; padding-bottom: 0; }
+      .contacts span { display: block; width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="backbar" aria-label="Prototype navigation">
+    <a href="../index.html">← Gallery</a>
+    <span>v03 · Policy memo</span>
+  </nav>
+
+  <main id="main" class="memo">
+    <p class="classification">For hiring teams and collaborators</p>
+
+    <header>
+      <h1>Memorandum</h1>
+      <dl class="routing">
+        <dt>TO:</dt><dd>AI engineering recruiters, startup teams, and potential collaborators</dd>
+        <dt>FROM:</dt><dd>Anees Amjad, graduate student, Computational Analysis and Public Policy, University of Chicago</dd>
+        <dt>RE:</dt><dd class="re">Building AI tools and data products for real-world decisions</dd>
+      </dl>
+    </header>
+
+    <section aria-labelledby="bluf-h">
+      <h2 id="bluf-h">Bottom line up front</h2>
+      <p class="bluf">I build AI tools and data products for real-world decisions. My work spans AI workflows, public-sector software, and applied machine learning.</p>
+    </section>
+
+    <section aria-labelledby="findings-h">
+      <h2 id="findings-h">Record of work</h2>
+      <ol class="findings">
+        <li class="lead">
+          <h3>PublicPath.</h3>
+          <p>A nonprofit platform that helps students and early-career candidates discover, navigate, and land roles in government, from city hall to Capitol Hill.</p>
+          <dl>
+            <dt>Role</dt><dd>Co-founder, Engineering and Data</dd>
+            <dt>Contribution</dt>
+            <dd>
+              Built the platform as one of two engineers, working on:
+              <ol class="sub">
+                <li>API ingestion; and</li>
+                <li>data-quality workflows.</li>
+              </ol>
+            </dd>
+            <dt>Tools</dt><dd>Python, GitHub Actions, Supabase, Postgres</dd>
+            <dt>Reference</dt><dd><a href="https://tahvia127.github.io/PublicPath/">tahvia127.github.io/PublicPath</a></dd>
+          </dl>
+        </li>
+        <li>
+          <h3>Ourea Brain.</h3>
+          <p>Designed an internal AI knowledge system connecting company information across communication and document sources.</p>
+        </li>
+        <li>
+          <h3>Energy Market Intelligence.</h3>
+          <p>Built a weekly AI-assisted workflow filtering energy-storage and related market signals into leadership updates.</p>
+        </li>
+        <li>
+          <h3>Chicago Eviction Risk.</h3>
+          <p>Built an interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="action-h">
+      <h2 id="action-h">Recommended action</h2>
+      <p>Reach out by email, GitHub, or LinkedIn (below).</p>
+    </section>
+
+    <footer class="signature">
+      <p class="name">Anees Amjad</p>
+      <ul class="contacts">
+        <li><span>Email</span> <a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+        <li><span>GitHub</span> <a href="https://github.com/aneesamjad2001">github.com/aneesamjad2001</a></li>
+        <li><span>LinkedIn</span> <a href="https://www.linkedin.com/in/anees-amjad/">linkedin.com/in/anees-amjad</a></li>
+      </ul>
+    </footer>
+  </main>
+</body>
+</html>
