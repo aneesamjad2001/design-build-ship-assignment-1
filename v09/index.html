@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anees Amjad — v09 · Newspaper front page</title>
+  <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
+  <style>
+    :root {
+      --paper: #f1ece0;
+      --ink: #1a1a1a;
+      --grey: #555049;
+      --rule: #1a1a1a;
+      --display: Didot, "Bodoni 72", "Bodoni MT", "Playfair Display", Georgia, serif;
+      --text: Georgia, "Times New Roman", serif;
+      --label: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #d8d2c4;
+      color: var(--ink);
+      font-family: var(--text);
+      line-height: 1.45;
+    }
+
+    a { color: var(--ink); text-underline-offset: 0.15em; }
+    a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; background: #fff6c4; }
+
+    .skip { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: var(--paper); padding: 0.4rem 0.7rem; }
+    .skip:focus { top: 1rem; }
+
+    .paper {
+      max-width: 70rem;
+      margin: 0 auto;
+      background: var(--paper);
+      padding: 0.75rem clamp(1rem, 3vw, 2.25rem) 2.5rem;
+      box-shadow: 0 0 40px rgba(0,0,0,0.15);
+    }
+
+    .ears {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-family: var(--label);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .ears a { font-weight: 700; text-decoration: none; }
+    .ears a:hover { text-decoration: underline; }
+
+    .masthead { text-align: center; padding: 0.5rem 0 0; }
+    .masthead .name {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2rem, 6.4vw, 4.9rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .masthead .motto { margin: 0.35rem 0 0; font-style: italic; color: var(--grey); }
+    .dateline {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+      margin-top: 0.75rem;
+      padding: 0.35rem 0;
+      border-top: 3px double var(--rule);
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--label);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .front {
+      display: grid;
+      grid-template-columns: minmax(0, 2.6fr) minmax(0, 1fr);
+      gap: 0 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .kicker {
+      margin: 0;
+      font-family: var(--label);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .lead h1 {
+      margin: 0.25rem 0 0;
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.02;
+      font-weight: 700;
+    }
+    .deck { margin: 0.6rem 0 0; font-size: 1.2rem; font-style: italic; line-height: 1.35; color: var(--grey); }
+    .byline { margin: 0.75rem 0 0; padding: 0.4rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-family: var(--label); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .story {
+      margin-top: 1rem;
+      column-count: 2;
+      column-gap: 1.5rem;
+      column-rule: 1px solid #b5ad9c;
+      text-align: justify;
+      hyphens: auto;
+    }
+    .story p { margin: 0 0 0.75rem; }
+    .story p:first-child::first-letter {
+      float: left;
+      font-family: var(--display);
+      font-size: 3.6rem;
+      line-height: 0.85;
+      padding: 0.25rem 0.4rem 0 0;
+      font-weight: 700;
+    }
+    .factbox {
+      break-inside: avoid;
+      margin: 0 0 0.75rem;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--rule);
+      text-align: left;
+    }
+    .factbox h2 { margin: 0 0 0.35rem; font-family: var(--label); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .factbox dl { margin: 0; font-size: 0.92rem; }
+    .factbox dt { font-weight: 700; display: inline; }
+    .factbox dd { display: inline; margin: 0; }
+    .factbox dd::after { content: ""; display: block; margin-bottom: 0.25rem; }
+
+    /* Right rail: briefs */
+    .rail { border-left: 1px solid var(--rule); padding-left: 1.5rem; }
+    .rail h2.section {
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 3px solid var(--rule);
+      font-family: var(--label);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .brief { padding: 0.6rem 0 0.8rem; border-bottom: 1px solid #b5ad9c; }
+    .brief h3 { margin: 0; font-family: var(--display); font-size: 1.3rem; line-height: 1.1; }
+    .brief p { margin: 0.3rem 0 0; font-size: 0.95rem; }
+
+    .about { margin-top: 1rem; padding: 0.75rem; background: var(--ink); color: var(--paper); }
+    .about h2 { margin: 0 0 0.35rem; font-family: var(--label); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .about p { margin: 0; font-size: 0.95rem; }
+
+    .correspondence {
+      margin-top: 1.5rem;
+      padding-top: 0.5rem;
+      border-top: 3px double var(--rule);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 2rem;
+    }
+    .correspondence h2 { margin: 0; font-family: var(--label); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .correspondence ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.75rem; font-size: 1.05rem; }
+
+    @media (max-width: 800px) {
+      .front { grid-template-columns: 1fr; }
+      .rail { border-left: 0; padding-left: 0; margin-top: 1.5rem; }
+      .story { column-count: 1; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="paper">
+    <nav class="ears" aria-label="Prototype navigation">
+      <a href="../index.html">← Gallery</a>
+      <span>v09 · Newspaper front page</span>
+    </nav>
+
+    <header class="masthead">
+      <p class="name">The Anees Amjad Record</p>
+      <p class="motto">“I build AI tools and data products for real-world decisions.”</p>
+      <div class="dateline">
+        <span>Chicago</span>
+        <span>Vol. I · No. 9</span>
+        <span>Portfolio Edition</span>
+      </div>
+    </header>
+
+    <div class="front">
+      <main id="main" class="lead">
+        <article aria-labelledby="lead-h">
+          <p class="kicker">Lead story · Public-sector software</p>
+          <h1 id="lead-h">Two Engineers Build a Platform Opening Government Careers to Students</h1>
+          <p class="deck">PublicPath helps students and early-career candidates discover, navigate, and land roles from city hall to Capitol Hill. Anees Amjad co-founded it and worked on its API ingestion and data-quality workflows.</p>
+          <p class="byline">PublicPath · Co-founder, Engineering and Data</p>
+
+          <div class="story">
+            <p>PublicPath is a nonprofit platform with a simple aim: helping students and early-career candidates discover, navigate, and land roles in government, from city hall to Capitol Hill.</p>
+            <p>Anees Amjad, co-founder for engineering and data, built the platform as one of its two engineers, working on API ingestion and data-quality workflows.</p>
+            <aside class="factbox" aria-labelledby="fb-h">
+              <h2 id="fb-h">At a glance</h2>
+              <dl>
+                <dt>Role:</dt> <dd>Co-founder, Engineering and Data</dd>
+                <dt>Built:</dt> <dd>API ingestion; data-quality workflows</dd>
+                <dt>Stack:</dt> <dd>Python, GitHub Actions, Supabase, Postgres</dd>
+                <dt>Online:</dt> <dd><a href="https://tahvia127.github.io/PublicPath/">tahvia127.github.io/PublicPath</a></dd>
+              </dl>
+            </aside>
+          </div>
+        </article>
+      </main>
+
+      <aside class="rail" aria-labelledby="briefs-h">
+        <h2 class="section" id="briefs-h">In brief</h2>
+        <article class="brief" aria-labelledby="b1">
+          <h3 id="b1">Ourea Brain</h3>
+          <p>Designed an internal AI knowledge system connecting company information across communication and document sources.</p>
+        </article>
+        <article class="brief" aria-labelledby="b2">
+          <h3 id="b2">Energy Market Intelligence</h3>
+          <p>Built a weekly AI-assisted workflow filtering energy-storage and related market signals into leadership updates.</p>
+        </article>
+        <article class="brief" aria-labelledby="b3">
+          <h3 id="b3">Chicago Eviction Risk</h3>
+          <p>Built an interpretable machine-learning and geospatial workflow exploring Chicago eviction risk patterns.</p>
+        </article>
+
+        <section class="about" aria-labelledby="about-h">
+          <h2 id="about-h">About the editor</h2>
+          <p>I’m Anees Amjad, a graduate student in Computational Analysis and Public Policy at the University of Chicago. My work spans AI workflows, public-sector software, and applied machine learning.</p>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="correspondence" aria-labelledby="corr-h">
+      <h2 id="corr-h">Correspondence</h2>
+      <ul>
+        <li><a href="mailto:aneesamjad@uchicago.edu">aneesamjad@uchicago.edu</a></li>
+        <li><a href="https://github.com/aneesamjad2001">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/anees-amjad/">LinkedIn</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+</html>
