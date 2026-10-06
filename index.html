@@ -69,6 +69,8 @@
     section { padding: 2.5rem 0; }
     h2 { margin: 0 0 1.25rem; font-size: 1.25rem; }
 
+    .final-tag { margin: 0 0 0.5rem !important; font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #8a3a12; }
+    .final p { margin: 0 0 0.6rem; color: var(--ink); }
     .final {
       padding: 1rem 1.25rem;
       background: var(--surface);
@@ -183,7 +185,32 @@
     <main>
       <section aria-labelledby="final-title">
         <h2 id="final-title">Final choice</h2>
-        <p class="final">Not chosen yet. Anees is comparing v13–v19; v20–v25 will converge on the chosen direction.</p>
+        <div class="final">
+          <p class="final-tag">Recommended final — awaiting Anees’s review</p>
+          <p><strong><a href="v25/index.html">v25 · Recommended synthesis</a></strong>. Written by Claude as a draft for Anees to accept, edit or replace.</p>
+          <p>The page is for AI engineering recruiters, startup teams and potential collaborators, so it has to show quickly what Anees built, separate that from the surrounding system and team, and make contact easy. v25 keeps what survived 24 earlier versions: v01’s editorial typography and project-first order; v04/v14’s diagrams that mark “my work” against the rest of each system; v15’s rule that every artifact is captioned for what it actually is; the AI-first order Anees chose in v21 (Ourea Brain → PublicPath → CLARITY); v23’s ability to see all three projects at once; and v24’s diagram-before-prose cases. Dropped along the way: simulated terminals, decorative maps, museum framing, abstract art, a mandatory audience selector, oversized slogans, hidden panels, empty fields and unverifiable metrics.</p>
+          <p><strong>Trade-off.</strong> v25’s persistent sidebar keeps name, all three projects and contact visible and puts a real case on the first screen. The cost is a narrower reading column on laptops and a quieter artifact presentation than v24. On phones the sidebar becomes a header, so the first case starts after the project index. v23 is the alternative if speed of scanning matters more than seeing the contribution diagrams; v24 if the visuals should carry the page.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="owner-title">
+        <h2 id="owner-title">Anees’s goals and choices</h2>
+        <ul class="process">
+          <li><h3>Goal and audience</h3><p>A portfolio for AI engineering recruiters, startup teams and potential collaborators, positioned as “I build AI tools and data products for real-world decisions.”</p></li>
+          <li><h3>Content decisions</h3><p>Use only facts from the CV, project materials or Anees’s own statements. Ourea Brain was built and deployed; PublicPath title is “Co-founder, Engineering and Data”; link joinpublicpath.com as “Project website”; Chicago Eviction Risk’s repository stays private; the team dashboard may be reused with credit.</p></li>
+          <li><h3>Chosen direction (after v22)</h3><p>In Anees’s words: “Leading with Ourea Brain introduces my deployed AI work first. PublicPath should follow to demonstrate co-founder experience and data engineering, with CLARITY third to demonstrate another application of my engineering skills.”</p></li>
+          <li><h3>Final choice</h3><p>Pending. The recommendation above is a draft, not Anees’s decision.</p></li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="checks-title">
+        <h2 id="checks-title">Checks actually performed</h2>
+        <ul class="process">
+          <li><h3>Rendering</h3><p>Headless Chrome screenshots at 1280×800 and 390px wide for every version as it was built; final candidates (v21–v25) inspected section by section at both widths.</p></li>
+          <li><h3>Keyboard</h3><p>Real Tab and Enter key events sent through Chrome’s DevTools protocol on v13, v14 and v20–v25: every focused element showed a visible focus style, and Enter on the main “work” link moved to it.</p></li>
+          <li><h3>Structure and contrast</h3><p>Automated checks for one h1, heading order, image alt text, page-level horizontal overflow (none), broken local links and anchors (none), and WCAG contrast ratios of the key colour pairs (all ≥ 4.5:1 after fixes).</p></li>
+          <li><h3>Not performed</h3><p>No user testing, no screen-reader testing, no real phones or Safari/Firefox. LinkedIn blocks automated requests, so that link is unverified. joinpublicpath.com loads, but its job search was failing when checked.</p></li>
+        </ul>
       </section>
 
       <section aria-labelledby="process-title">
@@ -193,8 +220,9 @@
           <li><h3>Review input</h3><p>An external AI-assisted design review (not user testing) evaluated v01–v12 and recommended combining v01’s editorial type and project-first order, v04’s explicit contribution and system diagrams, and v12’s spacing and concise labels. Its notes are shown on each card, attributed, until Anees records an evaluation.</p></li>
           <li><h3>Content upgrade</h3><p>From v13, content comes from Anees’s CV and checked project evidence: real links, a live PublicPath screenshot, a team dashboard image, and diagrams labelled conceptual where the work is private.</p></li>
           <li><h3>v13–v19 · Recombine</h3><p>Seven structurally different compositions built on the same principles, so the choice is between real alternatives, not variations of one template. v20–v25 come after Anees reviews these.</p></li>
-          <li><h3>Distinctness audit (v01–v20)</h3><p>Closest relatives, flagged honestly: v01→v13 (same serif rail; v13 adds case studies), v04→v14 (both pipeline diagrams; v14 makes them primary), v08→v18 (both tables; rows are projects vs. capabilities), v10→v20 (both grids; v20 keeps one whole frame per project), v12→v15 (both exhibitions; v15 swaps art for real artifacts). The rest differ in composition and interaction. v21 and v22 are intentionally near-identical, as a controlled comparison. This audit covers only this gallery, not classmates’ work.</p></li>
+          <li><h3>Distinctness audit (v01–v25)</h3><p>Conservative count: 20 distinct designs. Grouped as one design each: v01/v13/v21/v22 (same rail-and-case skeleton; v21–v22 differ only in order), v12/v15 (framed artifact plus label, top to bottom), v20/v23 (overview cards, then detail). v14 was restructured into a swimlane atlas so that it no longer duplicates v04. Uncertain pairs counted as distinct: v08/v18 (both tables, but rows are projects vs. capabilities), v10/v20 (both grids, but fragmented tiles vs. one frame per project), v16/v25 (both left columns, but pane switching vs. a persistent profile with all content visible). A stricter reading could merge those three pairs, giving 17. This audit covers only this gallery, not classmates’ work.</p></li>
           <li><h3>v20–v22 · Converge</h3><p>v20 closes the broad exploration. v21 (Ourea Brain first) and v22 (PublicPath first) share one visual system so the only variable is which project introduces the portfolio. Anees has not yet chosen between them.</p></li>
+          <li><h3>v23–v25 · Final convergence</h3><p>From Anees’s chosen v21: v23 tests a fast overview, v24 an artifact-led casebook, and v25 combines the strongest parts of both. External review notes on v13–v19 came from an AI-assisted critique; the build decisions and wording are Claude’s, recorded on each card under “Builds on / rejects”.</p></li>
         </ol>
       </section>
 
@@ -489,7 +517,7 @@
                 <h3><a href="v21/index.html"><span class="tag">v21</span>Synthesis, AI-first</a></h3>
                 <p class="note"><strong>Hypothesis</strong>First convergence: an editorial portfolio with visible engineering evidence, led by Ourea Brain. A compact hero with a prominent name puts the first case’s architecture on the first screen; each case gives audience, my contribution, a numbered ‘how it works’, and labelled evidence, without repeating the same paragraph.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Structure from v13 (rail, case rhythm, role clarity) with a shorter opening; numbered steps from v14, drawn in HTML so they read on phones; artifact treatment from v15, with the PublicPath screenshot kept small and captioned as the team’s product. Uses v19’s detail only inside ‘How it works’, rewritten as mechanisms rather than guarantees.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
+                <p class="note"><strong>Anees’s evaluation</strong>Chosen as the starting direction for the final convergence: “Leading with Ourea Brain introduces my deployed AI work first.”</p>
               </div>
             </article>
           </li>
@@ -502,7 +530,7 @@
                 <h3><a href="v22/index.html"><span class="tag">v22</span>Synthesis, product-first</a></h3>
                 <p class="note"><strong>Hypothesis</strong>Controlled comparison with v21: identical visual system and case content, but PublicPath leads, the intro names the platform first, and the first-screen artifact is PublicPath’s data flow instead of Ourea Brain’s architecture. Tests whether product-building or AI-system experience is the stronger introduction.</p>
                 <p class="note"><strong>Builds on / rejects</strong>Deliberately near-identical to v21; only order, numbering, intro clause order and the hero artifact change. It is a convergence step, not one of the broad explorations.</p>
-                <p class="note"><strong>Anees’s evaluation</strong><span class="pending">Pending.</span></p>
+                <p class="note"><strong>Anees’s evaluation</strong>Not chosen; Anees preferred the AI-first order of v21.</p>
               </div>
             </article>
           </li>
