@@ -3,271 +3,202 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anees Amjad — v20 · Contact sheet</title>
+  <title>Anees Amjad — v20 · Project drawers</title>
   <meta name="description" content="Anees Amjad builds AI tools and data products for real-world decisions.">
   <style>
     :root {
-      --sheet: #e8e5de;
-      --frame: #ffffff;
+      --bg: #e9e6df;
+      --drawer: #f7f5f0;
+      --open: #ffffff;
       --ink: #1d1b18;
       --muted: #5c574f;
-      --line: #cdc7bb;
+      --line: #c9c3b6;
       --mark: #a92a14;
-      --soft: #f3f1ec;
+      --mark-soft: #fbe4dd;
       --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
       --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
       --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--sheet); color: var(--ink); font-family: var(--sans); line-height: 1.5; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.5; }
     a { color: var(--ink); text-underline-offset: 0.2em; }
     a:hover { color: var(--mark); }
-    a:focus-visible { outline: 3px solid var(--mark); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); outline-offset: 3px; border-radius: 2px; }
     img { max-width: 100%; height: auto; display: block; }
     .skip { position: absolute; left: 1rem; top: -4rem; z-index: 10; background: var(--ink); color: #fff; padding: 0.5rem 0.75rem; }
     .skip:focus { top: 0.5rem; }
-
     .assignment { background: #1d1b18; color: #c9c3b8; font: 0.78rem/1.4 var(--mono); }
-    .assignment div { max-width: 78rem; margin: 0 auto; padding: 0.45rem clamp(1rem, 3vw, 2rem); display: flex; justify-content: space-between; gap: 1rem; }
+    .assignment div { max-width: 62rem; margin: 0 auto; padding: 0.45rem clamp(1rem, 3vw, 2rem); display: flex; justify-content: space-between; gap: 1rem; }
     .assignment a { color: #fff; }
     .assignment a:focus-visible { outline-color: #f3a28f; }
+    .wrap { max-width: 62rem; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2rem); }
 
-    .wrap { max-width: 78rem; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2rem); }
-
-    /* Sheet header, like the edge of a contact sheet */
-    .head { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 0.75rem 3rem; align-items: end; padding-block: 1.5rem 1rem; border-bottom: 1px solid var(--line); }
-    .head h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1; }
+    .head { padding-block: 1.5rem 1.25rem; }
+    .head h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2.1rem, 4vw, 2.8rem); line-height: 1; }
     .head .headline { margin: 0.45rem 0 0; font-size: 1.1rem; font-weight: 600; }
-    .head .intro { margin: 0.45rem 0 0; color: var(--muted); font-size: 0.95rem; }
-    .head-side { font-size: 0.9rem; }
-    .head-side .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: center; }
-    .head-side .primary { padding: 0.45rem 0.9rem; background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; }
-    .head-side .primary:hover { background: var(--mark); color: #fff; }
-    .head-side p { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.85rem; }
-    .legend { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0.75rem 0 0; padding: 0; list-style: none; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
-    .legend .m { color: var(--mark); }
+    .head .intro { margin: 0.4rem 0 0; color: var(--muted); max-width: 46rem; }
+    .head .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: center; margin-top: 0.8rem; }
+    .head .primary { padding: 0.45rem 0.9rem; background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; }
+    .head .primary:hover { background: var(--mark); color: #fff; }
+    .head .open { margin: 0.45rem 0 0; font-size: 0.85rem; color: var(--muted); }
 
-    /* The sheet: uniform frames, each a whole project */
-    .sheet { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-    .frame { position: relative; display: flex; flex-direction: column; background: var(--frame); padding: 0.75rem 0.75rem 1rem; box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
-    .frame.pick { outline: 3px solid var(--mark); outline-offset: -3px; }
-    .frame-top { display: flex; justify-content: space-between; gap: 0.5rem; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-bottom: 0.5rem; }
-    .frame-top .kind { text-transform: uppercase; letter-spacing: 0.04em; }
-    .pick .frame-top .no { color: var(--mark); font-weight: 700; }
-    .view { aspect-ratio: 16 / 10; background: var(--soft); border: 1px solid #e3dfd6; display: grid; place-items: center; overflow: hidden; }
-    .view img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-    .frame h2 { margin: 0.75rem 0 0; font-family: var(--serif); font-weight: 400; font-size: 1.45rem; line-height: 1.15; }
-    .frame .did { margin: 0.35rem 0 0.75rem; font-size: 0.92rem; }
-    .frame .more { margin-top: auto; font-size: 0.85rem; font-weight: 700; }
+    /* The cabinet: one drawer per project, opened in place */
+    .cabinet { list-style: none; margin: 0; padding: 0; border-top: 3px solid var(--ink); }
+    .cabinet > li { border-bottom: 1px solid var(--line); scroll-margin-top: 0.5rem; }
+    details { background: var(--drawer); }
+    details[open] { background: var(--open); box-shadow: inset 4px 0 0 var(--mark); }
+    summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 3rem minmax(0, 1fr) auto; gap: 0.25rem 1rem; align-items: center; padding: 0.9rem 1rem; }
+    summary::-webkit-details-marker { display: none; }
+    summary .no { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); }
+    .featured summary .no { color: var(--mark); font-weight: 700; }
+    summary h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(1.35rem, 2.6vw, 1.75rem); line-height: 1.15; }
+    summary .one { grid-column: 2; grid-row: 2; font-family: var(--sans); font-size: 0.9rem; color: var(--muted); }
+    summary .handle { grid-column: 3; grid-row: 1 / span 2; }
+    summary .handle { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; color: var(--muted); padding: 0.25rem 0.55rem; border: 1px solid var(--line); border-radius: 3px; white-space: nowrap; }
+    summary .handle::after { content: " ▾"; }
+    details[open] summary .handle::after { content: " ▴"; }
+    summary:hover .handle { border-color: var(--ink); color: var(--ink); }
+    .inside { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 1.25rem 2rem; padding: 0.25rem 1rem 1.5rem 5rem; }
+    .inside dl { margin: 0; display: grid; gap: 0.6rem; font-size: 0.95rem; }
+    .inside dt { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; color: var(--muted); }
+    .inside dd { margin: 0.1rem 0 0; }
+    .note { display: block; font-size: 0.8rem; color: var(--muted); }
+    .visual { margin: 0; }
+    .visual .kind { margin: 0 0 0.4rem; font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; color: var(--muted); }
+    .visual figcaption { margin-top: 0.4rem; font-size: 0.8rem; color: var(--muted); }
+    .visual img { border: 1px solid var(--line); }
+    .flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; font-size: 0.9rem; }
+    .flow li { padding: 0.4rem 0.6rem; border: 1px solid var(--ink); background: #fff; }
+    .flow li.mine { border-color: var(--mark); background: var(--mark-soft); }
+    .flow li.mine::after { content: "my work"; float: right; font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; color: var(--mark); }
 
-    /* Mini diagrams drawn in HTML so they reflow on phones */
-    .flow { list-style: none; margin: 0; padding: 0.75rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.35rem; font-size: 0.78rem; line-height: 1.25; }
-    .flow li { padding: 0.35rem 0.5rem; background: #fff; border: 1px solid var(--ink); text-align: center; }
-    .flow li.mine { background: #fbe4dd; border-color: var(--mark); }
-    .flow li.arrow { border: 0; background: none; padding: 0; color: var(--muted); }
-
-    /* Detail sections */
-    .details { margin-top: 2.5rem; }
-    .detail { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 0.5rem 2.5rem; padding-block: 1.75rem; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
-    .detail .tag { margin: 0; font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
-    .detail.pick .tag { color: var(--mark); }
-    .detail h3 { margin: 0.2rem 0 0; font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height: 1.1; }
-    .detail .sub { margin: 0.2rem 0 0; font-family: var(--serif); font-style: italic; color: var(--muted); }
-    .detail dl { margin: 0; display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0.55rem 1.25rem; font-size: 0.95rem; }
-    .detail dt { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; color: var(--muted); padding-top: 0.2rem; }
-    .detail dd { margin: 0; }
-    .note { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
-
-    .bg { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 0.5rem 2.5rem; padding-block: 1.75rem; border-top: 1px solid var(--line); }
+    .bg { padding-block: 1.5rem; display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 0.5rem 2rem; font-size: 0.9rem; }
     .bg h2, .contact h2 { margin: 0; font-family: var(--mono); font-size: 0.75rem; font-weight: 400; text-transform: uppercase; color: var(--muted); }
-    .bg p { margin: 0 0 0.6rem; }
-    .bg ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 2rem; font-size: 0.88rem; }
-    .bg li { break-inside: avoid; padding: 0.15rem 0; }
-    .bg li span { color: var(--muted); }
-    .contact { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 0.5rem 2.5rem; padding-block: 1.75rem 3rem; border-top: 2px solid var(--ink); }
-    .contact ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; font-size: 1.15rem; font-weight: 700; }
+    .bg p { margin: 0 0 0.4rem; }
+    .contact { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 0.5rem 2rem; padding-block: 1.5rem 3rem; border-top: 2px solid var(--ink); }
+    .contact ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; font-size: 1.1rem; font-weight: 700; }
 
-    @media (max-width: 900px) {
-      .head, .detail, .bg, .contact { grid-template-columns: minmax(0, 1fr); }
-      .sheet { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .detail dl { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
-      .detail dd { margin-bottom: 0.5rem; }
-      .bg ul { columns: 1; }
-    }
-    @media (max-width: 600px) {
-      .sheet { grid-template-columns: minmax(0, 1fr); }
+    @media (max-width: 760px) {
+      summary { grid-template-columns: 2.25rem minmax(0, 1fr); }
+      summary .handle { grid-column: 2; grid-row: 3; justify-self: start; }
+      .inside { grid-template-columns: minmax(0, 1fr); padding: 0.25rem 1rem 1.25rem; }
+      .bg, .contact { grid-template-columns: minmax(0, 1fr); }
     }
   </style>
 </head>
 <body>
   <a class="skip" href="#work">Skip to selected work</a>
   <nav class="assignment" aria-label="Assignment navigation">
-    <div><a href="../index.html">← Gallery</a><span>Prototype v20 · Contact sheet</span></div>
+    <div><a href="../index.html">← Gallery</a><span>Prototype v20 · Project drawers (late revision)</span></div>
   </nav>
 
   <div class="wrap">
     <header class="head">
-      <div>
-        <h1>Anees Amjad</h1>
-        <p class="headline">I build AI tools and data products for real-world decisions.</p>
-        <p class="intro">I’m a master’s student in Computational Analysis and Public Policy at the University of Chicago. My work includes an internal AI assistant at Ourea Energy, a public-sector careers platform I co-founded, and research tools that turn complex data into usable outputs.</p>
-      </div>
-      <div class="head-side">
-        <div class="links"><a class="primary" href="#work">Selected work</a><a href="#contact">Get in touch</a></div>
-        <p>Open to AI engineering roles, startup opportunities, and collaboration.</p>
-        <ul class="legend" aria-label="Legend">
-          <li><span class="m">■</span> red frame: featured</li>
-          <li>Screenshot = real capture</li>
-          <li>Diagram = simplified, drawn for this page</li>
-        </ul>
-      </div>
+      <h1>Anees Amjad</h1>
+      <p class="headline">I build AI tools and data products for real-world decisions.</p>
+      <p class="intro">My work spans an internal AI assistant at Ourea Energy, a public-sector careers platform I co-founded, and research software. I’m pursuing an MS in Computational Analysis and Public Policy at the University of Chicago.</p>
+      <div class="links"><a class="primary" href="#work">Selected work</a><a href="#contact">Get in touch</a></div>
+      <p class="open">Open to AI engineering roles, startup opportunities, and collaboration. Open any drawer below to read the full entry.</p>
     </header>
 
     <main id="work">
-      <ol class="sheet" aria-label="All projects">
-        <li class="frame pick">
-          <div class="frame-top"><span class="no">01 · featured</span><span class="kind">Diagram · simplified architecture</span></div>
-          <div class="view">
-            <ol class="flow" aria-label="Ourea Brain simplified architecture">
-              <li>Question in Slack</li><li class="arrow" aria-hidden="true">→</li>
-              <li class="mine">App on Cloud Run</li><li class="arrow" aria-hidden="true">→</li>
-              <li class="mine">Company context + Claude API</li><li class="arrow" aria-hidden="true">→</li>
-              <li>Response in Slack</li>
-            </ol>
-          </div>
-          <h2>Ourea Brain</h2>
-          <p class="did">Built and deployed an internal AI assistant that brings company context into Slack.</p>
-          <a class="more" href="#d-ourea-brain">Ourea Brain details ↓</a>
+      <ol class="cabinet" aria-label="Projects">
+        <li class="featured" id="ourea-brain">
+          <details open>
+            <summary><span class="no">01</span><h2>Ourea Brain</h2><span class="handle">Drawer</span><span class="one">Internal AI assistant in Slack · built and deployed</span></summary>
+            <div class="inside">
+              <figure class="visual">
+                <p class="kind">Explanatory diagram</p>
+                <ol class="flow" aria-label="Ourea Brain simplified architecture">
+                  <li>Question asked in Slack</li>
+                  <li class="mine">App on Google Cloud Run</li>
+                  <li class="mine">Company context + Claude API</li>
+                  <li>Response in Slack</li>
+                </ol>
+                <figcaption>Simplified architecture; highlighted stages show my implementation.</figcaption>
+              </figure>
+              <dl>
+                <div><dt>What it does</dt><dd>Brings company context into Slack for colleagues at Ourea Energy, designed to help them retrieve project context, identify owners, and follow up on decisions.</dd></div>
+                <div><dt>What I built</dt><dd>As an Agentic AI Intern, I built and deployed the assistant, connecting Slack, Gmail, Google Docs, and meeting notes and using Anthropic’s Claude API.</dd></div>
+                <div><dt>Observed behaviour</dt><dd>An early live deployment answered a Slack question using meeting-note context.</dd></div>
+                <div><dt>Tools</dt><dd>Slack integration · Claude API · Google Cloud Run · Google Workspace · Secret Manager</dd></div>
+              </dl>
+            </div>
+          </details>
         </li>
-        <li class="frame pick">
-          <div class="frame-top"><span class="no">02 · featured</span><span class="kind">Screenshot · project homepage</span></div>
-          <div class="view"><img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage, ‘Your path into public service starts here’ (the team’s product)."></div>
-          <h2>PublicPath</h2>
-          <p class="did">Co-founded; as one of two engineers, worked on API ingestion and listing data quality.</p>
-          <a class="more" href="#d-publicpath">PublicPath details ↓</a>
+        <li class="featured" id="publicpath">
+          <details>
+            <summary><span class="no">02</span><h2>PublicPath</h2><span class="handle">Drawer</span><span class="one">Public-sector careers platform · co-founder, data engineering</span></summary>
+            <div class="inside">
+              <figure class="visual">
+                <p class="kind">Project artifact</p>
+                <img src="../assets/publicpath-home.jpg" width="1280" height="800" alt="PublicPath homepage with the headline ‘Your path into public service starts here’." loading="lazy">
+                <figcaption>PublicPath team homepage, captured 6 October 2026. My contribution focused on ingestion and data quality.</figcaption>
+              </figure>
+              <dl>
+                <div><dt>What it does</dt><dd>Helps students and early-career candidates explore government careers.</dd></div>
+                <div><dt>What I built</dt><dd>Co-founder, Engineering and Data, and one of two engineers. I worked on API ingestion (scheduled Python jobs on GitHub Actions) and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</dd></div>
+                <div><dt>Project website</dt><dd><a href="https://www.joinpublicpath.com">joinpublicpath.com ↗</a><span class="note">Job search was not loading when checked on 6 Oct 2026.</span></dd></div>
+                <div><dt>Tools</dt><dd>Python · GitHub Actions · Supabase · Postgres</dd></div>
+              </dl>
+            </div>
+          </details>
         </li>
-        <li class="frame pick">
-          <div class="frame-top"><span class="no">03 · featured</span><span class="kind">Diagram · pipeline sequence</span></div>
-          <div class="view">
-            <ol class="flow" aria-label="CLARITY pipeline sequence">
-              <li>De-identified note (JSON)</li><li class="arrow" aria-hidden="true">→</li>
-              <li class="mine">Explanatory content</li><li class="arrow" aria-hidden="true">→</li>
-              <li class="mine">Narration + slides</li><li class="arrow" aria-hidden="true">→</li>
-              <li class="mine">MP4 video</li>
-            </ol>
-          </div>
-          <h2>CLARITY</h2>
-          <p class="did">Built a Python pipeline turning de-identified clinical notes into explanatory videos.</p>
-          <a class="more" href="#d-clarity">CLARITY details ↓</a>
+        <li class="featured" id="clarity">
+          <details>
+            <summary><span class="no">03</span><h2>CLARITY</h2><span class="handle">Drawer</span><span class="one">Clinical note to explanatory video · research pipeline</span></summary>
+            <div class="inside">
+              <figure class="visual">
+                <p class="kind">Explanatory diagram</p>
+                <ol class="flow" aria-label="CLARITY pipeline sequence">
+                  <li>De-identified clinical note (JSON)</li>
+                  <li class="mine">Explanatory content</li>
+                  <li class="mine">Narration (Neural TTS) and slides</li>
+                  <li class="mine">MP4 video</li>
+                </ol>
+                <figcaption>Simplified sequence automated by my Python pipeline.</figcaption>
+              </figure>
+              <dl>
+                <div><dt>What it does</dt><dd>Part of CLARITY, a healthcare-AI research project at HOPE Lab, UChicago Booth: turning de-identified clinical notes into patient-friendly explanatory videos.</dd></div>
+                <div><dt>What I built</dt><dd>As a Research Assistant, the Python pipeline that automates explanatory content, narration, slide generation, and MP4 production.</dd></div>
+                <div><dt>Output</dt><dd>MP4 explanatory videos. Clinical material is not public, so no example is shown.</dd></div>
+                <div><dt>Tools</dt><dd>Python · Microsoft Neural TTS</dd></div>
+              </dl>
+            </div>
+          </details>
         </li>
-        <li class="frame">
-          <div class="frame-top"><span class="no">04</span><span class="kind">Diagram · workflow</span></div>
-          <div class="view">
-            <ol class="flow" aria-label="Energy Market Intelligence workflow">
-              <li>Recurring market signals</li><li class="arrow" aria-hidden="true">→</li>
-              <li class="mine">Weekly AI-assisted filtering</li><li class="arrow" aria-hidden="true">→</li>
-              <li>Leadership updates</li>
-            </ol>
-          </div>
-          <h2>Energy Market Intelligence</h2>
-          <p class="did">Built a weekly workflow filtering energy-market signals into leadership updates.</p>
-          <a class="more" href="#d-energy">Energy Market Intelligence details ↓</a>
+        <li id="energy">
+          <details>
+            <summary><span class="no">04</span><h2>Energy Market Intelligence</h2><span class="handle">Drawer</span><span class="one">Weekly AI-assisted workflow · Ourea Energy</span></summary>
+            <div class="inside"><dl><div><dt>What I built</dt><dd>A weekly AI-assisted market-intelligence workflow that filtered 50+ recurring signals across energy storage, utilities, and data centers into leadership updates on competitors, investments, and partnerships. Separate from Ourea Brain.</dd></div></dl></div>
+          </details>
         </li>
-        <li class="frame">
-          <div class="frame-top"><span class="no">05</span><span class="kind">Diagram · method</span></div>
-          <div class="view">
-            <ol class="flow" aria-label="Chicago Eviction Risk method">
-              <li class="mine">Interpretable machine learning</li><li class="arrow" aria-hidden="true">+</li>
-              <li class="mine">Geospatial analysis</li><li class="arrow" aria-hidden="true">→</li>
-              <li>Eviction-risk patterns in Chicago</li>
-            </ol>
-          </div>
-          <h2>Chicago Eviction Risk</h2>
-          <p class="did">Built an interpretable ML and geospatial workflow on eviction-risk patterns.</p>
-          <a class="more" href="#d-eviction">Chicago Eviction Risk details ↓</a>
+        <li id="eviction">
+          <details>
+            <summary><span class="no">05</span><h2>Chicago Eviction Risk</h2><span class="handle">Drawer</span><span class="one">Interpretable ML and geospatial analysis</span></summary>
+            <div class="inside"><dl><div><dt>What I built</dt><dd>An interpretable machine-learning and geospatial workflow to explore eviction-risk patterns in Chicago.</dd></div><div><dt>Code</dt><dd>Private repository</dd></div></dl></div>
+          </details>
         </li>
-        <li class="frame">
-          <div class="frame-top"><span class="no">06 · team</span><span class="kind">Screenshot · team dashboard</span></div>
-          <div class="view"><img src="../assets/pnn-dashboard.jpg" width="1400" height="845" alt="Political Narrative Navigator team dashboard: monthly line charts comparing voter issue priorities with campaign speech topics in 2016, 2020, and 2024." loading="lazy"></div>
-          <h2>Political Narrative Navigator</h2>
-          <p class="did">Team project analysing 2,000+ campaign speeches alongside YouGov data.</p>
-          <a class="more" href="#d-narrative">Political Narrative Navigator details ↓</a>
+        <li id="narrative">
+          <details>
+            <summary><span class="no">06</span><h2>Political Narrative Navigator</h2><span class="handle">Drawer</span><span class="one">Team project · campaign speeches and YouGov data</span></summary>
+            <div class="inside">
+              <figure class="visual">
+                <p class="kind">Project artifact</p>
+                <img src="../assets/pnn-dashboard.jpg" width="1400" height="845" alt="Political Narrative Navigator team dashboard: monthly line charts comparing voter issue priorities with campaign speech topics in 2016, 2020, and 2024." loading="lazy">
+                <figcaption>Team dashboard, from the project’s README.</figcaption>
+              </figure>
+              <dl><div><dt>Work</dt><dd>Analyzed 2,000+ presidential campaign speeches alongside YouGov data using AI-assisted text workflows, as part of a University of Chicago team.</dd></div><div><dt>Source</dt><dd><a href="https://github.com/uchicago-2026-capp30122/political-narrative-navigator">Team repository on GitHub ↗</a></dd></div></dl>
+            </div>
+          </details>
         </li>
       </ol>
-
-      <div class="details">
-        <section class="detail pick" id="d-ourea-brain" aria-labelledby="dh-ob">
-          <div><p class="tag">01 · featured</p><h3 id="dh-ob">Ourea Brain</h3><p class="sub">Company knowledge, accessible through Slack.</p></div>
-          <dl>
-            <dt>For</dt><dd>Colleagues at Ourea Energy who need project context, owners, and decisions without searching several tools.</dd>
-            <dt>My part</dt><dd>Builder · Agentic AI Intern. I built and deployed the assistant; it connects information across Slack, Gmail, Google Docs, and meeting notes.</dd>
-            <dt>How it works</dt><dd>A question asked in Slack reaches the app on Google Cloud Run, which draws on relevant company context and Anthropic’s Claude API, then replies in Slack.</dd>
-            <dt>Evidence</dt><dd>An early live deployment answered a Slack question using meeting-note context.<span class="note">Internal tool; built and deployed internally.</span></dd>
-            <dt>Tools</dt><dd>Slack integration · Anthropic Claude API · Google Cloud Run · Google Workspace sources · meeting-note integration · Secret Manager</dd>
-          </dl>
-        </section>
-
-        <section class="detail pick" id="d-publicpath" aria-labelledby="dh-pp">
-          <div><p class="tag">02 · featured</p><h3 id="dh-pp">PublicPath</h3><p class="sub">Making public-sector opportunities easier to find.</p></div>
-          <dl>
-            <dt>For</dt><dd>Students and early-career candidates exploring government careers.</dd>
-            <dt>My part</dt><dd>Co-founder, Engineering and Data; one of two engineers. My work focused on API ingestion and data quality: cleaning, deduplicating, normalizing, and validating listings for search and filtering.</dd>
-            <dt>How it works</dt><dd>Scheduled Python ingestion (GitHub Actions) pulls listings from external job APIs; data-quality steps prepare them; they are stored in Postgres on Supabase for the site’s search and filters.</dd>
-            <dt>Evidence</dt><dd><a href="https://www.joinpublicpath.com">Project website ↗</a><span class="note">Job search was not loading when checked on 6 Oct 2026. The screenshot above shows the team’s product, not my individual work.</span></dd>
-            <dt>Tools</dt><dd>Python · GitHub Actions · Supabase · Postgres</dd>
-          </dl>
-        </section>
-
-        <section class="detail pick" id="d-clarity" aria-labelledby="dh-cl">
-          <div><p class="tag">03 · featured</p><h3 id="dh-cl">CLARITY</h3><p class="sub">Turning clinical notes into patient-friendly explanations.</p></div>
-          <dl>
-            <dt>For</dt><dd>A healthcare-AI research project at HOPE Lab, UChicago Booth, exploring patient-friendly explanations of clinical notes.</dd>
-            <dt>My part</dt><dd>Research Assistant. I built the Python pipeline that converts de-identified clinical-note JSON into patient-friendly explanatory videos.</dd>
-            <dt>How it works</dt><dd>Each note becomes explanatory content; narration is generated with Microsoft Neural TTS and slides alongside it; both are assembled into an MP4.</dd>
-            <dt>Evidence</dt><dd>Output format: MP4 explanatory videos.<span class="note">Clinical material is not public, so no example is shown.</span></dd>
-            <dt>Tools</dt><dd>Python · Microsoft Neural TTS</dd>
-          </dl>
-        </section>
-
-        <section class="detail" id="d-energy" aria-labelledby="dh-em">
-          <div><p class="tag">04</p><h3 id="dh-em">Energy Market Intelligence</h3></div>
-          <dl>
-            <dt>Work</dt><dd>Built a weekly AI-assisted market-intelligence workflow that filtered 50+ recurring signals across energy storage, utilities, and data centers into leadership updates on competitors, investments, and partnerships.</dd>
-            <dt>Context</dt><dd>Ourea Energy · internal, separate from Ourea Brain</dd>
-          </dl>
-        </section>
-
-        <section class="detail" id="d-eviction" aria-labelledby="dh-ev">
-          <div><p class="tag">05</p><h3 id="dh-ev">Chicago Eviction Risk</h3></div>
-          <dl>
-            <dt>Work</dt><dd>Built an interpretable machine-learning and geospatial workflow to explore eviction-risk patterns in Chicago.</dd>
-            <dt>Code</dt><dd>Private repository</dd>
-          </dl>
-        </section>
-
-        <section class="detail" id="d-narrative" aria-labelledby="dh-pnn">
-          <div><p class="tag">06 · team project</p><h3 id="dh-pnn">Political Narrative Navigator</h3></div>
-          <dl>
-            <dt>Work</dt><dd>Analyzed 2,000+ presidential campaign speeches alongside YouGov data using AI-assisted text workflows.</dd>
-            <dt>Source</dt><dd><a href="https://github.com/uchicago-2026-capp30122/political-narrative-navigator">Political Narrative Navigator on GitHub ↗</a><span class="note">Dashboard image from the team’s README.</span></dd>
-          </dl>
-        </section>
-      </div>
 
       <section class="bg" aria-labelledby="bg-h">
         <h2 id="bg-h">Background</h2>
         <div>
-          <p>I combine software building with applied research: data platforms and AI tools, alongside machine learning, survey analysis, and geospatial work.</p>
-          <ul>
-            <li>Ourea Energy — Agentic AI Intern <span>2026–</span></li>
-            <li>Financial Health Network — Research Intern <span>2026–</span></li>
-            <li>HOPE Lab, UChicago Booth — Research Assistant <span>2026–</span></li>
-            <li>PublicPath — Co-founder, Engineering and Data <span>2026–</span></li>
-            <li>PAMS — Research Associate, ML <span>2025</span></li>
-            <li>CERP — Analyst <span>2024–25</span></li>
-            <li>UChicago — MS, Computational Analysis and Public Policy <span>exp. June 2027</span></li>
-            <li>Lahore School of Economics — BS, Economics and Political Science <span>May 2024</span></li>
-          </ul>
+          <p>Ourea Energy (Agentic AI Intern) · Financial Health Network (Research Intern) · HOPE Lab, UChicago Booth (Research Assistant) · PublicPath (Co-founder, Engineering and Data) · PAMS (Research Associate, ML) · CERP (Analyst)</p>
+          <p>MS, Computational Analysis and Public Policy, University of Chicago (expected June 2027) · BS, Economics and Political Science, Lahore School of Economics (2024)</p>
         </div>
       </section>
     </main>
